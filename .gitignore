@@ -4,3 +4,4 @@
 *.psd
 Thumbs.db
 deploy-setup.sh
+versions/

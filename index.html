@@ -1,3 +1,5 @@
+<!-- VAREN® Brand Experience — v2.0 (working) -->
+<!-- Previous version: v1.0 backed up in /versions/ and tagged in git -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +10,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/VAREN_APPLE_180.png">
 <meta property="og:title" content="VAREN — Prepare. Perform. Prevail.">
-<meta property="og:description" content="Elite performance golf equipment. Forged in Pinehurst. Tested at speed.">
+<meta property="og:description" content="Elite performance golf equipment. Forged in Pinehurst. Tested at tempo.">
 <meta property="og:image" content="assets/VAREN_OG_1600x900.png">
 <style>
   /* ═══════════════════════════════════════════════════════════════════
@@ -135,11 +137,11 @@
     padding-right: var(--grid-margin);
   }
 
-  /* Asymmetric content positioning (Swiss style) */
-  .grid-wide     { max-width: 100%; }
-  .grid-content  { max-width: 900px; }
-  .grid-narrow   { max-width: 680px; }
-  .grid-caption   { max-width: 520px; }
+  /* Content widths — centered */
+  .grid-wide     { max-width: 100%; margin-left: auto; margin-right: auto; }
+  .grid-content  { max-width: 900px; margin-left: auto; margin-right: auto; }
+  .grid-narrow   { max-width: 680px; margin-left: auto; margin-right: auto; }
+  .grid-caption   { max-width: 520px; margin-left: auto; margin-right: auto; }
 
   /* ── NAV — Horizontal Logo Lockup (mk1 Half-Y) ── */
   nav {
@@ -236,23 +238,30 @@
   .scroll-cue {
     position: absolute; bottom: var(--sp-5); left: 50%; transform: translateX(-50%);
     opacity: 0; animation: fadeUp 1.2s var(--ease) 1.5s forwards;
+    display: flex; flex-direction: column; align-items: center;
   }
-  .scroll-cue .scroll-line {
-    display: block; width: 1px; height: 48px;
-    background: var(--gold); margin: 0 auto;
-    animation: pulse 2.4s ease infinite;
+  .scroll-cue .scroll-label {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.5em;
+    margin-bottom: var(--sp-2);
   }
-  .scroll-cue .scroll-arrow {
-    display: block; width: 0; height: 0; margin: 0 auto var(--sp-2);
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 8px solid var(--gold);
-    animation: pulse 2.4s ease infinite;
-  }
-  .scroll-cue small {
+  .scroll-cue .scroll-label small {
     font-family: var(--mono);
     font-size: var(--type-caption); letter-spacing: 0.12em;
     color: var(--gray); text-transform: uppercase;
+    line-height: 1;
+  }
+  .scroll-cue .scroll-arrow {
+    display: inline-block; width: 0; height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--gold);
+    position: relative; top: 1px; /* optical nudge */
+  }
+  .scroll-cue .scroll-line {
+    display: block; width: 1px; height: 48px;
+    background: var(--gold);
+    animation: pulse 2.4s ease infinite;
   }
 
   @keyframes fadeUp {
@@ -283,6 +292,7 @@
     margin-bottom: calc(var(--sp-5) * -1);
     pointer-events: none;
     user-select: none;
+    text-align: center;
   }
 
   .section-label {
@@ -293,6 +303,7 @@
     text-transform: uppercase;
     font-weight: 500;
     margin-bottom: var(--sp-2);
+    text-align: center;
   }
 
   .section-title {
@@ -303,6 +314,7 @@
     line-height: var(--leading-heading);
     letter-spacing: 0.01em;
     margin-bottom: var(--sp-5);
+    text-align: center;
   }
 
   /* ── MANIFESTO ── */
@@ -468,13 +480,16 @@
     margin-bottom: var(--sp-2);
     font-weight: 400;
   }
-  .pillar-card .price {
-    font-family: var(--mono);
+  .pillar-card .foundation {
+    font-family: var(--serif);
     font-size: var(--type-label);
     color: var(--gold);
-    font-weight: 500;
+    font-weight: 300;
+    font-style: italic;
     margin-top: var(--sp-3);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
+    padding-top: var(--sp-2);
+    border-top: 1px solid rgba(200,169,110,0.12);
   }
 
   /* ── ORIGIN (asymmetric 2-col) ── */
@@ -882,11 +897,13 @@
     <path d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
   </svg>
   <div class="hero-tagline">PREPARE &ensp;&middot;&ensp; PERFORM &ensp;&middot;&ensp; PREVAIL</div>
-  <div class="hero-sub">Brand Bible &mdash; Narrative &middot; Architecture &middot; Standards</div>
+  <div class="hero-sub">Brand Experience &mdash; Narrative &middot; Architecture &middot; Standards</div>
   <div class="scroll-cue">
+    <div class="scroll-label">
+      <small>Explore</small>
+      <span class="scroll-arrow"></span>
+    </div>
     <span class="scroll-line"></span>
-    <span class="scroll-arrow"></span>
-    <small>Explore</small>
   </div>
 </div>
 
@@ -931,7 +948,7 @@
           <p><strong>Background:</strong> U.S. Army Special Forces Engineer, Staff Sergeant</p>
           <p><strong>Discipline:</strong> Industrial Design</p>
           <p><strong>Experience:</strong> Three decades of manufacturing</p>
-          <p style="color:var(--gold); font-family:var(--serif); font-style:italic; margin-top:var(--sp-3); font-weight:300;">Forged in Pinehurst. Tested at speed. Refined through three decades of manufacturing discipline.</p>
+          <p style="color:var(--gold); font-family:var(--serif); font-style:italic; margin-top:var(--sp-3); font-weight:300;">Forged in Pinehurst. Tested at tempo. Refined through three decades of manufacturing discipline.</p>
         </div>
       </div>
     </div>
@@ -966,9 +983,9 @@
     <div class="fade-in">
       <div class="section-num">IV</div>
       <div class="section-label">Chapter IV</div>
-      <div class="section-title">Tournament-Speed Design</div>
+      <div class="section-title">Tournament-Tempo Design</div>
       <div class="prose grid-content" style="margin-bottom:var(--sp-5);">
-        <p><strong>We set out to build the first golf equipment system designed around tournament-speed behavior:</strong> access, balance, weather response, travel resilience, and long-term service&mdash;so performance stays uninterrupted.</p>
+        <p><strong>We set out to build the first golf equipment system designed around tournament-tempo behavior:</strong> access, balance, weather response, travel resilience, and long-term service&mdash;so performance stays uninterrupted.</p>
       </div>
       <div class="system-row">
         <div class="sys-card">
@@ -1003,7 +1020,7 @@
       <div class="section-num">V</div>
       <div class="section-label">Chapter V</div>
       <div class="section-title">Brand Architecture</div>
-      <p style="font-family:var(--sans); font-size:var(--type-body); color:rgba(242,240,237,0.72); max-width:760px; margin-bottom:var(--sp-5); line-height:var(--leading-body); font-weight:400;">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every touchpoint into a coherent journey.</p>
+      <p style="font-family:var(--sans); font-size:var(--type-body); color:rgba(242,240,237,0.72); max-width:760px; margin:0 auto var(--sp-5); line-height:var(--leading-body); font-weight:400; text-align:center;">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every touchpoint into a coherent journey.</p>
       <div class="pillars-row">
         <div class="pillar-card">
           <div class="pillar-label">Pillar I</div>
@@ -1011,15 +1028,15 @@
           <div class="sub">Master preparation through perfect organization</div>
           <p>Travel bags, hard-shell cases, luggage organizers, TSA-ready accessories, club covers, headcovers, modular systems, travel duffles.</p>
           <p>For the golfer who leaves nothing to chance. Structural, architectural, modular design language.</p>
-          <div class="price">$200 &ndash; $500</div>
+          <div class="foundation">Structure &middot; Architecture &middot; Readiness</div>
         </div>
         <div class="pillar-card">
           <div class="pillar-label">Pillar II</div>
           <h3>Perform</h3>
           <div class="sub">Execute with precision and confidence</div>
           <p>Carry/stand bags, cart bags, rangefinder holders, valuables cases, performance apparel, course accessories.</p>
-          <p>The heart of VAREN. On-course gear engineered for tournament-speed behavior. Equipment disappears into performance.</p>
-          <div class="price">$400 &ndash; $800</div>
+          <p>The heart of VAREN. On-course gear engineered for tournament-tempo behavior. Equipment disappears into performance.</p>
+          <div class="foundation">Precision &middot; Endurance &middot; Flow</div>
         </div>
         <div class="pillar-card">
           <div class="pillar-label">Pillar III</div>
@@ -1027,7 +1044,7 @@
           <div class="sub">Victory earned, excellence embodied</div>
           <p>Premium casual apparel, clubhouse-to-casual wear, lifestyle accessories, monogrammed items, 19th-hole gear, limited editions.</p>
           <p>Gear that lives long enough to become legacy. The identity of someone who carries a code.</p>
-          <div class="price">$700+</div>
+          <div class="foundation">Legacy &middot; Identity &middot; Code</div>
         </div>
       </div>
     </div>
@@ -1064,7 +1081,7 @@
         <div class="phrase">&ldquo;Prevail as one.&rdquo;</div>
         <div class="phrase">&ldquo;Breathe. Reset. Move.&rdquo;</div>
         <div class="phrase">&ldquo;We carry a code.&rdquo;</div>
-        <div class="phrase">&ldquo;Forged in Pinehurst. Tested at speed.&rdquo;</div>
+        <div class="phrase">&ldquo;Forged in Pinehurst. Tested at tempo.&rdquo;</div>
         <div class="phrase">&ldquo;Golf is a game of control, not comfort.&rdquo;</div>
         <div class="phrase">&ldquo;Fewer parts. Stronger hardware. Cleaner lines. Less friction.&rdquo;</div>
         <div class="phrase">&ldquo;Our gear is forged to endure, to serve, and to live long enough to become legacy.&rdquo;</div>
@@ -1235,7 +1252,7 @@
         </div>
         <div class="scale-step">
           <div class="scale-meta">32px &middot; &phi;&sup2;</div>
-          <div class="scale-sample" style="font-size:var(--type-h4); font-weight:300;">Tournament-Speed Design</div>
+          <div class="scale-sample" style="font-size:var(--type-h4); font-weight:300;">Tournament-Tempo Design</div>
         </div>
         <div class="scale-step">
           <div class="scale-meta">20px &middot; &phi;&sup1;</div>
@@ -1279,7 +1296,7 @@
         </div>
         <div class="delivery-card">
           <div class="tier">Tier 2 &mdash; Archival</div>
-          <h3>Master Brand Bible</h3>
+          <h3>Master Brand Document</h3>
           <p>Word document / PDF for controlled distribution. Version-dated, confidential, comprehensive. The canonical source of truth.</p>
           <p>Updated semi-annually with formal version control.</p>
         </div>
@@ -1314,7 +1331,7 @@
       </svg>
     </div>
     <div class="tagline">PREPARE &ensp;&middot;&ensp; PERFORM &ensp;&middot;&ensp; PREVAIL</div>
-    <div class="closing">Forged in Pinehurst. Tested at speed.<br>Refined through three decades of manufacturing discipline.</div>
+    <div class="closing">Forged in Pinehurst. Tested at tempo.<br>Refined through three decades of manufacturing discipline.</div>
     <div class="legal">Confidential &middot; Version 2.0 &middot; March 2026 &middot; VAREN&reg; Logo Kit mk1</div>
   </div>
 </footer>
