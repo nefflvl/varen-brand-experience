@@ -1,5 +1,5 @@
-<!-- VAREN® Brand Experience — v2.0 (working) -->
-<!-- Previous version: v1.0 backed up in /versions/ and tagged in git -->
+<!-- VAREN® Brand Experience — v2.1 (Kelman Grid + Buzzworthy Animations) -->
+<!-- Previous versions: v1.0, v2.0 backed up in /versions/ and tagged in git -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,14 +14,15 @@
 <meta property="og:image" content="assets/VAREN_OG_1600x900.png">
 <style>
   /* ═══════════════════════════════════════════════════════════════════
-     VAREN® BRAND EXPERIENCE
-     Golden Ratio Swiss Grid Typography System
+     VAREN® BRAND EXPERIENCE v2.1
+     Kelman 4-Column Modular Grid + Golden Ratio Type Scale
      Inspired by Stephen Kelman's Swiss/International Typographic Style
+     Animations inspired by OCI / Buzzworthy
      ─────────────────────────────────────────────────────────────────
-     φ  = 1.618033988749895
-     Grid: 12-column modular, 8px baseline
-     Type scale: golden ratio progression
+     Grid: 4-column modular, 15px baseline (from Kelman IDML)
+     Type scale: golden ratio × 1.176 leading ratio
      Spacing: Fibonacci sequence (8, 13, 21, 34, 55, 89, 144, 233)
+     Animations: Scroll-triggered reveals, parallax, staggered cards
      ═══════════════════════════════════════════════════════════════════ */
 
   /* DM Sans — Geometric grotesque, closest open-source match to Klim Söhne.
@@ -43,10 +44,12 @@
   @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-thin.woff2') format('woff2'); font-weight: 100; font-style: normal; font-display: swap; }
   @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-thin-italic.woff2') format('woff2'); font-weight: 100; font-style: italic; font-display: swap; }
 
-  /* ── GOLDEN RATIO TYPE SCALE ──
-     Base: 20px (1.25rem)
-     Each step: × φ (1.618)
-     ────────────────────────────── */
+  /* ── KELMAN-DERIVED TYPE SCALE + GOLDEN RATIO ──
+     Base: 12.75pt (Kelman body) / 20px (VAREN body)
+     Leading ratio: 1.176 (constant, from Kelman IDML)
+     Scale: alternating ×1.333 / ×1.5 (perfect 4th / 5th)
+     Baseline: 15px (from Kelman 15pt grid)
+     ──────────────────────────────────────────────── */
   :root {
     /* Golden ratio */
     --phi: 1.618;
@@ -69,7 +72,7 @@
     --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --mono: 'DM Mono', 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
 
-    /* Golden Ratio Type Scale (rem) */
+    /* Golden Ratio Type Scale (rem) — Kelman-aligned */
     --type-caption: 0.75rem;     /* 12px — legal, footnotes */
     --type-label: 0.875rem;      /* 14px — labels, nav */
     --type-body: 1.25rem;        /* 20px — body text (BASE) */
@@ -80,8 +83,9 @@
     --type-h1: 5.25rem;          /* 84px — display */
     --type-hero: 8.5rem;         /* 136px — hero display */
 
-    /* Golden Ratio Leading */
+    /* Leading — Kelman 1.176 constant + golden ratio body */
     --leading-tight: 1.15;       /* display headings */
+    --leading-kelman: 1.176;     /* Kelman constant ratio (size × 1.176) */
     --leading-heading: 1.272;    /* 1/√φ — headings */
     --leading-body: 1.618;       /* φ — body text (golden ratio) */
     --leading-loose: 2.058;      /* φ × 1.272 — open prose */
@@ -96,14 +100,18 @@
     --sp-7: 9rem;      /* 144px */
     --sp-8: 14.5625rem;/* 233px */
 
-    /* Swiss Grid */
-    --grid-columns: 12;
-    --grid-gutter: 1.5rem;
-    --grid-margin: clamp(2rem, 6vw, 8rem);
+    /* Kelman 4-Column Modular Grid (adapted for web) */
+    --grid-columns: 4;
+    --grid-gutter: 1.28rem;      /* 20.45pt ≈ Kelman gutter */
+    --grid-margin: clamp(2.2rem, 5vw, 5.5rem);  /* ~35pt Kelman margin */
+    --grid-margin-bottom: clamp(3.5rem, 8vw, 9rem); /* Kelman asymmetric: 90pt bottom */
     --content-max: 1440px;
+    --baseline: 0.9375rem;       /* 15px — Kelman baseline grid */
 
     /* Transitions */
     --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+    --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -127,8 +135,9 @@
   ::selection { background: var(--gold); color: var(--black); }
 
   /* ══════════════════════════════════════════
-     SWISS GRID CONTAINER
-     12-column modular grid with golden margins
+     KELMAN 4-COLUMN MODULAR GRID
+     Derived from Digital Presentation Grid v2
+     4 equal columns, 20.45pt gutters, 15px baseline
      ══════════════════════════════════════════ */
   .grid-container {
     max-width: var(--content-max);
@@ -137,11 +146,33 @@
     padding-right: var(--grid-margin);
   }
 
-  /* Asymmetric content positioning (Swiss style) */
+  /* 4-column modular grid (Kelman-derived) */
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--grid-gutter);
+  }
+
+  /* Span helpers — content across columns */
   .grid-wide     { max-width: 100%; }
-  .grid-content  { max-width: 900px; }
-  .grid-narrow   { max-width: 680px; }
-  .grid-caption   { max-width: 520px; }
+  .grid-content  { max-width: 900px; }   /* ~3 columns */
+  .grid-narrow   { max-width: 680px; }   /* ~2.5 columns */
+  .grid-caption  { max-width: 520px; }   /* ~2 columns */
+  .span-2 { grid-column: span 2; }
+  .span-3 { grid-column: span 3; }
+  .span-4 { grid-column: span 4; }
+
+  /* Scroll progress bar (Buzzworthy-inspired) */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; right: 0; height: 2px;
+    background: transparent; z-index: 200;
+    pointer-events: none;
+  }
+  .scroll-progress-bar {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--gold), rgba(200,169,110,0.4));
+    transition: width 0.1s linear;
+  }
 
   /* ── NAV — Horizontal Logo Lockup (mk1 Half-Y) ── */
   nav {
@@ -825,12 +856,78 @@
     letter-spacing: 0.04em;
   }
 
-  /* ── ANIMATIONS ── */
+  /* ── ANIMATIONS (Buzzworthy-inspired scroll reveals) ── */
+
+  /* Base fade-in */
   .fade-in {
     opacity: 0; transform: translateY(34px);
-    transition: opacity 1s var(--ease), transform 1s var(--ease);
+    transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
   }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* Staggered children — each child delays progressively */
+  .stagger-children > * {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  }
+  .stagger-children.visible > *:nth-child(1) { transition-delay: 0.05s; }
+  .stagger-children.visible > *:nth-child(2) { transition-delay: 0.12s; }
+  .stagger-children.visible > *:nth-child(3) { transition-delay: 0.19s; }
+  .stagger-children.visible > *:nth-child(4) { transition-delay: 0.26s; }
+  .stagger-children.visible > *:nth-child(5) { transition-delay: 0.33s; }
+  .stagger-children.visible > * { opacity: 0; transform: translateY(24px); }
+  .stagger-children.visible > * { opacity: 1; transform: translateY(0); }
+
+  /* Slide from left */
+  .slide-left {
+    opacity: 0; transform: translateX(-40px);
+    transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  }
+  .slide-left.visible { opacity: 1; transform: translateX(0); }
+
+  /* Slide from right */
+  .slide-right {
+    opacity: 0; transform: translateX(40px);
+    transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  }
+  .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+  /* Scale in (for logos, insignia) */
+  .scale-in {
+    opacity: 0; transform: scale(0.85);
+    transition: opacity 1s var(--ease-out), transform 1s var(--ease-spring);
+  }
+  .scale-in.visible { opacity: 1; transform: scale(1); }
+
+  /* Gold line draw — horizontal separator animation */
+  .line-draw {
+    position: relative;
+  }
+  .line-draw::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    transition: transform 1.2s var(--ease-out);
+  }
+  .line-draw.visible::after { transform: scaleX(1); }
+
+  /* Section number parallax float */
+  .section-num {
+    transition: transform 0.1s linear;
+    will-change: transform;
+  }
+
+  /* Nav active link */
+  .nav-links a.active { color: var(--gold); }
+  .nav-links a { position: relative; }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1px;
+    background: var(--gold); transform: scaleX(0); transform-origin: right;
+    transition: transform 0.4s var(--ease);
+  }
+  .nav-links a.active::after,
+  .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
@@ -858,6 +955,9 @@
 </style>
 </head>
 <body>
+
+<!-- Scroll progress bar -->
+<div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
 
 <!-- ═══════════════ NAV — mk1 Horizontal Half-Y Lockup ═══════════════ -->
 <nav id="navbar">
@@ -911,7 +1011,7 @@
       <div class="section-num">I</div>
       <div class="section-label">Chapter I</div>
       <div class="section-title">Brand Manifesto</div>
-      <div class="manifesto grid-content">
+      <div class="manifesto grid-content line-draw">
         <p><strong>Golf has never been about perfect.</strong></p>
         <p>It has always been about challenge: wind, pressure, doubt, and the potential failure waiting on every tee. The course doesn&rsquo;t move. The weather doesn&rsquo;t care. The moment doesn&rsquo;t slow down.</p>
         <p class="gold">And that is exactly the point.</p>
@@ -932,13 +1032,13 @@
       <div class="section-label">Chapter II</div>
       <div class="section-title">Forged in Pinehurst</div>
       <div class="origin-grid">
-        <div class="prose">
+        <div class="prose slide-left">
           <p>Shaped by <strong>Andrew Leander Garner</strong>, a former U.S. Army Special Forces engineer (Staff Sergeant) and industrial designer, who learned early that when systems fail, the cost is never abstract.</p>
           <p>VAREN translates that empathetic rigor to golf: fewer parts, stronger hardware, cleaner lines, less friction&mdash;eliminating the distractions that pull us out of rhythm&mdash;when the day turns, when travel wears us down, when the moment is bigger than the swing.</p>
           <p>VAREN researches, prototypes, and refines at Pinehurst&rsquo;s historic Harvard Annex: where tradition is lived daily and where the future has to prove itself on real ground, in real weather, with real people.</p>
           <p><strong>Golf is a game of control, not comfort. We create equipment that stays dependable.</strong></p>
         </div>
-        <div class="origin-sidebar">
+        <div class="origin-sidebar slide-right">
           <h4>Heritage</h4>
           <p><strong>Location:</strong> Pinehurst, NC &mdash; Harvard Annex</p>
           <p><strong>Founder:</strong> Andrew Leander Garner</p>
@@ -984,7 +1084,7 @@
       <div class="prose grid-content" style="margin-bottom:var(--sp-5);">
         <p><strong>We set out to build the first golf equipment system designed around tournament-tempo behavior:</strong> access, balance, weather response, travel resilience, and long-term service&mdash;so performance stays uninterrupted.</p>
       </div>
-      <div class="system-row">
+      <div class="system-row stagger-children fade-in">
         <div class="sys-card">
           <h4>Access</h4>
           <p>Single-motion retrieval. No zippers that catch. No flaps that fold wrong. No searching.</p>
@@ -1018,7 +1118,7 @@
       <div class="section-label">Chapter V</div>
       <div class="section-title">Brand Architecture</div>
       <p style="font-family:var(--sans); font-size:var(--type-body); color:rgba(242,240,237,0.72); max-width:760px; margin-bottom:var(--sp-5); line-height:var(--leading-body); font-weight:400;">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every touchpoint into a coherent journey.</p>
-      <div class="pillars-row">
+      <div class="pillars-row stagger-children fade-in">
         <div class="pillar-card">
           <div class="pillar-label">Pillar I</div>
           <h3>Prepare</h3>
@@ -1284,7 +1384,7 @@
       <div class="prose grid-content" style="margin-bottom:var(--sp-5);">
         <p>The brand document and the brand experience are one and the same. VAREN&rsquo;s brand system is a living ecosystem that communicates precision, elegance, and legacy through every format it inhabits.</p>
       </div>
-      <div class="delivery-grid">
+      <div class="delivery-grid stagger-children fade-in">
         <div class="delivery-card">
           <div class="tier">Tier 1 &mdash; Primary</div>
           <h3>Interactive Brand Experience</h3>
@@ -1329,24 +1429,82 @@
     </div>
     <div class="tagline">PREPARE &ensp;&middot;&ensp; PERFORM &ensp;&middot;&ensp; PREVAIL</div>
     <div class="closing">Forged in Pinehurst. Tested at tempo.<br>Refined through three decades of manufacturing discipline.</div>
-    <div class="legal">Confidential &middot; Version 2.0 &middot; March 2026 &middot; VAREN&reg; Logo Kit mk1</div>
+    <div class="legal">Confidential &middot; Version 2.1 &middot; March 2026 &middot; VAREN&reg; Logo Kit mk1</div>
   </div>
 </footer>
 
 <script>
-  // Intersection Observer — scroll-triggered fade-ins
-  const observer = new IntersectionObserver((entries) => {
+  // ═══════════════════════════════════════════════
+  // VAREN v2.1 — Enhanced Scroll Engine
+  // Kelman Grid + Buzzworthy Animations
+  // ═══════════════════════════════════════════════
+
+  // Intersection Observer — scroll-triggered reveals
+  // Handles: .fade-in, .slide-left, .slide-right, .scale-in, .line-draw, .stagger-children
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.06, rootMargin: '0px 0px -60px 0px' });
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  // Nav scroll state
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in, .line-draw, .stagger-children').forEach(el => {
+    revealObserver.observe(el);
   });
+
+  // Scroll progress bar
+  const progressBar = document.getElementById('scrollProgress');
+
+  // Active nav link tracking
+  const sections = document.querySelectorAll('.section, .code-hero');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  // Section number parallax
+  const sectionNums = document.querySelectorAll('.section-num');
+
+  function onScroll() {
+    const scrollY = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+    // Nav compact state
+    document.getElementById('navbar').classList.toggle('scrolled', scrollY > 60);
+
+    // Scroll progress bar
+    if (progressBar && docHeight > 0) {
+      const progress = (scrollY / docHeight) * 100;
+      progressBar.style.width = progress + '%';
+    }
+
+    // Active nav link — highlight current section
+    let currentSection = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 200;
+      if (scrollY >= top) currentSection = section.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + currentSection);
+    });
+
+    // Parallax on section numbers (subtle float)
+    sectionNums.forEach(num => {
+      const rect = num.getBoundingClientRect();
+      const centerOffset = (rect.top - window.innerHeight / 2) / window.innerHeight;
+      num.style.transform = 'translateY(' + (centerOffset * -20) + 'px)';
+    });
+  }
+
+  // Throttled scroll listener
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { onScroll(); ticking = false; });
+      ticking = true;
+    }
+  });
+
+  // Initial call
+  onScroll();
 </script>
 </body>
 </html>
