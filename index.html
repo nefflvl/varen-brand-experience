@@ -137,11 +137,11 @@
     padding-right: var(--grid-margin);
   }
 
-  /* Content widths — centered */
-  .grid-wide     { max-width: 100%; margin-left: auto; margin-right: auto; }
-  .grid-content  { max-width: 900px; margin-left: auto; margin-right: auto; }
-  .grid-narrow   { max-width: 680px; margin-left: auto; margin-right: auto; }
-  .grid-caption   { max-width: 520px; margin-left: auto; margin-right: auto; }
+  /* Asymmetric content positioning (Swiss style) */
+  .grid-wide     { max-width: 100%; }
+  .grid-content  { max-width: 900px; }
+  .grid-narrow   { max-width: 680px; }
+  .grid-caption   { max-width: 520px; }
 
   /* ── NAV — Horizontal Logo Lockup (mk1 Half-Y) ── */
   nav {
@@ -292,7 +292,6 @@
     margin-bottom: calc(var(--sp-5) * -1);
     pointer-events: none;
     user-select: none;
-    text-align: center;
   }
 
   .section-label {
@@ -303,7 +302,6 @@
     text-transform: uppercase;
     font-weight: 500;
     margin-bottom: var(--sp-2);
-    text-align: center;
   }
 
   .section-title {
@@ -314,7 +312,6 @@
     line-height: var(--leading-heading);
     letter-spacing: 0.01em;
     margin-bottom: var(--sp-5);
-    text-align: center;
   }
 
   /* ── MANIFESTO ── */
@@ -1020,7 +1017,7 @@
       <div class="section-num">V</div>
       <div class="section-label">Chapter V</div>
       <div class="section-title">Brand Architecture</div>
-      <p style="font-family:var(--sans); font-size:var(--type-body); color:rgba(242,240,237,0.72); max-width:760px; margin:0 auto var(--sp-5); line-height:var(--leading-body); font-weight:400; text-align:center;">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every touchpoint into a coherent journey.</p>
+      <p style="font-family:var(--sans); font-size:var(--type-body); color:rgba(242,240,237,0.72); max-width:760px; margin-bottom:var(--sp-5); line-height:var(--leading-body); font-weight:400;">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every touchpoint into a coherent journey.</p>
       <div class="pillars-row">
         <div class="pillar-card">
           <div class="pillar-label">Pillar I</div>
