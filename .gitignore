@@ -1,0 +1,6 @@
+.DS_Store
+*.ai
+*.eps
+*.psd
+Thumbs.db
+deploy-setup.sh
