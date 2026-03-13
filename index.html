@@ -1,4 +1,4 @@
-<!-- VAREN® Brand Experience — v2.9.2 (Buzzworthy Animations · Swiss Grid · Kelman) -->
+<!-- VAREN® Brand Experience — v2.9.3 (Buzzworthy Animations · Swiss Grid · Kelman) -->
 <!-- Previous versions: v1.0-v2.9 backed up in /versions/ -->
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
   /* ═══════════════════════════════════════════════════════════════════
-     VAREN® BRAND EXPERIENCE v2.9.2
+     VAREN® BRAND EXPERIENCE v2.9.3
      VAREN Harmonic Grid · Dark Dither · 4K Optimized
      ═══════════════════════════════════════════════════════════════════ */
 
@@ -352,36 +352,49 @@
     padding-bottom: calc(var(--grid-margin-bottom) + var(--sp-7));
   }
 
-  .hero-headline {
-    font-family: var(--sans-narrow);
-    font-size: clamp(2.5rem, 5.5vw, var(--type-h1));
-    font-weight: 500;
-    color: var(--light);
-    line-height: 1.176;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: var(--sp-4);
+  /* Hero brand lockup — centered insignia + wordmark + tagline */
+  .hero-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-3); /* 21px Fibonacci */
     opacity: 0;
-    text-shadow: 0 2px 40px rgba(10,10,10,0.9), 0 0 120px rgba(10,10,10,0.7);
     z-index: 2;
     position: relative;
   }
-
-  .hero-callout {
-    padding: 0;
-    text-align: center;
+  .hero-insignia {
+    width: clamp(55px, 8vw, 100px);
+    height: auto;
+    opacity: 0.92;
+  }
+  .hero-wordmark {
+    width: clamp(280px, 38vw, 500px);
+    height: auto;
+  }
+  .hero-wordmark path { fill: var(--light); }
+  .hero-tagline {
+    font-family: var(--sans-narrow); /* Söhne Schmal = display/drama per grid spec */
+    font-size: clamp(var(--type-caption), 1.2vw, var(--type-label)); /* 0.75rem–0.875rem */
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    font-weight: 500;
+    line-height: var(--leading-heading); /* 1.176× Kelman constant */
   }
 
-  .hero-callout-text {
-    font-family: var(--serif);
-    font-size: clamp(var(--type-body), 1.8vw, var(--type-h3));
+  .hero-sub {
+    margin-top: var(--sp-4); /* 34px Fibonacci */
+    text-align: center;
+    opacity: 0;
+    z-index: 2;
+    position: relative;
+  }
+  .hero-sub-text {
+    font-family: var(--serif); /* Signifier = editorial voice */
+    font-size: clamp(var(--type-body), 1.8vw, var(--type-h3)); /* type scale */
     font-style: italic;
     color: var(--gray);
-    line-height: var(--leading-body);
-    opacity: 0;
+    line-height: var(--leading-body); /* 1.618× golden ratio body */
     text-shadow: 0 2px 30px rgba(10,10,10,0.9);
-    position: relative;
-    z-index: 2;
   }
 
   .hero-scroll {
@@ -1291,8 +1304,8 @@
     .nav-links-wrapper { display: none; }
     .menu-button { display: block; }
     .hero-inner { flex-direction: column; }
-    .hero-headline { margin-bottom: var(--sp-4); }
-    .hero-callout { text-align: center; padding: 0; }
+    .hero-brand { gap: var(--sp-2); }
+    .hero-sub { margin-top: var(--sp-3); }
     .manifesto-split { grid-template-columns: 1fr; }
     .manifesto-display { align-items: flex-start; text-align: left; margin-top: var(--sp-4); }
     .origin-grid { grid-template-columns: 1fr; }
@@ -1342,10 +1355,7 @@
       --grid-margin-x: 6vw;
     }
     html { font-size: 20px; }
-    .hero-headline {
-      font-size: clamp(3.5rem, 5vw, 6rem);
-      grid-column: 1 / 10;
-    }
+    .hero-wordmark { width: clamp(350px, 32vw, 550px); }
     .hero-inner { padding-left: 7vw; padding-right: 7vw; }
     .frame-inner { padding-left: 7vw; padding-right: 7vw; max-width: 3200px; }
     nav { padding-left: 6vw; padding-right: 6vw; }
@@ -1422,9 +1432,19 @@
 <div class="hero" id="heroSection">
   <canvas id="ditherCanvas"></canvas>
   <div class="hero-inner">
-    <div class="hero-headline">PREPARE&ensp;&middot;&ensp;PERFORM&ensp;&middot;&ensp;PREVAIL</div>
-    <div class="hero-callout">
-      <div class="hero-callout-text">Brand Experience &mdash; Narrative &middot; Architecture &middot; Standards</div>
+    <div class="hero-brand">
+      <img class="hero-insignia" src="assets/VAREN_INSIGNIA_WHITE.png" alt="VAREN Insignia">
+      <svg class="hero-wordmark" viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg">
+        <path d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/>
+        <path d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/>
+        <path d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/>
+        <path d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/>
+        <path d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
+      </svg>
+      <div class="hero-tagline">PREPARE&ensp;&middot;&ensp;PERFORM&ensp;&middot;&ensp;PREVAIL</div>
+    </div>
+    <div class="hero-sub">
+      <div class="hero-sub-text">Brand Experience &mdash; Narrative &middot; Architecture &middot;&nbsp;Standards</div>
     </div>
   </div>
   <div class="hero-scroll">
@@ -1821,7 +1841,7 @@
     </div>
     <div class="footer-right">
       <p class="footer-closing" style="font-family: var(--serif); font-size: var(--type-label); color: var(--gray); font-style: italic; line-height: var(--leading-body); font-weight: 300;">Forged in Pinehurst. Tested at tempo. Refined through three decades of manufacturing discipline.</p>
-      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.9.2 &middot; March 2026 &middot; VAREN&reg;</p>
+      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.9.3 &middot; March 2026 &middot; VAREN&reg;</p>
     </div>
   </div>
 </footer>
@@ -1829,25 +1849,24 @@
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  // LOADER ANIMATION
+  // LOADER ANIMATION — fade in centered, then crossfade to hero
   gsap.set('#navbar', { opacity: 0 });
   const loaderTL = gsap.timeline({
     onComplete: () => {
       document.getElementById('loader').style.display = 'none';
-      gsap.to('#navbar', { opacity: 1, duration: 0.5, ease: 'power2.out' });
-      // Hero entrance
-      gsap.fromTo('.hero-headline', { opacity: 0, y: 100 }, { opacity: 1, y: 0, duration: 1.2, delay: 0.2, ease: 'power2.out' });
-      gsap.fromTo('.hero-callout-text', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, delay: 0.6, ease: 'power2.out' });
-      gsap.fromTo('.hero-scroll', { opacity: 0 }, { opacity: 1, duration: 1, delay: 1, ease: 'power2.out' });
+      // Reveal nav and hero content
+      gsap.to('#navbar', { opacity: 1, duration: 0.6, ease: 'power2.out' });
+      gsap.to('.hero-brand', { opacity: 1, duration: 1, delay: 0.1, ease: 'power2.out' });
+      gsap.fromTo('.hero-sub', { opacity: 0, y: 13 }, { opacity: 1, y: 0, duration: 0.8, delay: 0.5, ease: 'power2.out' });
+      gsap.fromTo('.hero-scroll', { opacity: 0 }, { opacity: 1, duration: 1, delay: 0.8, ease: 'power2.out' });
     }
   });
   loaderTL
     .to('.loader-insignia', { opacity: 1, duration: 0.8, ease: 'power2.out' }, 0.3)
     .to('.loader-wordmark', { opacity: 1, duration: 0.8, ease: 'power2.out' }, 0.7)
     .to('.loader-tagline', { opacity: 1, duration: 0.6, ease: 'power2.out' }, 1.2)
-    .to({}, { duration: 0.8 }) // pause
-    .to('.loader-content', { scale: 0.3, x: '-40vw', y: '-40vh', opacity: 0, duration: 1, ease: 'power3.inOut' })
-    .to('.loader', { opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.3');
+    .to({}, { duration: 0.8 }) // pause — let the viewer take it in
+    .to('.loader', { opacity: 0, duration: 0.8, ease: 'power2.out' }); // simple fade out, no transform
 
   const scrollBar = document.getElementById('scrollProgress');
   window.addEventListener('scroll', () => {
