@@ -1,5 +1,5 @@
-<!-- VAREN® Brand Experience — v2.9 (Swiss Grid Overhaul · Kelman · Müller-Brockmann) -->
-<!-- Previous versions: v1.0-v2.8 backed up in /versions/ -->
+<!-- VAREN® Brand Experience — v2.9.1 (Buzzworthy Animations · Swiss Grid · Kelman) -->
+<!-- Previous versions: v1.0-v2.9 backed up in /versions/ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
   /* ═══════════════════════════════════════════════════════════════════
-     VAREN® BRAND EXPERIENCE v2.9
+     VAREN® BRAND EXPERIENCE v2.9.1
      VAREN Harmonic Grid · Dark Dither · 4K Optimized
      ═══════════════════════════════════════════════════════════════════ */
 
@@ -353,11 +353,11 @@
 
   .hero-headline {
     font-family: var(--sans-narrow);
-    font-size: clamp(0.875rem, 1.5vw, 1.25rem);
+    font-size: clamp(2.5rem, 5.5vw, var(--type-h1));
     font-weight: 500;
     color: var(--light);
     line-height: 1.176;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     margin-bottom: var(--sp-4);
     opacity: 0;
@@ -493,7 +493,20 @@
     align-items: start;
   }
   .origin-grid > :first-child { grid-column: 1 / 5; }  /* prose in cols 1-4 */
-  .origin-grid > :last-child  { grid-column: 5 / 9; }  /* sidebar in cols 5-8 */
+  .origin-grid > :nth-child(2) { grid-column: 5 / 9; }  /* sidebar in cols 5-8 */
+  .origin-grid > .origin-numeral { grid-column: 9 / 13; }  /* Roman numeral in cols 9-12 */
+  .origin-numeral {
+    font-family: var(--serif);
+    font-weight: 100;
+    font-size: clamp(10rem, 18vw, 18rem);
+    color: rgba(200,169,110,0.06);
+    line-height: 0.8;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: var(--sp-5);
+    user-select: none;
+  }
 
   .frame-num {
     font-family: var(--serif);
@@ -580,8 +593,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: flex-end;
-    text-align: right;
+    align-items: flex-start;
+    text-align: left;
     padding-bottom: var(--sp-4);
   }
 
@@ -687,24 +700,23 @@
     flex: 1;
   }
 
-  /* ── SYSTEM CARDS (4-column) ── */
+  /* ── SYSTEM CARDS (5-across) ── */
   .sys-grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: var(--grid-gutter);
     margin-top: var(--sp-5);
     position: relative;
   }
-  .sys-card { grid-column: span 3; }
   .sys-card {
     background: var(--carbon);
     border: 1px solid rgba(200,169,110,0.06);
-    padding: var(--sp-4) var(--sp-3);
+    padding: var(--sp-3) var(--sp-2);
     position: relative;
     transition: all 0.4s var(--ease);
   }
   .sys-card:hover { border-color: rgba(200,169,110,0.15); transform: translateY(-2px); }
-  .sys-card--wide { grid-column: span 6; }
+  .sys-card--wide { /* no longer wider — same as others */ }
   .sys-card h4 {
     font-family: var(--mono);
     font-size: var(--type-caption);
@@ -955,33 +967,25 @@
     font-weight: 300;
   }
   .breathe-reset {
-    font-family: var(--mono);
-    font-size: clamp(2rem, 5vw, 4.5rem);
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    font-family: var(--serif);
+    font-size: var(--type-lead);
+    font-weight: 300;
+    letter-spacing: 0.04em;
     width: 100%;
-    text-align: justify;
-    text-align-last: justify;
+    text-align: center;
     display: block;
-    line-height: 1;
-    word-spacing: 1em;
+    line-height: var(--leading-body);
+    color: rgba(242,240,237,0.65);
   }
-  .breathe-reset .b { color: var(--gray); }
-  .breathe-reset .r { color: var(--light); }
-  .breathe-reset .m { color: var(--gold); }
   .code-prose { max-width: 640px; margin: var(--sp-5) auto 0; }
   .code-prose p {
-    font-family: var(--sans);
+    font-family: var(--serif);
     font-size: var(--type-body);
     color: rgba(242,240,237,0.72);
     line-height: var(--leading-body);
     margin-bottom: var(--sp-2);
     text-align: center;
-  }
-  .code-prose .emphasis {
-    font-size: var(--type-lead);
-    color: var(--light);
+    font-weight: 300;
   }
   .code-prose .gold-ital {
     color: var(--gold);
@@ -1261,13 +1265,18 @@
   }
 
   /* ══════════════════════════════════════════
-     ANIMATIONS
+     ANIMATIONS — Buzzworthy-style entrance/exit
+     Elements appear on scroll down, disappear on scroll up
      ══════════════════════════════════════════ */
 
-  .anim { opacity: 0; }
-  .anim-l { opacity: 0; }
-  .anim-r { opacity: 0; }
+  .anim { opacity: 0; transform: translateY(60px); }
+  .anim-l { opacity: 0; transform: translateX(-80px); }
+  .anim-r { opacity: 0; transform: translateX(80px); }
   .anim-fade { opacity: 0; }
+  .anim-s { opacity: 0; transform: scale(0.85); }
+
+  /* Stagger children inside grids for cascade effect */
+  .anim-stagger > * { opacity: 0; transform: translateY(40px); }
 
   @media (max-width: 1024px) {
     .nav-links-wrapper { gap: 1.5rem; }
@@ -1289,7 +1298,8 @@
     .manifesto-display { align-items: flex-start; text-align: left; margin-top: var(--sp-4); }
     .origin-grid { grid-template-columns: 1fr; }
     .pillar-card { grid-column: span 12; }
-    .sys-card { grid-column: span 6; }
+    .sys-grid { grid-template-columns: repeat(2, 1fr); }
+    .sys-card--wide { grid-column: span 2; }
     .delivery-card { grid-column: span 12; }
     .identity-item { grid-column: span 12; }
     .split-1-3 > :first-child { grid-column: span 12; }
@@ -1334,7 +1344,7 @@
     }
     html { font-size: 20px; }
     .hero-headline {
-      font-size: 8vw;
+      font-size: clamp(3.5rem, 5vw, 6rem);
       grid-column: 1 / 10;
     }
     .hero-inner { padding-left: 7vw; padding-right: 7vw; }
@@ -1433,11 +1443,11 @@
     <div class="manifesto-split">
       <div class="manifesto anim">
         <p><strong>Golf has never been about perfect.</strong></p>
-        <p>It has always been about challenge: wind, pressure, doubt, and the potential failure waiting on every tee. The course doesn&rsquo;t move. The weather doesn&rsquo;t care. The moment doesn&rsquo;t slow down.</p>
+        <p>It has always been about challenge: wind, pressure, doubt, and the potential failure waiting on every tee. The course doesn&rsquo;t move. The weather doesn&rsquo;t care. The moment doesn&rsquo;t slow&nbsp;down.</p>
         <p class="gold">And that is exactly the point.</p>
         <p>Every obstacle is part of the round. Every difficult lie, every missed fairway, every demanding walk between shots&mdash;these are not interruptions to the game. <strong>They are the game.</strong></p>
-        <p>Progress in golf, and in life, is built in resistance. Hard conditions create better decisions. Pressure builds discipline. Adversity shapes consistency.</p>
-        <p>We design for the round as it truly exists&mdash;unpredictable, demanding, and worth every step.</p>
+        <p>Progress in golf, and in life, is built in resistance. Hard conditions create better decisions. Pressure builds discipline. Adversity shapes&nbsp;consistency.</p>
+        <p>We design for the round as it truly exists&mdash;unpredictable, demanding, and worth&nbsp;every&nbsp;step.</p>
       </div>
       <div class="manifesto-display anim-r">
         <p class="manifesto-closer">Because the challenge isn&rsquo;t in the way.</p>
@@ -1457,8 +1467,8 @@
       <div>
         <div class="prose anim-l">
           <p>Shaped by <strong>Andrew Leander Garner</strong>, a former U.S. Army Special Forces engineer (Staff Sergeant) and industrial designer, who learned early that when systems fail, the cost is never abstract.</p>
-          <p>VAREN translates that empathetic rigor to golf: fewer parts, stronger hardware, cleaner lines, less friction&mdash;eliminating the distractions that pull us out of rhythm&mdash;when the day turns, when travel wears us down, when the moment is bigger than the swing.</p>
-          <p>VAREN researches, prototypes, and refines at Pinehurst&rsquo;s historic Harvard Annex: where tradition is lived daily and where the future has to prove itself on real ground, in real weather, with real people.</p>
+          <p>VAREN translates that empathetic rigor to golf: fewer parts, stronger hardware, cleaner lines, less friction&mdash;eliminating the distractions that pull us out of rhythm&mdash;when the day turns, when travel wears us down, when the moment is bigger than the&nbsp;swing.</p>
+          <p>VAREN researches, prototypes, and refines at Pinehurst&rsquo;s historic Harvard Annex: where tradition is lived daily and where the future has to prove itself on real ground, in real weather, with real&nbsp;people.</p>
           <p><strong>Golf is a game of control, not comfort. We create equipment that stays dependable.</strong></p>
         </div>
       </div>
@@ -1471,9 +1481,10 @@
           <p><strong>Background:</strong> U.S. Army Special Forces Engineer, Staff Sergeant</p>
           <p><strong>Discipline:</strong> Industrial Design</p>
           <p><strong>Experience:</strong> Three decades of manufacturing</p>
-          <p style="color:var(--gold); font-family:var(--serif); font-style:italic; margin-top:var(--sp-3); font-weight:300;">Forged in Pinehurst. Tested at tempo. Refined through three decades of manufacturing discipline.</p>
+          <p style="color:var(--gold); font-family:var(--serif); font-style:italic; margin-top:var(--sp-3); font-weight:300;">Forged in Pinehurst. Tested at tempo. Refined through three decades of manufacturing&nbsp;discipline.</p>
         </div>
       </div>
+      <div class="origin-numeral anim-fade">II</div>
     </div>
   </div>
 </div>
@@ -1486,16 +1497,12 @@
   <h2 class="anim-fade">PREVAIL AS ONE</h2>
   <p class="code-sub anim-fade">We don&rsquo;t chase the loudest win.<br>We build the silent standard that earns it.</p>
   <div class="anim-fade" style="margin-bottom:var(--sp-5); width:100%; max-width:var(--content-max); padding:0 var(--grid-margin-x);">
-    <span class="breathe-reset">
-      <span class="b">BREATHE</span>
-      <span class="r">RESET</span>
-      <span class="m">MOVE</span>
-    </span>
+    <span class="breathe-reset">Breathe. Reset. Move.</span>
   </div>
   <div class="code-prose anim-fade">
-    <p>Our gear is forged to endure, to serve, and to live long enough to become legacy.</p>
-    <p class="emphasis">We don&rsquo;t just carry equipment. We carry a code.</p>
-    <p class="gold-ital">A code of commitment&mdash;designed for performance under pressure.</p>
+    <p>Our gear is forged to endure, to serve, and to live long enough to&nbsp;become&nbsp;legacy.</p>
+    <p>We don&rsquo;t just carry equipment. We carry&nbsp;a&nbsp;code.</p>
+    <p class="gold-ital">A code of commitment&mdash;designed for performance under&nbsp;pressure.</p>
   </div>
 </div>
 
@@ -1505,10 +1512,8 @@
   <div class="frame-inner">
     <div class="section-label anim">Chapter IV</div>
     <h2 class="section-title anim" style="margin-bottom: var(--sp-3);">Tournament-Tempo Design</h2>
-    <div class="prose anim" style="grid-column: 1 / 5; margin-bottom: var(--sp-5);">
-      <p><strong>The first golf equipment system designed around tournament-tempo behavior.</strong></p>
-    </div>
-    <div class="sys-grid" style="grid-column: 1 / -1;">
+    <p class="anim" style="grid-column: 1 / 7; font-family: var(--serif); font-size: var(--type-lead); font-style: italic; color: rgba(242,240,237,0.78); margin-bottom: var(--sp-5); line-height: var(--leading-body); font-weight: 300;">The first golf equipment system designed around tournament-tempo&nbsp;behavior.</p>
+    <div class="sys-grid anim-stagger" style="grid-column: 1 / -1;">
       <div class="grid-gutter-lines">
         <div class="gutter-line" style="left: 25%"></div>
         <div class="gutter-line" style="left: 50%"></div>
@@ -1532,7 +1537,7 @@
       </div>
       <div class="sys-card sys-card--wide anim">
         <h4>Service</h4>
-        <p>Measured in decades. Replaceable components. Repair as feature. Built to last beyond the warranty.</p>
+        <p>Measured in decades. Replaceable components. Repair as feature. Built to last beyond the&nbsp;warranty.</p>
       </div>
     </div>
   </div>
@@ -1544,8 +1549,8 @@
   <div class="frame-inner">
     <div class="section-label anim">Chapter V</div>
     <h2 class="section-title anim">Brand Architecture</h2>
-    <p class="anim" style="grid-column: 1 / 7; font-family: var(--serif); font-size: var(--type-lead); font-style: italic; color: rgba(242,240,237,0.78); margin-bottom: var(--sp-5); line-height: var(--leading-body); font-weight: 300;">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every touchpoint.</p>
-    <div class="pillar-grid" style="grid-column: 1 / -1;">
+    <p class="anim" style="grid-column: 1 / 7; font-family: var(--serif); font-size: var(--type-lead); font-style: italic; color: rgba(242,240,237,0.78); margin-bottom: var(--sp-5); line-height: var(--leading-body); font-weight: 300;">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every&nbsp;touchpoint.</p>
+    <div class="pillar-grid anim-stagger" style="grid-column: 1 / -1;">
           <div class="grid-gutter-lines">
             <div class="gutter-line" style="left: 33.33%"></div>
             <div class="gutter-line" style="left: 66.67%"></div>
@@ -1561,14 +1566,14 @@
             <div class="pillar-card-num">II</div>
             <h4>Pillar II</h4>
             <h3>Perform</h3>
-            <p>Carry/stand bags, cart bags, rangefinder holders, performance apparel. The heart of VAREN. Equipment disappears into performance.</p>
+            <p>Carry/stand bags, cart bags, rangefinder holders, performance apparel. The heart of VAREN. Equipment disappears into&nbsp;performance.</p>
             <div class="foundation">Precision &middot; Endurance &middot; Flow</div>
           </div>
           <div class="pillar-card anim">
             <div class="pillar-card-num">III</div>
             <h4>Pillar III</h4>
             <h3>Prevail</h3>
-            <p>Premium casual apparel, clubhouse-to-casual wear, lifestyle accessories, limited editions. Gear that lives long enough to become legacy.</p>
+            <p>Premium casual apparel, clubhouse-to-casual wear, lifestyle accessories, limited editions. Gear that lives long enough to become&nbsp;legacy.</p>
             <div class="foundation">Legacy &middot; Identity &middot; Code</div>
           </div>
         </div>
@@ -1581,9 +1586,7 @@
   <div class="frame-inner">
     <div class="section-label anim">Chapter VI</div>
     <h2 class="section-title anim">Voice &amp; Tone</h2>
-    <div class="prose anim" style="grid-column: 1 / 9; margin-bottom:var(--sp-5);">
-      <p>VAREN speaks with the quiet authority of someone who has been tested and held. The voice is never loud. It does not oversell. It states facts, offers perspective, and lets quality create its own volume.</p>
-    </div>
+    <p class="anim" style="grid-column: 1 / 7; font-family: var(--serif); font-size: var(--type-lead); font-style: italic; color: rgba(242,240,237,0.78); margin-bottom: var(--sp-5); line-height: var(--leading-body); font-weight: 300;">VAREN speaks with the quiet authority of someone who has been tested and held. The voice is never loud. It does not oversell. It states facts, offers perspective, and lets quality create its&nbsp;own&nbsp;volume.</p>
     <table class="voice-table anim">
           <thead><tr><th>VAREN IS</th><th>VAREN IS NOT</th><th>EXAMPLE</th></tr></thead>
           <tbody>
@@ -1781,7 +1784,7 @@
     <div class="section-label anim">Chapter VIII</div>
     <h2 class="section-title anim">Brand Delivery Ecosystem</h2>
     <p class="anim" style="grid-column: 1 / 9; font-family: var(--serif); font-size: var(--type-body); font-style: italic; color: var(--gray); margin-bottom: var(--sp-5); line-height: var(--leading-body); font-weight: 300;">The brand document and the brand experience are one and the same. VAREN&rsquo;s brand system is a living ecosystem that communicates precision, elegance, and legacy through every format it inhabits.</p>
-    <div class="delivery-grid">
+    <div class="delivery-grid anim-stagger">
       <div class="grid-gutter-lines">
         <div class="gutter-line" style="left: 50%"></div>
       </div>
@@ -1827,7 +1830,7 @@
     </div>
     <div class="footer-right">
       <p class="footer-closing" style="font-family: var(--serif); font-size: var(--type-label); color: var(--gray); font-style: italic; line-height: var(--leading-body); font-weight: 300;">Forged in Pinehurst. Tested at tempo. Refined through three decades of manufacturing discipline.</p>
-      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.9 &middot; March 2026 &middot; VAREN&reg;</p>
+      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.9.1 &middot; March 2026 &middot; VAREN&reg;</p>
     </div>
   </div>
 </footer>
@@ -1904,32 +1907,121 @@
     });
   });
 
-  gsap.utils.toArray('.anim').forEach(el => {
-    gsap.fromTo(el, { opacity: 0, y: 40 }, {
-      opacity: 1, y: 0, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 90%', end: 'top 60%', scrub: 1 }
-    });
+  // ═══════════════════════════════════════════════════════════════
+  // BUZZWORTHY SCROLL ANIMATIONS
+  // toggleActions: "play reverse play reverse"
+  //   onEnter → play | onLeave → none | onEnterBack → play | onLeaveBack → reverse
+  // Elements appear when scrolling into view, disappear when scrolling out
+  // ═══════════════════════════════════════════════════════════════
+
+  // Slide up entrance
+  gsap.utils.toArray('.anim').forEach((el, i) => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 60 },
+      {
+        opacity: 1, y: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          end: 'top 20%',
+          toggleActions: 'play reverse play reverse'
+        }
+      }
+    );
   });
 
+  // Slide from left
   gsap.utils.toArray('.anim-l').forEach(el => {
-    gsap.fromTo(el, { opacity: 0, x: -60 }, {
-      opacity: 1, x: 0, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 90%', end: 'top 55%', scrub: 1 }
-    });
+    gsap.fromTo(el,
+      { opacity: 0, x: -80 },
+      {
+        opacity: 1, x: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          end: 'top 20%',
+          toggleActions: 'play reverse play reverse'
+        }
+      }
+    );
   });
 
+  // Slide from right
   gsap.utils.toArray('.anim-r').forEach(el => {
-    gsap.fromTo(el, { opacity: 0, x: 60 }, {
-      opacity: 1, x: 0, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 90%', end: 'top 55%', scrub: 1 }
-    });
+    gsap.fromTo(el,
+      { opacity: 0, x: 80 },
+      {
+        opacity: 1, x: 0,
+        duration: 1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          end: 'top 20%',
+          toggleActions: 'play reverse play reverse'
+        }
+      }
+    );
   });
 
+  // Scale entrance (insignias, icons)
+  gsap.utils.toArray('.anim-s').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, scale: 0.85 },
+      {
+        opacity: 1, scale: 1,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          end: 'top 20%',
+          toggleActions: 'play reverse play reverse'
+        }
+      }
+    );
+  });
+
+  // Fade only
   gsap.utils.toArray('.anim-fade').forEach(el => {
-    gsap.fromTo(el, { opacity: 0 }, {
-      opacity: 1, duration: 1,
-      scrollTrigger: { trigger: el, start: 'top 85%', end: 'top 65%', scrub: 1 }
-    });
+    gsap.fromTo(el,
+      { opacity: 0 },
+      {
+        opacity: 1,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          end: 'top 20%',
+          toggleActions: 'play reverse play reverse'
+        }
+      }
+    );
+  });
+
+  // Staggered children (card grids, etc.)
+  gsap.utils.toArray('.anim-stagger').forEach(container => {
+    const children = container.children;
+    gsap.fromTo(children,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1, y: 0,
+        duration: 0.7,
+        ease: 'power3.out',
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: container,
+          start: 'top 85%',
+          end: 'top 20%',
+          toggleActions: 'play reverse play reverse'
+        }
+      }
+    );
   });
 
   const menuButton = document.getElementById('menuButton');
@@ -2114,16 +2206,18 @@
           // Darken the luminance curve — crush shadows, preserve only bright edges
           let darkLum = Math.pow(lum, 1.8); // gamma push toward black
 
-          // Apply dark vignette — darken edges
-          const cx = cw / 2;
-          const cy = ch / 2;
-          const dx = (x - cx) / cx;
-          const dy = (y - cy) / cy;
-          const distFromCenter = Math.sqrt(dx * dx + dy * dy);
-          const vignetteStart = 0.6;
+          // Heavy vignette — seamless fade to #0A0A0A at edges
+          const vcx = cw / 2;
+          const vcy = ch / 2;
+          const vdx = (x - vcx) / vcx;
+          const vdy = (y - vcy) / vcy;
+          const distFromCenter = Math.sqrt(vdx * vdx + vdy * vdy);
+          const vignetteStart = 0.4;
+          const vignetteEnd = 1.1;
           if (distFromCenter > vignetteStart) {
-            const vignetteStrength = Math.min(1, (distFromCenter - vignetteStart) / (1 - vignetteStart));
-            darkLum = darkLum * (1 - vignetteStrength * 0.85); // darken toward black at edges
+            const vignetteStrength = Math.min(1, (distFromCenter - vignetteStart) / (vignetteEnd - vignetteStart));
+            const vignetteCurve = vignetteStrength * vignetteStrength; // quadratic for smooth falloff
+            darkLum = darkLum * (1 - vignetteCurve * 0.95);
           }
 
           const adjusted = darkLum + (threshold - 0.5) * 0.28;
@@ -2136,49 +2230,52 @@
 
           let fr = palette[ci][0], fg = palette[ci][1], fb = palette[ci][2];
 
-          // Mouse spotlight — gold boost + emboss effect (NOT original image reveal)
+          // Mouse fluid displacement — push pixels like water
           if (mouse.x >= 0) {
-            const dx = x - mouse.x;
-            const dy = y - mouse.y;
-            const d2 = dx * dx + dy * dy;
-            if (d2 < revealR2) {
-              // Calculate blend factor
-              let blend;
-              if (d2 < softR2) {
-                blend = 1.0;
+            const mdx = x - mouse.x;
+            const mdy = y - mouse.y;
+            const md2 = mdx * mdx + mdy * mdy;
+            if (md2 < revealR2 && md2 > 0.1) {
+              const dist = Math.sqrt(md2);
+              // Displacement strength — strongest at center, fading outward
+              let strength;
+              if (dist < softR) {
+                strength = 1.0;
               } else {
-                blend = 1.0 - (Math.sqrt(d2) - Math.sqrt(softR2)) / (revealR - Math.sqrt(softR2));
+                strength = 1.0 - (dist - softR) / (revealR - softR);
               }
-              blend = Math.max(0, Math.min(1, blend));
+              strength = Math.max(0, Math.min(1, strength));
 
-              // Boost luminance for more gold pixels in spotlight
-              let boostLum = Math.pow(lum, 1.8) + 0.35 * blend;
-              boostLum = Math.min(1, boostLum);
-              const boostAdjusted = boostLum + (threshold - 0.5) * 0.28;
-              let boostCi;
-              if (boostAdjusted < 0.28)      boostCi = 0;
-              else if (boostAdjusted < 0.48) boostCi = 1;
-              else if (boostAdjusted < 0.65) boostCi = 2;
-              else if (boostAdjusted < 0.82) boostCi = 3;
-              else                           boostCi = 4;
+              // Displace: push pixels outward from mouse center
+              const pushStrength = strength * 6; // pixels of displacement
+              const normMdx = mdx / dist;
+              const normMdy = mdy / dist;
 
-              // Get the boosted gold color
-              const boostR = palette[boostCi][0], boostG = palette[boostCi][1], boostB = palette[boostCi][2];
+              // Also add a swirl component for the "water" feel
+              const swirlAngle = strength * 1.2;
+              const cosA = Math.cos(swirlAngle);
+              const sinA = Math.sin(swirlAngle);
+              const swirlDx = normMdx * cosA - normMdy * sinA;
+              const swirlDy = normMdx * sinA + normMdy * cosA;
 
-              // Add directional Bayer offset for 3D emboss effect (shift toward mouse)
-              const offsetStrength = 1.5 * blend;
-              const normDx = dx / Math.max(0.1, Math.sqrt(d2));
-              const normDy = dy / Math.max(0.1, Math.sqrt(d2));
-              const offsetBx = Math.round(normDx * offsetStrength);
-              const offsetBy = Math.round(normDy * offsetStrength);
-              const embossBx = Math.max(0, Math.min(7, (bx + offsetBx + 8) % 8));
-              const embossBy = Math.max(0, Math.min(7, (by + offsetBy + 8) % 8));
-              const embossThreshold = bayer8x8[embossBy * 8 + embossBx];
+              // Offset the Bayer matrix lookup — shifts the dither pattern
+              const dispBx = Math.abs((bx + Math.round(swirlDx * pushStrength * 2)) % 8);
+              const dispBy = Math.abs((by + Math.round(swirlDy * pushStrength * 2)) % 8);
+              const dispThreshold = bayer8x8[dispBy * 8 + dispBx];
 
-              // Blend between original dithered and boosted version
-              fr = fr + (boostR - fr) * blend;
-              fg = fg + (boostG - fg) * blend;
-              fb = fb + (boostB - fb) * blend;
+              // Re-quantize with displaced threshold — same luminance, different pattern
+              const dispAdjusted = darkLum + (dispThreshold - 0.5) * 0.28;
+              let dispCi;
+              if (dispAdjusted < 0.28)      dispCi = 0;
+              else if (dispAdjusted < 0.48) dispCi = 1;
+              else if (dispAdjusted < 0.65) dispCi = 2;
+              else if (dispAdjusted < 0.82) dispCi = 3;
+              else                           dispCi = 4;
+
+              // Blend displaced dither with original based on proximity
+              fr = fr + (palette[dispCi][0] - fr) * strength;
+              fg = fg + (palette[dispCi][1] - fg) * strength;
+              fb = fb + (palette[dispCi][2] - fb) * strength;
             }
           }
 
