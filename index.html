@@ -1,5 +1,5 @@
-<!-- VAREN® Brand Experience — v2.8 (Dark Dither + 4K Optimization) -->
-<!-- Previous versions: v1.0-v2.7 backed up in /versions/ -->
+<!-- VAREN® Brand Experience — v2.9 (Swiss Grid Overhaul · Kelman · Müller-Brockmann) -->
+<!-- Previous versions: v1.0-v2.8 backed up in /versions/ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
   /* ═══════════════════════════════════════════════════════════════════
-     VAREN® BRAND EXPERIENCE v2.8
+     VAREN® BRAND EXPERIENCE v2.9
      VAREN Harmonic Grid · Dark Dither · 4K Optimized
      ═══════════════════════════════════════════════════════════════════ */
 
@@ -127,10 +127,13 @@
     padding: var(--grid-margin-top) var(--grid-margin-x) var(--grid-margin-bottom);
     position: relative;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0 var(--grid-gutter);
+    align-content: center;
   }
+  /* Default: children span full 12 columns unless overridden */
+  .frame-inner > * { grid-column: 1 / -1; }
 
   .g12 {
     display: grid;
@@ -441,6 +444,9 @@
     background: rgba(200,169,110,0.25);
   }
 
+  /* Ensure horizontal lines stretch in centered flex containers (e.g. code-hero) */
+  .code-hero .section-label { align-self: stretch; }
+
   .section-label-right {
     margin-left: auto;
     margin-bottom: var(--sp-3);
@@ -480,11 +486,14 @@
   }
 
   .origin-grid {
+    grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: 1.618fr 1fr;
-    gap: var(--grid-gutter);
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0 var(--grid-gutter);
     align-items: start;
   }
+  .origin-grid > :first-child { grid-column: 1 / 5; }  /* prose in cols 1-4 */
+  .origin-grid > :last-child  { grid-column: 5 / 9; }  /* sidebar in cols 5-8 */
 
   .frame-num {
     font-family: var(--serif);
@@ -512,11 +521,48 @@
   .prose strong { color: var(--light); font-weight: 600; }
 
   /* ── MANIFESTO BOX ── */
+  /* ══════════════════════════════════════════
+     SECTION GRID PLACEMENT — Kelman 4-Column Modular Grid
+     12-col micro maps to 4 φ-macro columns:
+     φ-A = cols 1-3  |  φ-B = cols 4-6  |  φ-C = cols 7-9  |  φ-D = cols 10-12
+     ══════════════════════════════════════════ */
+
+  /* All children default to full width */
+  .frame-inner > .section-label { grid-column: 1 / -1; }
+  .frame-inner > .section-title { grid-column: 1 / 7; } /* Left half: φ-A + φ-B */
+
+  /* Sub-grids span full parent */
+  .frame-inner > .pillar-grid,
+  .frame-inner > .sys-grid,
+  .frame-inner > .delivery-grid,
+  .frame-inner > .identity-showcase,
+  .frame-inner > .logo-kit,
+  .frame-inner > .swatches,
+  .frame-inner > .type-showcase,
+  .frame-inner > .type-scale-specimen,
+  .frame-inner > .grid-demo,
+  .frame-inner > .h-sep,
+  .frame-inner > table { grid-column: 1 / -1; }
+
+  /* Prose defaults: Müller-Brockmann — 7-10 words per line, cols 1-8 (~2/3 width) */
+  .frame-inner > .prose { grid-column: 1 / 9; }
+
+  /* ── MANIFESTO TWO-COLUMN ── */
+  .manifesto-split {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 0 var(--grid-gutter);
+    align-items: end;
+    margin: var(--sp-4) 0;
+  }
+  .manifesto-split > .manifesto { grid-column: 1 / 7; }
+  .manifesto-split > .manifesto-display { grid-column: 8 / 13; }
+
   .manifesto {
     background: linear-gradient(135deg, rgba(200,169,110,0.03) 0%, transparent 100%);
     border-left: 2px solid var(--gold);
     padding: var(--sp-5) var(--sp-4);
-    margin: var(--sp-4) 0;
   }
   .manifesto p {
     font-family: var(--sans);
@@ -529,15 +575,26 @@
   .manifesto p:last-child { margin-bottom: 0; }
   .manifesto strong { color: var(--light); font-weight: 500; }
   .manifesto .gold { color: var(--gold); }
+
+  .manifesto-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    text-align: right;
+    padding-bottom: var(--sp-4);
+  }
+
   .manifesto-closer {
     font-family: var(--serif);
-    font-size: clamp(var(--type-h3), 5.5vw, var(--type-h1));
+    font-size: clamp(var(--type-h2), 3.5vw, 5.25rem);
     font-style: italic;
     font-weight: 300;
     line-height: var(--leading-heading);
-    margin-top: var(--sp-5);
     letter-spacing: 0.01em;
+    color: var(--light);
   }
+  .manifesto-closer.gold { color: var(--gold); }
 
   /* ── PILLAR CARDS (3-column) ── */
   .pillar-grid {
@@ -555,14 +612,10 @@
     transition: border-color 0.5s var(--ease), transform 0.5s var(--ease);
     display: flex;
     flex-direction: column;
-    transform: rotate(0deg);
   }
-  .pillar-card:nth-child(1) { transform: rotate(-1deg); }
-  .pillar-card:nth-child(2) { transform: rotate(0deg); }
-  .pillar-card:nth-child(3) { transform: rotate(1deg); }
   .pillar-card:hover {
     border-color: rgba(200,169,110,0.2);
-    transform: translateY(-4px) rotate(0deg);
+    transform: translateY(-4px);
   }
   .pillar-card::before {
     content: '';
@@ -578,8 +631,8 @@
   .pillar-card-num {
     font-family: var(--serif);
     font-weight: 200;
-    font-size: var(--type-h1);
-    color: rgba(200,169,110,0.08);
+    font-size: var(--type-h2);
+    color: rgba(200,169,110,0.10);
     line-height: 1;
     margin-bottom: var(--sp-3);
   }
@@ -594,7 +647,7 @@
   }
   .pillar-card h3 {
     font-family: var(--serif);
-    font-size: var(--type-h3);
+    font-size: var(--type-h4);
     font-weight: 300;
     color: var(--light);
     margin-bottom: var(--sp-3);
@@ -903,9 +956,16 @@
   }
   .breathe-reset {
     font-family: var(--mono);
-    font-size: var(--type-lead);
+    font-size: clamp(2rem, 5vw, 4.5rem);
     font-weight: 500;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: justify;
+    text-align-last: justify;
+    display: block;
+    line-height: 1;
+    word-spacing: 1em;
   }
   .breathe-reset .b { color: var(--gray); }
   .breathe-reset .r { color: var(--light); }
@@ -1085,6 +1145,7 @@
   .grid-demo {
     margin: var(--sp-5) 0;
     padding: var(--sp-5) 0;
+    grid-column: 1 / -1; /* Ensure it spans full parent grid */
   }
   .grid-demo-visual {
     display: grid;
@@ -1095,18 +1156,21 @@
   .grid-demo-col {
     background: rgba(200,169,110,0.04);
     border: 1px solid rgba(200,169,110,0.08);
-    height: 160px;
+    height: 120px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0.5rem;
     font-family: var(--mono);
-    font-size: 0.6rem;
+    font-size: var(--type-caption);
     color: var(--gold);
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
-  .grid-demo-col:nth-child(3n) { border-right-color: rgba(200,169,110,0.2); }
-  .grid-demo-col:nth-child(3n+1) { border-left-color: rgba(200,169,110,0.2); }
+  /* Highlight φ-macro boundaries (every 3rd column) */
+  .grid-demo-col:nth-child(3n) { border-right-color: rgba(200,169,110,0.25); }
+  .grid-demo-col:nth-child(3n+1) { border-left-color: rgba(200,169,110,0.25); }
   .grid-demo-specs {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -1221,6 +1285,8 @@
     .hero-inner { flex-direction: column; }
     .hero-headline { margin-bottom: var(--sp-4); }
     .hero-callout { text-align: center; padding: 0; }
+    .manifesto-split { grid-template-columns: 1fr; }
+    .manifesto-display { align-items: flex-start; text-align: left; margin-top: var(--sp-4); }
     .origin-grid { grid-template-columns: 1fr; }
     .pillar-card { grid-column: span 12; }
     .sys-card { grid-column: span 6; }
@@ -1258,6 +1324,7 @@
     nav { padding-left: 5vw; padding-right: 5vw; }
     nav.scrolled { padding-left: 5vw; padding-right: 5vw; }
     .frame-num { font-size: clamp(22rem, 25vw, 42rem); }
+    .manifesto-closer { font-size: clamp(3.25rem, 3.5vw, 6rem); }
   }
 
   @media (min-width: 2560px) {
@@ -1363,14 +1430,19 @@
   <div class="frame-inner">
     <div class="section-label anim">Chapter I</div>
     <h2 class="section-title anim">Brand Manifesto</h2>
-    <div class="manifesto anim" style="max-width: 800px;">
-      <p><strong>Golf has never been about perfect.</strong></p>
-      <p>It has always been about challenge: wind, pressure, doubt, and the potential failure waiting on every tee. The course doesn&rsquo;t move. The weather doesn&rsquo;t care. The moment doesn&rsquo;t slow down.</p>
-      <p class="gold">And that is exactly the point.</p>
-      <p>Every obstacle is part of the round. Every difficult lie, every missed fairway, every demanding walk between shots&mdash;these are not interruptions to the game. <strong>They are the game.</strong></p>
-      <p>Progress in golf, and in life, is built in resistance. Hard conditions create better decisions. Pressure builds discipline. Adversity shapes consistency.</p>
-      <p>We design for the round as it truly exists&mdash;unpredictable, demanding, and worth every step.</p>
-      <p class="manifesto-closer">Because the challenge isn&rsquo;t in the way.<br><span class="gold">The challenge is the way.</span></p>
+    <div class="manifesto-split">
+      <div class="manifesto anim">
+        <p><strong>Golf has never been about perfect.</strong></p>
+        <p>It has always been about challenge: wind, pressure, doubt, and the potential failure waiting on every tee. The course doesn&rsquo;t move. The weather doesn&rsquo;t care. The moment doesn&rsquo;t slow down.</p>
+        <p class="gold">And that is exactly the point.</p>
+        <p>Every obstacle is part of the round. Every difficult lie, every missed fairway, every demanding walk between shots&mdash;these are not interruptions to the game. <strong>They are the game.</strong></p>
+        <p>Progress in golf, and in life, is built in resistance. Hard conditions create better decisions. Pressure builds discipline. Adversity shapes consistency.</p>
+        <p>We design for the round as it truly exists&mdash;unpredictable, demanding, and worth every step.</p>
+      </div>
+      <div class="manifesto-display anim-r">
+        <p class="manifesto-closer">Because the challenge isn&rsquo;t in the way.</p>
+        <p class="manifesto-closer gold">The challenge is the way.</p>
+      </div>
     </div>
   </div>
 </div>
@@ -1413,11 +1485,11 @@
   <div class="section-label anim" style="margin-bottom:var(--sp-4);">Chapter III &mdash; The Code</div>
   <h2 class="anim-fade">PREVAIL AS ONE</h2>
   <p class="code-sub anim-fade">We don&rsquo;t chase the loudest win.<br>We build the silent standard that earns it.</p>
-  <div class="anim-fade" style="margin-bottom:var(--sp-5);">
-    <span class="breathe-reset" style="font-size: var(--type-h3);">
-      <span class="b">Breathe.</span>&ensp;
-      <span class="r">Reset.</span>&ensp;
-      <span class="m">Move.</span>
+  <div class="anim-fade" style="margin-bottom:var(--sp-5); width:100%; max-width:var(--content-max); padding:0 var(--grid-margin-x);">
+    <span class="breathe-reset">
+      <span class="b">BREATHE</span>
+      <span class="r">RESET</span>
+      <span class="m">MOVE</span>
     </span>
   </div>
   <div class="code-prose anim-fade">
@@ -1433,10 +1505,10 @@
   <div class="frame-inner">
     <div class="section-label anim">Chapter IV</div>
     <h2 class="section-title anim" style="margin-bottom: var(--sp-3);">Tournament-Tempo Design</h2>
-    <div class="prose anim" style="max-width: 600px; margin-bottom: var(--sp-5);">
+    <div class="prose anim" style="grid-column: 1 / 5; margin-bottom: var(--sp-5);">
       <p><strong>The first golf equipment system designed around tournament-tempo behavior.</strong></p>
     </div>
-    <div class="sys-grid">
+    <div class="sys-grid" style="grid-column: 1 / -1;">
       <div class="grid-gutter-lines">
         <div class="gutter-line" style="left: 25%"></div>
         <div class="gutter-line" style="left: 50%"></div>
@@ -1472,8 +1544,8 @@
   <div class="frame-inner">
     <div class="section-label anim">Chapter V</div>
     <h2 class="section-title anim">Brand Architecture</h2>
-    <p class="prose anim" style="font-family: var(--serif); font-style: italic; color: var(--gray); margin-bottom: var(--sp-5);">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every touchpoint.</p>
-    <div class="pillar-grid">
+    <p class="anim" style="grid-column: 1 / 7; font-family: var(--serif); font-size: var(--type-lead); font-style: italic; color: rgba(242,240,237,0.78); margin-bottom: var(--sp-5); line-height: var(--leading-body); font-weight: 300;">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every touchpoint.</p>
+    <div class="pillar-grid" style="grid-column: 1 / -1;">
           <div class="grid-gutter-lines">
             <div class="gutter-line" style="left: 33.33%"></div>
             <div class="gutter-line" style="left: 66.67%"></div>
@@ -1509,7 +1581,7 @@
   <div class="frame-inner">
     <div class="section-label anim">Chapter VI</div>
     <h2 class="section-title anim">Voice &amp; Tone</h2>
-    <div class="prose anim" style="margin-bottom:var(--sp-5);">
+    <div class="prose anim" style="grid-column: 1 / 9; margin-bottom:var(--sp-5);">
       <p>VAREN speaks with the quiet authority of someone who has been tested and held. The voice is never loud. It does not oversell. It states facts, offers perspective, and lets quality create its own volume.</p>
     </div>
     <table class="voice-table anim">
@@ -1550,11 +1622,11 @@
 <div class="frame" id="identity">
   <div class="frame-num">VII</div>
   <div class="frame-inner">
-    <div class="frame-label anim">Chapter VII <span class="label-line"></span></div>
-    <div class="display-title anim" style="margin-bottom: var(--sp-5);">Visual Identity<br>System</div>
+    <div class="section-label anim">Chapter VII</div>
+    <h2 class="section-title anim" style="margin-bottom: var(--sp-5);">Visual Identity<br>System</h2>
 
     <!-- Logo Kit mk1 -->
-    <div class="frame-label anim" style="margin-top:var(--sp-4);">VAREN&reg; Logo Kit mk1</div>
+    <div class="section-label anim" style="margin-top:var(--sp-4);">VAREN&reg; Logo Kit mk1</div>
     <div class="logo-kit">
       <div class="logo-kit-row two anim">
         <div class="logo-kit-item">
@@ -1614,7 +1686,7 @@
     <div class="h-sep"></div>
 
     <!-- Color System -->
-    <div class="frame-label anim">Color System</div>
+    <div class="section-label anim">Color System</div>
     <div class="swatches anim">
       <div class="swatch"><div class="swatch-color" style="background:#0A0A0A;"></div><div class="swatch-info"><h5>VAREN Black</h5><small>#0A0A0A</small></div></div>
       <div class="swatch"><div class="swatch-color" style="background:#C8A96E;"></div><div class="swatch-info"><h5>Command Gold</h5><small>#C8A96E</small></div></div>
@@ -1626,7 +1698,7 @@
     <div class="h-sep"></div>
 
     <!-- Typography System -->
-    <div class="frame-label anim">Typography System</div>
+    <div class="section-label anim">Typography System</div>
     <div class="type-showcase anim">
       <div class="type-row">
         <div>
@@ -1657,7 +1729,7 @@
     <div class="h-sep"></div>
 
     <!-- Type Scale -->
-    <div class="frame-label anim">Type Scale &mdash; Alternating &times;1.333 / &times;1.5</div>
+    <div class="section-label anim">Type Scale &mdash; Alternating &times;1.333 / &times;1.5</div>
     <div class="type-scale-specimen anim">
       <div class="scale-step"><div class="scale-meta">136px &middot; Display</div><div class="scale-sample" style="font-size:clamp(3rem, 8.5vw, 8.5rem); font-weight:100;">Varen</div></div>
       <div class="scale-step"><div class="scale-meta">84px &middot; H1</div><div class="scale-sample" style="font-size:clamp(2.5rem, 5.25vw, 5.25rem); font-weight:200;">Prevail</div></div>
@@ -1671,13 +1743,21 @@
     <div class="h-sep"></div>
 
     <!-- VAREN Harmonic Grid Demo -->
-    <div class="frame-label anim">VAREN Harmonic 12-Column Grid</div>
+    <div class="section-label anim">VAREN Harmonic 12-Column Grid</div>
     <div class="grid-demo anim">
       <div class="grid-demo-visual">
-        <div class="grid-demo-col">1</div><div class="grid-demo-col">2</div><div class="grid-demo-col">3</div>
-        <div class="grid-demo-col">4</div><div class="grid-demo-col">5</div><div class="grid-demo-col">6</div>
-        <div class="grid-demo-col">7</div><div class="grid-demo-col">8</div><div class="grid-demo-col">9</div>
-        <div class="grid-demo-col">10</div><div class="grid-demo-col">11</div><div class="grid-demo-col">12</div>
+        <div class="grid-demo-col"><span style="font-size:0.55rem; opacity:0.5;">φ-A</span>1</div>
+        <div class="grid-demo-col">2</div>
+        <div class="grid-demo-col">3</div>
+        <div class="grid-demo-col"><span style="font-size:0.55rem; opacity:0.5;">φ-B</span>4</div>
+        <div class="grid-demo-col">5</div>
+        <div class="grid-demo-col">6</div>
+        <div class="grid-demo-col"><span style="font-size:0.55rem; opacity:0.5;">φ-C</span>7</div>
+        <div class="grid-demo-col">8</div>
+        <div class="grid-demo-col">9</div>
+        <div class="grid-demo-col"><span style="font-size:0.55rem; opacity:0.5;">φ-D</span>10</div>
+        <div class="grid-demo-col">11</div>
+        <div class="grid-demo-col">12</div>
       </div>
       <div class="grid-demo-specs">
         <div class="grid-spec"><strong>Columns</strong>12 micro (4 &phi;-macro &times; 3 Swiss)</div>
@@ -1687,7 +1767,7 @@
       </div>
     </div>
 
-    <div class="prose anim" style="max-width:800px; margin-top:var(--sp-5);">
+    <div class="prose anim" style="grid-column: 1 / 7; margin-top:var(--sp-5);">
       <p><strong>Design Principles:</strong> Restraint signals premium. Function dictates form. Dark palette dominance. Precision in execution. Every element must justify its existence through function.</p>
       <p><strong>Typography Philosophy:</strong> Signifier carries the editorial voice. S&ouml;hne handles function. S&ouml;hne Schmal provides drama. S&ouml;hne Mono anchors data. Four faces, one system, zero excess.</p>
     </div>
@@ -1700,7 +1780,7 @@
   <div class="frame-inner">
     <div class="section-label anim">Chapter VIII</div>
     <h2 class="section-title anim">Brand Delivery Ecosystem</h2>
-    <p class="prose anim" style="font-family: var(--serif); font-style: italic; color: var(--gray); margin-bottom: var(--sp-5);">The brand document and the brand experience are one and the same. VAREN&rsquo;s brand system is a living ecosystem that communicates precision, elegance, and legacy through every format it inhabits.</p>
+    <p class="anim" style="grid-column: 1 / 9; font-family: var(--serif); font-size: var(--type-body); font-style: italic; color: var(--gray); margin-bottom: var(--sp-5); line-height: var(--leading-body); font-weight: 300;">The brand document and the brand experience are one and the same. VAREN&rsquo;s brand system is a living ecosystem that communicates precision, elegance, and legacy through every format it inhabits.</p>
     <div class="delivery-grid">
       <div class="grid-gutter-lines">
         <div class="gutter-line" style="left: 50%"></div>
@@ -1747,7 +1827,7 @@
     </div>
     <div class="footer-right">
       <p class="footer-closing" style="font-family: var(--serif); font-size: var(--type-label); color: var(--gray); font-style: italic; line-height: var(--leading-body); font-weight: 300;">Forged in Pinehurst. Tested at tempo. Refined through three decades of manufacturing discipline.</p>
-      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.7 &middot; March 2026 &middot; VAREN&reg;</p>
+      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.9 &middot; March 2026 &middot; VAREN&reg;</p>
     </div>
   </div>
 </footer>
