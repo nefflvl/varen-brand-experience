@@ -1,4 +1,4 @@
-<!-- VAREN® Brand Experience — v2.9.1 (Buzzworthy Animations · Swiss Grid · Kelman) -->
+<!-- VAREN® Brand Experience — v2.9.2 (Buzzworthy Animations · Swiss Grid · Kelman) -->
 <!-- Previous versions: v1.0-v2.9 backed up in /versions/ -->
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
   /* ═══════════════════════════════════════════════════════════════════
-     VAREN® BRAND EXPERIENCE v2.9.1
+     VAREN® BRAND EXPERIENCE v2.9.2
      VAREN Harmonic Grid · Dark Dither · 4K Optimized
      ═══════════════════════════════════════════════════════════════════ */
 
@@ -116,9 +116,7 @@
     display: flex;
     align-items: stretch;
     overflow: hidden;
-    border-top: 1px solid rgba(200,169,110,0.10);
   }
-  .frame:first-of-type { border-top: none; }
 
   .frame-inner {
     max-width: var(--content-max);
@@ -337,7 +335,8 @@
   }
 
   .hero-inner {
-    padding: var(--sp-7) var(--grid-margin-x) var(--grid-margin-bottom);
+    /* VAREN Harmonic margins: 4.924% top, 12.5% bottom (asymmetric gravity anchor) */
+    padding: var(--grid-margin-top) var(--grid-margin-x) var(--grid-margin-bottom);
     width: 100%;
     max-width: none;
     margin: 0 auto;
@@ -348,7 +347,9 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 20vh;
+    /* Asymmetric bottom padding anchors content upward per Swiss convention */
+    /* Additional sp-7 (144px) bottom space above SCROLL indicator zone */
+    padding-bottom: calc(var(--grid-margin-bottom) + var(--sp-7));
   }
 
   .hero-headline {
@@ -385,7 +386,7 @@
 
   .hero-scroll {
     position: absolute;
-    bottom: var(--sp-5);
+    bottom: var(--sp-5); /* 55px — Fibonacci token */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -936,8 +937,6 @@
     text-align: center;
     padding: var(--sp-7) var(--grid-margin-x) var(--sp-8);
     background: radial-gradient(ellipse at 50% 50%, rgba(200,169,110,0.04) 0%, transparent 65%);
-    border-top: 1px solid rgba(200,169,110,0.06);
-    border-bottom: 1px solid rgba(200,169,110,0.06);
     position: relative;
     min-height: 100vh;
     display: flex;
@@ -1521,7 +1520,7 @@
       </div>
       <div class="sys-card anim">
         <h4>Access</h4>
-        <p>Single-motion retrieval. No zippers that catch. No searching.</p>
+        <p>Single-motion retrieval. No zippers that catch. No&nbsp;searching.</p>
       </div>
       <div class="sys-card anim">
         <h4>Balance</h4>
@@ -1595,14 +1594,6 @@
             <tr><td>Empathetic</td><td>Soft</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;When the day turns, when travel wears us down.&rdquo;</td></tr>
             <tr><td>Precise</td><td>Technical / jargony</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;Fewer parts. Stronger hardware. Cleaner lines.&rdquo;</td></tr>
             <tr><td>Aspirational</td><td>Exclusive / elitist</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;We carry a code.&rdquo;</td></tr>
-            <tr>
-              <td>Competition</td>
-              <td>"Tested at tempo."</td>
-            </tr>
-            <tr>
-              <td>Heritage</td>
-              <td>"Forged in Pinehurst."</td>
-            </tr>
           </tbody>
         </table>
         <div class="section-label anim" style="margin-top:var(--sp-6);">Signature Phrases</div>
@@ -1830,7 +1821,7 @@
     </div>
     <div class="footer-right">
       <p class="footer-closing" style="font-family: var(--serif); font-size: var(--type-label); color: var(--gray); font-style: italic; line-height: var(--leading-body); font-weight: 300;">Forged in Pinehurst. Tested at tempo. Refined through three decades of manufacturing discipline.</p>
-      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.9.1 &middot; March 2026 &middot; VAREN&reg;</p>
+      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.9.2 &middot; March 2026 &middot; VAREN&reg;</p>
     </div>
   </div>
 </footer>
@@ -1909,9 +1900,10 @@
 
   // ═══════════════════════════════════════════════════════════════
   // BUZZWORTHY SCROLL ANIMATIONS
-  // toggleActions: "play reverse play reverse"
-  //   onEnter → play | onLeave → none | onEnterBack → play | onLeaveBack → reverse
-  // Elements appear when scrolling into view, disappear when scrolling out
+  // toggleActions: "play none none reverse"
+  //   onEnter → play | onLeave → none | onEnterBack → none | onLeaveBack → reverse
+  // Elements appear scrolling in from bottom, only reverse when nearly off the top
+  // end: 'bottom 5%' means reverse only when element's bottom edge reaches 5% from viewport top
   // ═══════════════════════════════════════════════════════════════
 
   // Slide up entrance
@@ -1925,8 +1917,8 @@
         scrollTrigger: {
           trigger: el,
           start: 'top 88%',
-          end: 'top 20%',
-          toggleActions: 'play reverse play reverse'
+          end: 'bottom 5%',
+          toggleActions: 'play none none reverse'
         }
       }
     );
@@ -1943,8 +1935,8 @@
         scrollTrigger: {
           trigger: el,
           start: 'top 88%',
-          end: 'top 20%',
-          toggleActions: 'play reverse play reverse'
+          end: 'bottom 5%',
+          toggleActions: 'play none none reverse'
         }
       }
     );
@@ -1961,8 +1953,8 @@
         scrollTrigger: {
           trigger: el,
           start: 'top 88%',
-          end: 'top 20%',
-          toggleActions: 'play reverse play reverse'
+          end: 'bottom 5%',
+          toggleActions: 'play none none reverse'
         }
       }
     );
@@ -1979,8 +1971,8 @@
         scrollTrigger: {
           trigger: el,
           start: 'top 88%',
-          end: 'top 20%',
-          toggleActions: 'play reverse play reverse'
+          end: 'bottom 5%',
+          toggleActions: 'play none none reverse'
         }
       }
     );
@@ -1997,8 +1989,8 @@
         scrollTrigger: {
           trigger: el,
           start: 'top 85%',
-          end: 'top 20%',
-          toggleActions: 'play reverse play reverse'
+          end: 'bottom 5%',
+          toggleActions: 'play none none reverse'
         }
       }
     );
@@ -2017,8 +2009,8 @@
         scrollTrigger: {
           trigger: container,
           start: 'top 85%',
-          end: 'top 20%',
-          toggleActions: 'play reverse play reverse'
+          end: 'bottom 5%',
+          toggleActions: 'play none none reverse'
         }
       }
     );
@@ -2106,12 +2098,12 @@
     // Try loading — no crossOrigin needed for local files
     img.src = 'assets/varen-lab-harvard-annex.jpg';
 
-    // Resize
+    // Resize — finer pixels for more legible dither
     function resize() {
       const w = hero.clientWidth;
       const h = hero.clientHeight;
-      // Adaptive pixel size — finer on large/4K screens
-      const pixelSize = w > 2400 ? 3 : w > 1800 ? 3.5 : 4;
+      // Smaller pixel size = more detail and legibility
+      const pixelSize = w > 2400 ? 2 : w > 1800 ? 2.5 : 3;
       canvas.width = Math.ceil(w / pixelSize);
       canvas.height = Math.ceil(h / pixelSize);
       canvas.style.width = w + 'px';
@@ -2141,57 +2133,58 @@
       const output = ctx.createImageData(cw, ch);
       const out = output.data;
 
-      // Mouse reveal radius in canvas pixels
-      const revealR = cw * 0.15;
-      const revealR2 = revealR * revealR;
-      const softR = revealR * 0.7;
-      const softR2 = softR * softR;
+      // Mouse effect radii in canvas pixels
+      const blobR = cw * 0.12;      // outer edge of influence
+      const solidR = blobR * 0.3;   // inner solid gold core
+      const detailR = blobR * 0.65; // mid-zone: boosted dither detail
 
-      // Aspect ratio correction for circular reveal
-      const aspectX = cw / ch;
+      // Hexagonal distance function (pointy-top hex, isometric grid reference)
+      // Returns distance normalized so that blobR maps to 1.0 at hex edges
+      const SQRT3 = Math.sqrt(3);
+      function hexDist(dx, dy) {
+        // Pointy-top hexagon distance (flat sides left/right)
+        const ax = Math.abs(dx);
+        const ay = Math.abs(dy);
+        // Hex distance = max of the three axial directions
+        return Math.max(ay, ax * SQRT3 * 0.5 + ay * 0.5);
+      }
+
+      // Pre-compute image mapping (cover mode — fills edge to edge)
+      const imgAspect = imgW / imgH;
+      const canAspect = cw / ch;
+      let imgScaleX, imgScaleY, imgOffX, imgOffY;
+      if (canAspect > imgAspect) {
+        // Canvas wider — fit width, crop height
+        imgScaleX = cw;
+        imgScaleY = cw / imgAspect;
+        imgOffX = 0;
+        imgOffY = (ch - imgScaleY) / 2;
+      } else {
+        // Canvas taller — fit height, crop width
+        imgScaleX = ch * imgAspect;
+        imgScaleY = ch;
+        imgOffX = (cw - imgScaleX) / 2;
+        imgOffY = 0;
+      }
+
+      // Pre-compute vignette center
+      const vcx = cw / 2;
+      const vcy = ch / 2;
 
       for (let y = 0; y < ch; y++) {
         for (let x = 0; x < cw; x++) {
-          // Map canvas pixel to image pixel (contain fit with 8% padding)
-          const imgAspect = imgW / imgH;
-          const canAspect = cw / ch;
-          const padding = 0.08; // 8% padding on all sides
-          const paddedX0 = cw * padding;
-          const paddedY0 = ch * padding;
-          const paddedW = cw * (1 - 2 * padding);
-          const paddedH = ch * (1 - 2 * padding);
+          // Map canvas pixel to image pixel (cover — edge to edge, no gaps)
+          const sx = (x - imgOffX) / imgScaleX;
+          const sy = (y - imgOffY) / imgScaleY;
 
-          let sx, sy, inImage = false;
-
-          if (canAspect > imgAspect) {
-            // Canvas wider — fit height, center horizontally
-            const visW = paddedH * imgAspect;
-            const offX = paddedX0 + (paddedW - visW) / 2;
-            if (x >= offX && x < offX + visW) {
-              sx = (x - offX) / visW;
-              sy = (y - paddedY0) / paddedH;
-              inImage = true;
-            }
-          } else {
-            // Canvas taller — fit width, center vertically
-            const visH = paddedW / imgAspect;
-            const offY = paddedY0 + (paddedH - visH) / 2;
-            if (y >= offY && y < offY + visH) {
-              sx = (x - paddedX0) / paddedW;
-              sy = (y - offY) / visH;
-              inImage = true;
-            }
-          }
-
-          // Sample image or return black for padding area
           let r, g, b;
-          if (inImage && sx >= 0 && sx <= 1 && sy >= 0 && sy <= 1) {
+          if (sx >= 0 && sx <= 1 && sy >= 0 && sy <= 1) {
             const ix = Math.min(imgW - 1, Math.max(0, Math.round(sx * (imgW - 1))));
             const iy = Math.min(imgH - 1, Math.max(0, Math.round(sy * (imgH - 1))));
             const si = (iy * imgW + ix) * 4;
             r = imgData[si]; g = imgData[si+1]; b = imgData[si+2];
           } else {
-            r = g = b = 0; // Black padding
+            r = g = b = 10; // VAREN black for any overflow
           }
 
           // Luminance
@@ -2202,80 +2195,128 @@
           const by = y % 8;
           const threshold = bayer8x8[by * 8 + bx];
 
-          // Dithered color — quantize to 5-level gold palette
-          // Darken the luminance curve — crush shadows, preserve only bright edges
-          let darkLum = Math.pow(lum, 1.8); // gamma push toward black
+          // Darken luminance curve
+          let darkLum = Math.pow(lum, 1.6); // slightly less crushing for legibility
 
-          // Heavy vignette — seamless fade to #0A0A0A at edges
-          const vcx = cw / 2;
-          const vcy = ch / 2;
+          // ── VIGNETTE: radial + strong horizontal edge fade ──
+          // Radial vignette
           const vdx = (x - vcx) / vcx;
           const vdy = (y - vcy) / vcy;
           const distFromCenter = Math.sqrt(vdx * vdx + vdy * vdy);
-          const vignetteStart = 0.4;
-          const vignetteEnd = 1.1;
-          if (distFromCenter > vignetteStart) {
-            const vignetteStrength = Math.min(1, (distFromCenter - vignetteStart) / (vignetteEnd - vignetteStart));
-            const vignetteCurve = vignetteStrength * vignetteStrength; // quadratic for smooth falloff
-            darkLum = darkLum * (1 - vignetteCurve * 0.95);
+          let vignette = 1.0;
+
+          // Radial: starts at 0.5, full black by 1.2
+          const vigStart = 0.5;
+          const vigEnd = 1.2;
+          if (distFromCenter > vigStart) {
+            const vs = Math.min(1, (distFromCenter - vigStart) / (vigEnd - vigStart));
+            vignette *= (1 - vs * vs * 0.92);
           }
 
+          // Horizontal edge fade — strong left/right blackout
+          const edgeX = Math.abs(vdx); // 0 at center, 1 at edge
+          const hEdgeStart = 0.65;
+          if (edgeX > hEdgeStart) {
+            const hs = Math.min(1, (edgeX - hEdgeStart) / (1.0 - hEdgeStart));
+            vignette *= (1 - hs * hs * 0.98);
+          }
+
+          // Top edge fade
+          const topNorm = y / ch; // 0 at top, 1 at bottom
+          if (topNorm < 0.12) {
+            const ts = 1 - topNorm / 0.12;
+            vignette *= (1 - ts * ts * 0.9);
+          }
+
+          // Bottom edge fade (already handled by CSS ::after gradient, but reinforce)
+          if (topNorm > 0.75) {
+            const bs = (topNorm - 0.75) / 0.25;
+            vignette *= (1 - bs * bs * 0.7);
+          }
+
+          darkLum *= vignette;
+
+          // ── DITHER QUANTIZE ──
           const adjusted = darkLum + (threshold - 0.5) * 0.28;
           let ci;
-          if (adjusted < 0.28)      ci = 0;  // most pixels → black
-          else if (adjusted < 0.48) ci = 1;  // near-black
-          else if (adjusted < 0.65) ci = 2;  // dark gold
-          else if (adjusted < 0.82) ci = 3;  // medium gold
-          else                      ci = 4;  // command gold highlights only
+          if (adjusted < 0.28)      ci = 0;
+          else if (adjusted < 0.48) ci = 1;
+          else if (adjusted < 0.65) ci = 2;
+          else if (adjusted < 0.82) ci = 3;
+          else                      ci = 4;
 
           let fr = palette[ci][0], fg = palette[ci][1], fb = palette[ci][2];
 
-          // Mouse fluid displacement — push pixels like water
+          // ── GOLD HEXAGONAL BLOB MOUSE EFFECT ──
+          // Hex shape references the VAREN insignia's isometric grid
+          // Center: solid gold. Mid: boosted dither detail. Outer: water displacement.
           if (mouse.x >= 0) {
             const mdx = x - mouse.x;
             const mdy = y - mouse.y;
-            const md2 = mdx * mdx + mdy * mdy;
-            if (md2 < revealR2 && md2 > 0.1) {
-              const dist = Math.sqrt(md2);
-              // Displacement strength — strongest at center, fading outward
-              let strength;
-              if (dist < softR) {
-                strength = 1.0;
+            const hDist = hexDist(mdx, mdy); // hexagonal distance
+
+            if (hDist < blobR) {
+
+              if (hDist < solidR) {
+                // ── INNER CORE: solid gold with slight luminance variation ──
+                const coreFade = hDist / solidR; // 0 at center → 1 at edge of core
+                const goldR = 200, goldG = 169, goldB = 110;
+                const coreBlend = 1.0 - coreFade * 0.3;
+                fr = fr + (goldR - fr) * coreBlend;
+                fg = fg + (goldG - fg) * coreBlend;
+                fb = fb + (goldB - fb) * coreBlend;
+
+              } else if (hDist < detailR) {
+                // ── MID ZONE: boosted gold dither detail ──
+                const midNorm = (hDist - solidR) / (detailR - solidR); // 0 → 1
+                let boostLum = darkLum + (1.0 - midNorm) * 0.55;
+                boostLum = Math.min(1, boostLum);
+                const boostAdj = boostLum + (threshold - 0.5) * 0.22;
+                let boostCi;
+                if (boostAdj < 0.18)      boostCi = 1;
+                else if (boostAdj < 0.40) boostCi = 2;
+                else if (boostAdj < 0.60) boostCi = 3;
+                else                      boostCi = 4;
+
+                const blend = 1.0 - midNorm * 0.4;
+                fr = fr + (palette[boostCi][0] - fr) * blend;
+                fg = fg + (palette[boostCi][1] - fg) * blend;
+                fb = fb + (palette[boostCi][2] - fb) * blend;
+
               } else {
-                strength = 1.0 - (dist - softR) / (revealR - softR);
+                // ── OUTER ZONE: water displacement — shifts dither pattern ──
+                const outerNorm = (hDist - detailR) / (blobR - detailR); // 0 → 1
+                const strength = 1.0 - outerNorm;
+                const eucDist = Math.sqrt(mdx * mdx + mdy * mdy);
+                const safeD = Math.max(0.1, eucDist);
+
+                const normMdx = mdx / safeD;
+                const normMdy = mdy / safeD;
+                const pushAmt = strength * 5;
+                const swirlAng = strength * 0.8;
+                const cosA = Math.cos(swirlAng);
+                const sinA = Math.sin(swirlAng);
+                const swirlDx = normMdx * cosA - normMdy * sinA;
+                const swirlDy = normMdx * sinA + normMdy * cosA;
+
+                const dispBx = Math.abs((bx + Math.round(swirlDx * pushAmt * 2)) % 8);
+                const dispBy = Math.abs((by + Math.round(swirlDy * pushAmt * 2)) % 8);
+                const dispTh = bayer8x8[dispBy * 8 + dispBx];
+
+                let outerLum = darkLum + strength * 0.2;
+                outerLum = Math.min(1, outerLum);
+                const dispAdj = outerLum + (dispTh - 0.5) * 0.28;
+                let dispCi;
+                if (dispAdj < 0.28)      dispCi = 0;
+                else if (dispAdj < 0.48) dispCi = 1;
+                else if (dispAdj < 0.65) dispCi = 2;
+                else if (dispAdj < 0.82) dispCi = 3;
+                else                      dispCi = 4;
+
+                fr = fr + (palette[dispCi][0] - fr) * strength;
+                fg = fg + (palette[dispCi][1] - fg) * strength;
+                fb = fb + (palette[dispCi][2] - fb) * strength;
               }
-              strength = Math.max(0, Math.min(1, strength));
-
-              // Displace: push pixels outward from mouse center
-              const pushStrength = strength * 6; // pixels of displacement
-              const normMdx = mdx / dist;
-              const normMdy = mdy / dist;
-
-              // Also add a swirl component for the "water" feel
-              const swirlAngle = strength * 1.2;
-              const cosA = Math.cos(swirlAngle);
-              const sinA = Math.sin(swirlAngle);
-              const swirlDx = normMdx * cosA - normMdy * sinA;
-              const swirlDy = normMdx * sinA + normMdy * cosA;
-
-              // Offset the Bayer matrix lookup — shifts the dither pattern
-              const dispBx = Math.abs((bx + Math.round(swirlDx * pushStrength * 2)) % 8);
-              const dispBy = Math.abs((by + Math.round(swirlDy * pushStrength * 2)) % 8);
-              const dispThreshold = bayer8x8[dispBy * 8 + dispBx];
-
-              // Re-quantize with displaced threshold — same luminance, different pattern
-              const dispAdjusted = darkLum + (dispThreshold - 0.5) * 0.28;
-              let dispCi;
-              if (dispAdjusted < 0.28)      dispCi = 0;
-              else if (dispAdjusted < 0.48) dispCi = 1;
-              else if (dispAdjusted < 0.65) dispCi = 2;
-              else if (dispAdjusted < 0.82) dispCi = 3;
-              else                           dispCi = 4;
-
-              // Blend displaced dither with original based on proximity
-              fr = fr + (palette[dispCi][0] - fr) * strength;
-              fg = fg + (palette[dispCi][1] - fg) * strength;
-              fb = fb + (palette[dispCi][2] - fb) * strength;
             }
           }
 
