@@ -1,4 +1,4 @@
-<!-- VAREN® Brand Experience — v2.9.3 (Buzzworthy Animations · Swiss Grid · Kelman) -->
+<!-- VAREN® Brand Experience — v2.9.4 (Fluid Story Animations · Swiss Grid · Kelman) -->
 <!-- Previous versions: v1.0-v2.9 backed up in /versions/ -->
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
   /* ═══════════════════════════════════════════════════════════════════
-     VAREN® BRAND EXPERIENCE v2.9.3
+     VAREN® BRAND EXPERIENCE v2.9.4
      VAREN Harmonic Grid · Dark Dither · 4K Optimized
      ═══════════════════════════════════════════════════════════════════ */
 
@@ -1281,14 +1281,14 @@
      Elements appear on scroll down, disappear on scroll up
      ══════════════════════════════════════════ */
 
-  .anim { opacity: 0; transform: translateY(60px); }
-  .anim-l { opacity: 0; transform: translateX(-80px); }
-  .anim-r { opacity: 0; transform: translateX(80px); }
+  .anim { opacity: 0; transform: translateY(50px); }
+  .anim-l { opacity: 0; transform: translateX(-60px); }
+  .anim-r { opacity: 0; transform: translateX(60px); }
   .anim-fade { opacity: 0; }
-  .anim-s { opacity: 0; transform: scale(0.85); }
+  .anim-s { opacity: 0; transform: scale(0.88); }
 
   /* Stagger children inside grids for cascade effect */
-  .anim-stagger > * { opacity: 0; transform: translateY(40px); }
+  .anim-stagger > *:not(.grid-gutter-lines) { opacity: 0; transform: translateY(40px); }
 
   @media (max-width: 1024px) {
     .nav-links-wrapper { gap: 1.5rem; }
@@ -1455,7 +1455,7 @@
 
 <!-- FRAME I: MANIFESTO -->
 <div class="frame" id="manifesto">
-  <div class="frame-num">I</div>
+  <div class="frame-num anim-fade">I</div>
   <div class="frame-inner">
     <div class="section-label anim">Chapter I</div>
     <h2 class="section-title anim">Brand Manifesto</h2>
@@ -1478,7 +1478,7 @@
 
 <!-- FRAME II: ORIGIN -->
 <div class="frame" id="origin">
-  <div class="frame-num">II</div>
+  <div class="frame-num anim-fade">II</div>
   <div class="frame-inner">
     <div class="section-label anim">Chapter II</div>
     <h2 class="section-title anim">Forged in Pinehurst</h2>
@@ -1510,7 +1510,7 @@
 
 <!-- FRAME III: CODE (Full-screen centered) -->
 <div class="code-hero" id="code">
-  <div class="frame-num">III</div>
+  <div class="frame-num anim-fade">III</div>
   <img class="code-insignia anim-s" src="assets/VAREN_INSIGNIA_WHITE.png" alt="">
   <div class="section-label anim" style="margin-bottom:var(--sp-4);">Chapter III &mdash; The Code</div>
   <h2 class="anim-fade">PREVAIL AS ONE</h2>
@@ -1527,7 +1527,7 @@
 
 <!-- FRAME IV: SYSTEM -->
 <div class="frame" id="system">
-  <div class="frame-num">IV</div>
+  <div class="frame-num anim-fade">IV</div>
   <div class="frame-inner">
     <div class="section-label anim">Chapter IV</div>
     <h2 class="section-title anim" style="margin-bottom: var(--sp-3);">Tournament-Tempo Design</h2>
@@ -1538,23 +1538,23 @@
         <div class="gutter-line" style="left: 50%"></div>
         <div class="gutter-line" style="left: 75%"></div>
       </div>
-      <div class="sys-card anim">
+      <div class="sys-card">
         <h4>Access</h4>
         <p>Single-motion retrieval. No zippers that catch. No&nbsp;searching.</p>
       </div>
-      <div class="sys-card anim">
+      <div class="sys-card">
         <h4>Balance</h4>
         <p>Ergonomic load distribution from hole 1 through 18.</p>
       </div>
-      <div class="sys-card anim">
+      <div class="sys-card">
         <h4>Weather</h4>
         <p>Seam-sealed. Corrosion-resistant. Quick-dry. The course doesn&rsquo;t wait.</p>
       </div>
-      <div class="sys-card anim">
+      <div class="sys-card">
         <h4>Travel</h4>
         <p>Stress-tested against drops, compression, temperature swings.</p>
       </div>
-      <div class="sys-card sys-card--wide anim">
+      <div class="sys-card sys-card--wide">
         <h4>Service</h4>
         <p>Measured in decades. Replaceable components. Repair as feature. Built to last beyond the&nbsp;warranty.</p>
       </div>
@@ -1564,7 +1564,7 @@
 
 <!-- FRAME V: ARCHITECTURE -->
 <div class="frame" id="architecture">
-  <div class="frame-num">V</div>
+  <div class="frame-num anim-fade">V</div>
   <div class="frame-inner">
     <div class="section-label anim">Chapter V</div>
     <h2 class="section-title anim">Brand Architecture</h2>
@@ -1574,21 +1574,21 @@
             <div class="gutter-line" style="left: 33.33%"></div>
             <div class="gutter-line" style="left: 66.67%"></div>
           </div>
-          <div class="pillar-card anim">
+          <div class="pillar-card">
             <div class="pillar-card-num">I</div>
             <h4>Pillar I</h4>
             <h3>Prepare</h3>
             <p>Travel bags, hard-shell cases, luggage organizers, TSA-ready accessories, club covers, modular systems. For the golfer who leaves nothing to chance.</p>
             <div class="foundation">Structure &middot; Architecture &middot; Readiness</div>
           </div>
-          <div class="pillar-card anim">
+          <div class="pillar-card">
             <div class="pillar-card-num">II</div>
             <h4>Pillar II</h4>
             <h3>Perform</h3>
             <p>Carry/stand bags, cart bags, rangefinder holders, performance apparel. The heart of VAREN. Equipment disappears into&nbsp;performance.</p>
             <div class="foundation">Precision &middot; Endurance &middot; Flow</div>
           </div>
-          <div class="pillar-card anim">
+          <div class="pillar-card">
             <div class="pillar-card-num">III</div>
             <h4>Pillar III</h4>
             <h3>Prevail</h3>
@@ -1601,7 +1601,7 @@
 
 <!-- FRAME VI: VOICE -->
 <div class="frame" id="voice">
-  <div class="frame-num">VI</div>
+  <div class="frame-num anim-fade">VI</div>
   <div class="frame-inner">
     <div class="section-label anim">Chapter VI</div>
     <h2 class="section-title anim">Voice &amp; Tone</h2>
@@ -1634,7 +1634,7 @@
 
 <!-- FRAME VII: IDENTITY (Full-width) -->
 <div class="frame" id="identity">
-  <div class="frame-num">VII</div>
+  <div class="frame-num anim-fade">VII</div>
   <div class="frame-inner">
     <div class="section-label anim">Chapter VII</div>
     <h2 class="section-title anim" style="margin-bottom: var(--sp-5);">Visual Identity<br>System</h2>
@@ -1790,7 +1790,7 @@
 
 <!-- FRAME VIII: DELIVERY -->
 <div class="frame" id="delivery">
-  <div class="frame-num">VIII</div>
+  <div class="frame-num anim-fade">VIII</div>
   <div class="frame-inner">
     <div class="section-label anim">Chapter VIII</div>
     <h2 class="section-title anim">Brand Delivery Ecosystem</h2>
@@ -1799,10 +1799,10 @@
       <div class="grid-gutter-lines">
         <div class="gutter-line" style="left: 50%"></div>
       </div>
-      <div class="delivery-card anim"><div class="tier">Tier 1 &mdash; Primary</div><h3>Interactive Brand Experience</h3><p>Public-facing website. Parallax storytelling, micro-interactions, and the brand narrative as lived experience.</p></div>
-      <div class="delivery-card anim"><div class="tier">Tier 2 &mdash; Archival</div><h3>Master Brand Document</h3><p>Word document / PDF for controlled distribution. Version-dated, confidential, comprehensive.</p></div>
-      <div class="delivery-card anim"><div class="tier">Tier 3 &mdash; Execution</div><h3>Design System</h3><p>Shared Figma component library with locked brand components: logo lockups, color tokens, type scales.</p></div>
-      <div class="delivery-card anim"><div class="tier">Tier 4 &mdash; Distribution</div><h3>Digital Asset Management</h3><p>Centralized library. All approved assets, permission-based access, searchable and auto-updated.</p></div>
+      <div class="delivery-card"><div class="tier">Tier 1 &mdash; Primary</div><h3>Interactive Brand Experience</h3><p>Public-facing website. Parallax storytelling, micro-interactions, and the brand narrative as lived experience.</p></div>
+      <div class="delivery-card"><div class="tier">Tier 2 &mdash; Archival</div><h3>Master Brand Document</h3><p>Word document / PDF for controlled distribution. Version-dated, confidential, comprehensive.</p></div>
+      <div class="delivery-card"><div class="tier">Tier 3 &mdash; Execution</div><h3>Design System</h3><p>Shared Figma component library with locked brand components: logo lockups, color tokens, type scales.</p></div>
+      <div class="delivery-card"><div class="tier">Tier 4 &mdash; Distribution</div><h3>Digital Asset Management</h3><p>Centralized library. All approved assets, permission-based access, searchable and auto-updated.</p></div>
     </div>
   </div>
 </div>
@@ -1810,7 +1810,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-left">
+    <div class="footer-left anim">
       <div class="footer-lockup">
         <img class="footer-insignia" src="assets/VAREN_INSIGNIA_WHITE.png" alt="VAREN">
         <svg class="footer-wordmark" viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg">
@@ -1823,7 +1823,7 @@
       </div>
       <div class="footer-tagline">PREPARE&ensp;&middot;&ensp;PERFORM&ensp;&middot;&ensp;PREVAIL</div>
     </div>
-    <div class="footer-center">
+    <div class="footer-center anim">
       <div class="footer-nav-cols">
         <div class="footer-nav-col">
           <a href="#manifesto" class="footer-link">Manifesto</a>
@@ -1839,9 +1839,9 @@
         </div>
       </div>
     </div>
-    <div class="footer-right">
+    <div class="footer-right anim">
       <p class="footer-closing" style="font-family: var(--serif); font-size: var(--type-label); color: var(--gray); font-style: italic; line-height: var(--leading-body); font-weight: 300;">Forged in Pinehurst. Tested at tempo. Refined through three decades of manufacturing discipline.</p>
-      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.9.3 &middot; March 2026 &middot; VAREN&reg;</p>
+      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.9.4 &middot; March 2026 &middot; VAREN&reg;</p>
     </div>
   </div>
 </footer>
@@ -1918,121 +1918,112 @@
   });
 
   // ═══════════════════════════════════════════════════════════════
-  // BUZZWORTHY SCROLL ANIMATIONS
-  // toggleActions: "play none none reverse"
-  //   onEnter → play | onLeave → none | onEnterBack → none | onLeaveBack → reverse
-  // Elements appear scrolling in from bottom, only reverse when nearly off the top
-  // end: 'bottom 5%' means reverse only when element's bottom edge reaches 5% from viewport top
+  // FLUID STORY SCROLL ANIMATIONS — v2.9.4
+  // Directional: elements flow in from below, exit upward.
+  // Content stays visible for the entire time it's on screen.
+  // Exit only triggers when the element has scrolled off the top.
+  // Creates a cinematic scene-by-scene reading experience.
   // ═══════════════════════════════════════════════════════════════
 
-  // Slide up entrance
-  gsap.utils.toArray('.anim').forEach((el, i) => {
-    gsap.fromTo(el,
-      { opacity: 0, y: 60 },
-      {
-        opacity: 1, y: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          end: 'bottom 5%',
-          toggleActions: 'play none none reverse'
-        }
-      }
+  // Utility: create a directional scroll animation
+  // enterFrom = initial state when entering from bottom
+  // exitTo = state when exiting out the top
+  // On scroll-back: enterBack restores, leaveBack returns to enterFrom
+  function fluidAnim(el, enterFrom, exitTo, opts = {}) {
+    const durIn = opts.duration || 0.8;
+    const durOut = durIn * 0.65;
+    const startPos = opts.start || 'top 88%';
+    const endPos = opts.end || 'top -8%';
+    const easeIn = opts.easeIn || 'power3.out';
+    const easeOut = opts.easeOut || 'power2.in';
+    const visible = { opacity: 1, x: 0, y: 0, scale: 1 };
+
+    gsap.set(el, enterFrom);
+
+    ScrollTrigger.create({
+      trigger: el,
+      start: startPos,
+      end: endPos,
+      onEnter: () => gsap.to(el, { ...visible, duration: durIn, ease: easeIn, overwrite: 'auto' }),
+      onLeave: () => gsap.to(el, { ...exitTo, duration: durOut, ease: easeOut, overwrite: 'auto' }),
+      onEnterBack: () => gsap.to(el, { ...visible, duration: durOut, ease: 'power2.out', overwrite: 'auto' }),
+      onLeaveBack: () => gsap.to(el, { ...enterFrom, duration: durOut, ease: easeOut, overwrite: 'auto' }),
+    });
+  }
+
+  // ── Slide up entrance → slide up exit ──
+  gsap.utils.toArray('.anim').forEach(el => {
+    fluidAnim(el,
+      { opacity: 0, y: 50 },
+      { opacity: 0, y: -30 }
     );
   });
 
-  // Slide from left
+  // ── Slide from left → slide left exit ──
   gsap.utils.toArray('.anim-l').forEach(el => {
-    gsap.fromTo(el,
-      { opacity: 0, x: -80 },
-      {
-        opacity: 1, x: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          end: 'bottom 5%',
-          toggleActions: 'play none none reverse'
-        }
-      }
+    fluidAnim(el,
+      { opacity: 0, x: -60 },
+      { opacity: 0, x: -40 },
+      { duration: 0.9 }
     );
   });
 
-  // Slide from right
+  // ── Slide from right → slide right exit ──
   gsap.utils.toArray('.anim-r').forEach(el => {
-    gsap.fromTo(el,
-      { opacity: 0, x: 80 },
-      {
-        opacity: 1, x: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          end: 'bottom 5%',
-          toggleActions: 'play none none reverse'
-        }
-      }
+    fluidAnim(el,
+      { opacity: 0, x: 60 },
+      { opacity: 0, x: 40 },
+      { duration: 0.9 }
     );
   });
 
-  // Scale entrance (insignias, icons)
+  // ── Scale entrance → subtle scale exit ──
   gsap.utils.toArray('.anim-s').forEach(el => {
-    gsap.fromTo(el,
-      { opacity: 0, scale: 0.85 },
-      {
-        opacity: 1, scale: 1,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          end: 'bottom 5%',
-          toggleActions: 'play none none reverse'
-        }
-      }
+    fluidAnim(el,
+      { opacity: 0, scale: 0.88 },
+      { opacity: 0, scale: 0.96 },
+      { duration: 0.7 }
     );
   });
 
-  // Fade only
+  // ── Fade only (frame numbers, decorative elements) ──
   gsap.utils.toArray('.anim-fade').forEach(el => {
-    gsap.fromTo(el,
+    fluidAnim(el,
       { opacity: 0 },
-      {
-        opacity: 1,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 85%',
-          end: 'bottom 5%',
-          toggleActions: 'play none none reverse'
-        }
-      }
+      { opacity: 0 },
+      { start: 'top 90%', duration: 0.9 }
     );
   });
 
-  // Staggered children (card grids, etc.)
+  // ── Staggered children (card grids, pillar grids) ──
   gsap.utils.toArray('.anim-stagger').forEach(container => {
-    const children = container.children;
-    gsap.fromTo(children,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1, y: 0,
-        duration: 0.7,
-        ease: 'power3.out',
-        stagger: 0.12,
-        scrollTrigger: {
-          trigger: container,
-          start: 'top 85%',
-          end: 'bottom 5%',
-          toggleActions: 'play none none reverse'
-        }
-      }
-    );
+    const children = [...container.children].filter(c => !c.classList.contains('grid-gutter-lines'));
+    const durIn = 0.65;
+    const durOut = 0.45;
+
+    children.forEach(child => gsap.set(child, { opacity: 0, y: 40 }));
+
+    ScrollTrigger.create({
+      trigger: container,
+      start: 'top 85%',
+      end: 'bottom -5%',
+      onEnter: () => gsap.to(children, {
+        opacity: 1, y: 0, duration: durIn, stagger: 0.1,
+        ease: 'power3.out', overwrite: 'auto'
+      }),
+      onLeave: () => gsap.to(children, {
+        opacity: 0, y: -20, duration: durOut, stagger: 0.05,
+        ease: 'power2.in', overwrite: 'auto'
+      }),
+      onEnterBack: () => gsap.to(children, {
+        opacity: 1, y: 0, duration: durOut, stagger: 0.07,
+        ease: 'power2.out', overwrite: 'auto'
+      }),
+      onLeaveBack: () => gsap.to(children, {
+        opacity: 0, y: 40, duration: durOut, stagger: 0.05,
+        ease: 'power2.in', overwrite: 'auto'
+      }),
+    });
   });
 
   const menuButton = document.getElementById('menuButton');
