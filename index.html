@@ -261,36 +261,13 @@
 
   .nav-links-wrapper {
     display: flex;
-    gap: 3rem;
+    flex-wrap: nowrap;
+    gap: var(--sp-3);
     align-items: center;
     border-left: 1px solid rgba(200,169,110,0.15);
     border-right: 1px solid rgba(200,169,110,0.15);
     padding-left: var(--sp-3);
     padding-right: var(--sp-3);
-    transition: flex-direction 0.5s var(--ease);
-  }
-
-  nav.scrolled .nav-links-wrapper {
-    flex-direction: row;
-    gap: 0;
-  }
-
-  .nav-col {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-2);
-    transition: flex-direction 0.5s var(--ease);
-  }
-
-  nav.scrolled .nav-col {
-    flex-direction: row;
-    gap: var(--sp-3);
-  }
-
-  nav.scrolled .nav-col + .nav-col {
-    margin-left: var(--sp-3);
-    padding-left: var(--sp-3);
-    border-left: 1px solid rgba(200,169,110,0.15);
   }
 
   .nav-links a {
@@ -363,22 +340,23 @@
     margin: 0 auto;
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: var(--grid-gutter);
-    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     padding-top: 20vh;
   }
 
   .hero-headline {
-    grid-column: 1 / 8;
     font-family: var(--sans-narrow);
-    font-size: clamp(var(--type-h1), 10vw, 18rem);
-    font-weight: 600;
+    font-size: clamp(0.875rem, 1.5vw, 1.25rem);
+    font-weight: 500;
     color: var(--light);
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    margin-bottom: var(--sp-5);
+    line-height: 1.176;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: var(--sp-4);
     opacity: 0;
     text-shadow: 0 2px 40px rgba(10,10,10,0.9), 0 0 120px rgba(10,10,10,0.7);
     z-index: 2;
@@ -386,10 +364,8 @@
   }
 
   .hero-callout {
-    grid-column: 8 / 13;
-    grid-row: 1 / 3;
-    padding: var(--sp-4);
-    text-align: right;
+    padding: 0;
+    text-align: center;
   }
 
   .hero-callout-text {
@@ -491,6 +467,23 @@
     color: var(--light);
     line-height: 0.95;
     letter-spacing: -0.02em;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(var(--type-h3), 5vw, var(--type-h2));
+    font-weight: 300;
+    color: var(--light);
+    line-height: var(--leading-heading);
+    letter-spacing: 0.01em;
+    margin-bottom: var(--sp-5);
+  }
+
+  .origin-grid {
+    display: grid;
+    grid-template-columns: 1.618fr 1fr;
+    gap: var(--grid-gutter);
+    align-items: start;
   }
 
   .frame-num {
@@ -1213,7 +1206,8 @@
   .anim-fade { opacity: 0; }
 
   @media (max-width: 1024px) {
-    .nav-links-wrapper { gap: 2rem; }
+    .nav-links-wrapper { gap: 1.5rem; }
+    .origin-grid { grid-template-columns: 1fr; }
     .split-1-3 > :first-child { grid-column: span 4; }
     .split-1-3 > :last-child  { grid-column: span 8; }
     .split-3-1 > :first-child { grid-column: span 8; }
@@ -1224,9 +1218,10 @@
     nav { padding: var(--sp-1) var(--sp-3); }
     .nav-links-wrapper { display: none; }
     .menu-button { display: block; }
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-headline { grid-column: 1; margin-bottom: var(--sp-4); }
-    .hero-callout { grid-column: 1; grid-row: 2; text-align: left; padding: 0; }
+    .hero-inner { flex-direction: column; }
+    .hero-headline { margin-bottom: var(--sp-4); }
+    .hero-callout { text-align: center; padding: 0; }
+    .origin-grid { grid-template-columns: 1fr; }
     .pillar-card { grid-column: span 12; }
     .sys-card { grid-column: span 6; }
     .delivery-card { grid-column: span 12; }
@@ -1246,11 +1241,6 @@
       --grid-margin-x: clamp(3rem, 4vw, 6rem);
       --grid-gutter: 1.5rem;
     }
-    .hero-headline {
-      font-size: clamp(10rem, 9vw, 22rem);
-      grid-column: 1 / 9;
-    }
-    .hero-callout { grid-column: 9 / 13; }
     .hero-inner { padding-left: 5vw; padding-right: 5vw; }
     .frame-inner { padding-left: 5vw; padding-right: 5vw; }
     .frame-num { font-size: clamp(18rem, 28vw, 36rem); }
@@ -1263,11 +1253,6 @@
       --grid-gutter: 1.75rem;
     }
     html { font-size: 18px; }
-    .hero-headline {
-      font-size: clamp(12rem, 8.5vw, 28rem);
-      grid-column: 1 / 10;
-    }
-    .hero-callout { grid-column: 10 / 13; }
     .hero-inner { padding-left: 6vw; padding-right: 6vw; }
     .frame-inner { padding-left: 6vw; padding-right: 6vw; max-width: 2600px; }
     nav { padding-left: 5vw; padding-right: 5vw; }
@@ -1344,19 +1329,15 @@
       <path d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
     </svg>
   </div>
-  <div class="nav-links-wrapper">
-    <div class="nav-col nav-links">
-      <a href="#manifesto" data-text="Manifesto">Manifesto</a>
-      <a href="#origin" data-text="Origin">Origin</a>
-      <a href="#code" data-text="Code">Code</a>
-      <a href="#system" data-text="System">System</a>
-    </div>
-    <div class="nav-col nav-links">
-      <a href="#architecture" data-text="Architecture">Architecture</a>
-      <a href="#voice" data-text="Voice">Voice</a>
-      <a href="#identity" data-text="Identity">Identity</a>
-      <a href="#delivery" data-text="Delivery">Delivery</a>
-    </div>
+  <div class="nav-links-wrapper nav-links">
+    <a href="#manifesto" data-text="Manifesto">Manifesto</a>
+    <a href="#origin" data-text="Origin">Origin</a>
+    <a href="#code" data-text="Code">Code</a>
+    <a href="#system" data-text="System">System</a>
+    <a href="#architecture" data-text="Architecture">Architecture</a>
+    <a href="#voice" data-text="Voice">Voice</a>
+    <a href="#identity" data-text="Identity">Identity</a>
+    <a href="#delivery" data-text="Delivery">Delivery</a>
   </div>
   <button class="menu-button" id="menuButton" aria-label="Open menu">Menu</button>
 </nav>
@@ -1380,22 +1361,16 @@
 <div class="frame" id="manifesto">
   <div class="frame-num">I</div>
   <div class="frame-inner">
-    <div class="split-1-3">
-      <div>
-        <div class="section-label anim">Chapter I <span class="label-line"></span></div>
-      </div>
-      <div>
-        <div class="section-label section-label-right anim-r">Brand Manifesto</div>
-        <div class="manifesto anim" style="max-width: 800px;">
-          <p><strong>Golf has never been about perfect.</strong></p>
-          <p>It has always been about challenge: wind, pressure, doubt, and the potential failure waiting on every tee. The course doesn&rsquo;t move. The weather doesn&rsquo;t care. The moment doesn&rsquo;t slow down.</p>
-          <p class="gold">And that is exactly the point.</p>
-          <p>Every obstacle is part of the round. Every difficult lie, every missed fairway, every demanding walk between shots&mdash;these are not interruptions to the game. <strong>They are the game.</strong></p>
-          <p>Progress in golf, and in life, is built in resistance. Hard conditions create better decisions. Pressure builds discipline. Adversity shapes consistency.</p>
-          <p>We design for the round as it truly exists&mdash;unpredictable, demanding, and worth every step.</p>
-          <p class="manifesto-closer">Because the challenge isn&rsquo;t in the way.<br><span class="gold">The challenge is the way.</span></p>
-        </div>
-      </div>
+    <div class="section-label anim">Chapter I</div>
+    <h2 class="section-title anim">Brand Manifesto</h2>
+    <div class="manifesto anim" style="max-width: 800px;">
+      <p><strong>Golf has never been about perfect.</strong></p>
+      <p>It has always been about challenge: wind, pressure, doubt, and the potential failure waiting on every tee. The course doesn&rsquo;t move. The weather doesn&rsquo;t care. The moment doesn&rsquo;t slow down.</p>
+      <p class="gold">And that is exactly the point.</p>
+      <p>Every obstacle is part of the round. Every difficult lie, every missed fairway, every demanding walk between shots&mdash;these are not interruptions to the game. <strong>They are the game.</strong></p>
+      <p>Progress in golf, and in life, is built in resistance. Hard conditions create better decisions. Pressure builds discipline. Adversity shapes consistency.</p>
+      <p>We design for the round as it truly exists&mdash;unpredictable, demanding, and worth every step.</p>
+      <p class="manifesto-closer">Because the challenge isn&rsquo;t in the way.<br><span class="gold">The challenge is the way.</span></p>
     </div>
   </div>
 </div>
@@ -1404,7 +1379,9 @@
 <div class="frame" id="origin">
   <div class="frame-num">II</div>
   <div class="frame-inner">
-    <div class="split-3-1">
+    <div class="section-label anim">Chapter II</div>
+    <h2 class="section-title anim">Forged in Pinehurst</h2>
+    <div class="origin-grid">
       <div>
         <div class="prose anim-l">
           <p>Shaped by <strong>Andrew Leander Garner</strong>, a former U.S. Army Special Forces engineer (Staff Sergeant) and industrial designer, who learned early that when systems fail, the cost is never abstract.</p>
@@ -1414,8 +1391,6 @@
         </div>
       </div>
       <div>
-        <div class="section-label section-label-right anim-r">Chapter II</div>
-        <h2 class="display-title anim-r">Forged in Pinehurst</h2>
         <p class="anim-r" style="font-family: var(--serif); font-style: italic; color: var(--gray); margin-top: var(--sp-3); font-size: var(--type-body);">Founded 2023. Tested at tempo. Designed for performance.</p>
         <div class="sidebar-panel anim-r" style="margin-top: var(--sp-4);">
           <h4>Heritage</h4>
@@ -1456,12 +1431,10 @@
 <div class="frame" id="system">
   <div class="frame-num">IV</div>
   <div class="frame-inner">
-    <div>
-      <div class="section-label anim">Chapter IV <span class="label-line"></span></div>
-      <h2 class="display-title anim" style="margin-bottom: var(--sp-3);">Tournament-Tempo Design</h2>
-      <div class="prose anim" style="max-width: 600px; margin-bottom: var(--sp-5);">
-        <p><strong>The first golf equipment system designed around tournament-tempo behavior.</strong></p>
-      </div>
+    <div class="section-label anim">Chapter IV</div>
+    <h2 class="section-title anim" style="margin-bottom: var(--sp-3);">Tournament-Tempo Design</h2>
+    <div class="prose anim" style="max-width: 600px; margin-bottom: var(--sp-5);">
+      <p><strong>The first golf equipment system designed around tournament-tempo behavior.</strong></p>
     </div>
     <div class="sys-grid">
       <div class="grid-gutter-lines">
@@ -1497,9 +1470,10 @@
 <div class="frame" id="architecture">
   <div class="frame-num">V</div>
   <div class="frame-inner">
-    <div class="split-3-1">
-      <div>
-        <div class="pillar-grid">
+    <div class="section-label anim">Chapter V</div>
+    <h2 class="section-title anim">Brand Architecture</h2>
+    <p class="prose anim" style="font-family: var(--serif); font-style: italic; color: var(--gray); margin-bottom: var(--sp-5);">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every touchpoint.</p>
+    <div class="pillar-grid">
           <div class="grid-gutter-lines">
             <div class="gutter-line" style="left: 33.33%"></div>
             <div class="gutter-line" style="left: 66.67%"></div>
@@ -1526,13 +1500,6 @@
             <div class="foundation">Legacy &middot; Identity &middot; Code</div>
           </div>
         </div>
-      </div>
-      <div>
-        <div class="section-label section-label-right anim-r">Chapter V</div>
-        <h2 class="display-title anim-r">Brand Architecture</h2>
-        <p class="anim-r" style="font-family: var(--serif); font-style: italic; color: var(--gray); margin-top: var(--sp-3);">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every touchpoint.</p>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -1540,16 +1507,12 @@
 <div class="frame" id="voice">
   <div class="frame-num">VI</div>
   <div class="frame-inner">
-    <div class="split-1-3">
-      <div>
-        <div class="section-label anim">Chapter VI <span class="label-line"></span></div>
-        <h2 class="display-title anim">Voice &amp; Tone</h2>
-      </div>
-      <div>
-        <div class="prose anim" style="margin-bottom:var(--sp-5);">
-          <p>VAREN speaks with the quiet authority of someone who has been tested and held. The voice is never loud. It does not oversell. It states facts, offers perspective, and lets quality create its own volume.</p>
-        </div>
-        <table class="voice-table anim">
+    <div class="section-label anim">Chapter VI</div>
+    <h2 class="section-title anim">Voice &amp; Tone</h2>
+    <div class="prose anim" style="margin-bottom:var(--sp-5);">
+      <p>VAREN speaks with the quiet authority of someone who has been tested and held. The voice is never loud. It does not oversell. It states facts, offers perspective, and lets quality create its own volume.</p>
+    </div>
+    <table class="voice-table anim">
           <thead><tr><th>VAREN IS</th><th>VAREN IS NOT</th><th>EXAMPLE</th></tr></thead>
           <tbody>
             <tr><td>Measured</td><td>Hype-driven</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;Designed for the round as it truly exists.&rdquo;</td></tr>
@@ -1580,8 +1543,6 @@
           <div class="phrase">&ldquo;Our gear is forged to endure, to serve, and to live long enough to become legacy.&rdquo;</div>
           <div class="phrase">&ldquo;When systems fail, the cost is never abstract.&rdquo;</div>
         </div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -1737,23 +1698,17 @@
 <div class="frame" id="delivery">
   <div class="frame-num">VIII</div>
   <div class="frame-inner">
-    <div class="split-3-1">
-      <div>
-        <div class="delivery-grid">
-          <div class="grid-gutter-lines">
-            <div class="gutter-line" style="left: 50%"></div>
-          </div>
-          <div class="delivery-card anim"><div class="tier">Tier 1 &mdash; Primary</div><h3>Interactive Brand Experience</h3><p>Public-facing website. Parallax storytelling, micro-interactions, and the brand narrative as lived experience.</p></div>
-          <div class="delivery-card anim"><div class="tier">Tier 2 &mdash; Archival</div><h3>Master Brand Document</h3><p>Word document / PDF for controlled distribution. Version-dated, confidential, comprehensive.</p></div>
-          <div class="delivery-card anim"><div class="tier">Tier 3 &mdash; Execution</div><h3>Design System</h3><p>Shared Figma component library with locked brand components: logo lockups, color tokens, type scales.</p></div>
-          <div class="delivery-card anim"><div class="tier">Tier 4 &mdash; Distribution</div><h3>Digital Asset Management</h3><p>Centralized library. All approved assets, permission-based access, searchable and auto-updated.</p></div>
-        </div>
+    <div class="section-label anim">Chapter VIII</div>
+    <h2 class="section-title anim">Brand Delivery Ecosystem</h2>
+    <p class="prose anim" style="font-family: var(--serif); font-style: italic; color: var(--gray); margin-bottom: var(--sp-5);">The brand document and the brand experience are one and the same. VAREN&rsquo;s brand system is a living ecosystem that communicates precision, elegance, and legacy through every format it inhabits.</p>
+    <div class="delivery-grid">
+      <div class="grid-gutter-lines">
+        <div class="gutter-line" style="left: 50%"></div>
       </div>
-      <div>
-        <div class="section-label section-label-right anim-r">Chapter VIII</div>
-        <h2 class="display-title anim-r">Brand Delivery Ecosystem</h2>
-        <p class="anim-r" style="font-family: var(--serif); font-style: italic; color: var(--gray); margin-top: var(--sp-3);">The brand document and the brand experience are one and the same. VAREN&rsquo;s brand system is a living ecosystem that communicates precision, elegance, and legacy through every format it inhabits.</p>
-      </div>
+      <div class="delivery-card anim"><div class="tier">Tier 1 &mdash; Primary</div><h3>Interactive Brand Experience</h3><p>Public-facing website. Parallax storytelling, micro-interactions, and the brand narrative as lived experience.</p></div>
+      <div class="delivery-card anim"><div class="tier">Tier 2 &mdash; Archival</div><h3>Master Brand Document</h3><p>Word document / PDF for controlled distribution. Version-dated, confidential, comprehensive.</p></div>
+      <div class="delivery-card anim"><div class="tier">Tier 3 &mdash; Execution</div><h3>Design System</h3><p>Shared Figma component library with locked brand components: logo lockups, color tokens, type scales.</p></div>
+      <div class="delivery-card anim"><div class="tier">Tier 4 &mdash; Distribution</div><h3>Digital Asset Management</h3><p>Centralized library. All approved assets, permission-based access, searchable and auto-updated.</p></div>
     </div>
   </div>
 </div>
@@ -2025,29 +1980,47 @@
 
       for (let y = 0; y < ch; y++) {
         for (let x = 0; x < cw; x++) {
-          // Map canvas pixel to image pixel (cover fit)
+          // Map canvas pixel to image pixel (contain fit with 8% padding)
           const imgAspect = imgW / imgH;
           const canAspect = cw / ch;
-          let sx, sy;
+          const padding = 0.08; // 8% padding on all sides
+          const paddedX0 = cw * padding;
+          const paddedY0 = ch * padding;
+          const paddedW = cw * (1 - 2 * padding);
+          const paddedH = ch * (1 - 2 * padding);
+
+          let sx, sy, inImage = false;
+
           if (canAspect > imgAspect) {
-            // Canvas wider — fit width, crop height
-            sx = x / cw;
-            const visH = imgW / canAspect;
-            const offY = (imgH - visH) / 2;
-            sy = (offY + (y / ch) * visH) / imgH;
+            // Canvas wider — fit height, center horizontally
+            const visW = paddedH * imgAspect;
+            const offX = paddedX0 + (paddedW - visW) / 2;
+            if (x >= offX && x < offX + visW) {
+              sx = (x - offX) / visW;
+              sy = (y - paddedY0) / paddedH;
+              inImage = true;
+            }
           } else {
-            // Canvas taller — fit height, crop width
-            sy = y / ch;
-            const visW = imgH * canAspect;
-            const offX = (imgW - visW) / 2;
-            sx = (offX + (x / cw) * visW) / imgW;
+            // Canvas taller — fit width, center vertically
+            const visH = paddedW / imgAspect;
+            const offY = paddedY0 + (paddedH - visH) / 2;
+            if (y >= offY && y < offY + visH) {
+              sx = (x - paddedX0) / paddedW;
+              sy = (y - offY) / visH;
+              inImage = true;
+            }
           }
 
-          // Sample image
-          const ix = Math.min(imgW - 1, Math.max(0, Math.round(sx * (imgW - 1))));
-          const iy = Math.min(imgH - 1, Math.max(0, Math.round(sy * (imgH - 1))));
-          const si = (iy * imgW + ix) * 4;
-          const r = imgData[si], g = imgData[si+1], b = imgData[si+2];
+          // Sample image or return black for padding area
+          let r, g, b;
+          if (inImage && sx >= 0 && sx <= 1 && sy >= 0 && sy <= 1) {
+            const ix = Math.min(imgW - 1, Math.max(0, Math.round(sx * (imgW - 1))));
+            const iy = Math.min(imgH - 1, Math.max(0, Math.round(sy * (imgH - 1))));
+            const si = (iy * imgW + ix) * 4;
+            r = imgData[si]; g = imgData[si+1]; b = imgData[si+2];
+          } else {
+            r = g = b = 0; // Black padding
+          }
 
           // Luminance
           const lum = (r * 0.299 + g * 0.587 + b * 0.114) / 255;
@@ -2059,7 +2032,20 @@
 
           // Dithered color — quantize to 5-level gold palette
           // Darken the luminance curve — crush shadows, preserve only bright edges
-          const darkLum = Math.pow(lum, 1.8); // gamma push toward black
+          let darkLum = Math.pow(lum, 1.8); // gamma push toward black
+
+          // Apply dark vignette — darken edges
+          const cx = cw / 2;
+          const cy = ch / 2;
+          const dx = (x - cx) / cx;
+          const dy = (y - cy) / cy;
+          const distFromCenter = Math.sqrt(dx * dx + dy * dy);
+          const vignetteStart = 0.6;
+          if (distFromCenter > vignetteStart) {
+            const vignetteStrength = Math.min(1, (distFromCenter - vignetteStart) / (1 - vignetteStart));
+            darkLum = darkLum * (1 - vignetteStrength * 0.85); // darken toward black at edges
+          }
+
           const adjusted = darkLum + (threshold - 0.5) * 0.28;
           let ci;
           if (adjusted < 0.28)      ci = 0;  // most pixels → black
@@ -2070,27 +2056,49 @@
 
           let fr = palette[ci][0], fg = palette[ci][1], fb = palette[ci][2];
 
-          // Mouse reveal spotlight
+          // Mouse spotlight — gold boost + emboss effect (NOT original image reveal)
           if (mouse.x >= 0) {
             const dx = x - mouse.x;
             const dy = y - mouse.y;
             const d2 = dx * dx + dy * dy;
             if (d2 < revealR2) {
-              // Gold-tinted original
-              const gr = Math.min(255, r * 1.05);
-              const gg = Math.min(255, g * 0.95);
-              const gb = Math.min(255, b * 0.75);
-              // Smooth blend
-              let t;
+              // Calculate blend factor
+              let blend;
               if (d2 < softR2) {
-                t = 0.92;
+                blend = 1.0;
               } else {
-                t = 0.92 * (1 - (Math.sqrt(d2) - Math.sqrt(softR2)) / (revealR - Math.sqrt(softR2)));
+                blend = 1.0 - (Math.sqrt(d2) - Math.sqrt(softR2)) / (revealR - Math.sqrt(softR2));
               }
-              t = Math.max(0, Math.min(1, t));
-              fr = fr + (gr - fr) * t;
-              fg = fg + (gg - fg) * t;
-              fb = fb + (gb - fb) * t;
+              blend = Math.max(0, Math.min(1, blend));
+
+              // Boost luminance for more gold pixels in spotlight
+              let boostLum = Math.pow(lum, 1.8) + 0.35 * blend;
+              boostLum = Math.min(1, boostLum);
+              const boostAdjusted = boostLum + (threshold - 0.5) * 0.28;
+              let boostCi;
+              if (boostAdjusted < 0.28)      boostCi = 0;
+              else if (boostAdjusted < 0.48) boostCi = 1;
+              else if (boostAdjusted < 0.65) boostCi = 2;
+              else if (boostAdjusted < 0.82) boostCi = 3;
+              else                           boostCi = 4;
+
+              // Get the boosted gold color
+              const boostR = palette[boostCi][0], boostG = palette[boostCi][1], boostB = palette[boostCi][2];
+
+              // Add directional Bayer offset for 3D emboss effect (shift toward mouse)
+              const offsetStrength = 1.5 * blend;
+              const normDx = dx / Math.max(0.1, Math.sqrt(d2));
+              const normDy = dy / Math.max(0.1, Math.sqrt(d2));
+              const offsetBx = Math.round(normDx * offsetStrength);
+              const offsetBy = Math.round(normDy * offsetStrength);
+              const embossBx = Math.max(0, Math.min(7, (bx + offsetBx + 8) % 8));
+              const embossBy = Math.max(0, Math.min(7, (by + offsetBy + 8) % 8));
+              const embossThreshold = bayer8x8[embossBy * 8 + embossBx];
+
+              // Blend between original dithered and boosted version
+              fr = fr + (boostR - fr) * blend;
+              fg = fg + (boostG - fg) * blend;
+              fb = fb + (boostB - fb) * blend;
             }
           }
 
