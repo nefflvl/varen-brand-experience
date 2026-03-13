@@ -1,4 +1,4 @@
-<!-- VAREN® Brand Experience — v2.9.4 (Fluid Story Animations · Swiss Grid · Kelman) -->
+<!-- VAREN® Brand Experience — v2.9.4.1 (Fluid Story Animations · Swiss Grid · Kelman) -->
 <!-- Previous versions: v1.0-v2.9 backed up in /versions/ -->
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
   /* ═══════════════════════════════════════════════════════════════════
-     VAREN® BRAND EXPERIENCE v2.9.4
+     VAREN® BRAND EXPERIENCE v2.9.4.1
      VAREN Harmonic Grid · Dark Dither · 4K Optimized
      ═══════════════════════════════════════════════════════════════════ */
 
@@ -1290,6 +1290,9 @@
   /* Stagger children inside grids for cascade effect */
   .anim-stagger > *:not(.grid-gutter-lines) { opacity: 0; transform: translateY(40px); }
 
+  /* Footer: enters once, never exits (page endpoint) */
+  .anim-footer { opacity: 0; transform: translateY(34px); }
+
   @media (max-width: 1024px) {
     .nav-links-wrapper { gap: 1.5rem; }
     .origin-grid { grid-template-columns: 1fr; }
@@ -1810,7 +1813,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-left anim">
+    <div class="footer-left anim-footer">
       <div class="footer-lockup">
         <img class="footer-insignia" src="assets/VAREN_INSIGNIA_WHITE.png" alt="VAREN">
         <svg class="footer-wordmark" viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg">
@@ -1823,7 +1826,7 @@
       </div>
       <div class="footer-tagline">PREPARE&ensp;&middot;&ensp;PERFORM&ensp;&middot;&ensp;PREVAIL</div>
     </div>
-    <div class="footer-center anim">
+    <div class="footer-center anim-footer">
       <div class="footer-nav-cols">
         <div class="footer-nav-col">
           <a href="#manifesto" class="footer-link">Manifesto</a>
@@ -1839,9 +1842,9 @@
         </div>
       </div>
     </div>
-    <div class="footer-right anim">
+    <div class="footer-right anim-footer">
       <p class="footer-closing" style="font-family: var(--serif); font-size: var(--type-label); color: var(--gray); font-style: italic; line-height: var(--leading-body); font-weight: 300;">Forged in Pinehurst. Tested at tempo. Refined through three decades of manufacturing discipline.</p>
-      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.9.4 &middot; March 2026 &middot; VAREN&reg;</p>
+      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.9.4.1 &middot; March 2026 &middot; VAREN&reg;</p>
     </div>
   </div>
 </footer>
@@ -1918,22 +1921,19 @@
   });
 
   // ═══════════════════════════════════════════════════════════════
-  // FLUID STORY SCROLL ANIMATIONS — v2.9.4
+  // FLUID STORY SCROLL ANIMATIONS — v2.9.4.1
   // Directional: elements flow in from below, exit upward.
-  // Content stays visible for the entire time it's on screen.
-  // Exit only triggers when the element has scrolled off the top.
-  // Creates a cinematic scene-by-scene reading experience.
+  // Exit triggers at top 18% — content fades as the reader
+  // moves to the next section, not after it's already gone.
+  // Footer animates in once and stays (page endpoint).
   // ═══════════════════════════════════════════════════════════════
 
-  // Utility: create a directional scroll animation
-  // enterFrom = initial state when entering from bottom
-  // exitTo = state when exiting out the top
-  // On scroll-back: enterBack restores, leaveBack returns to enterFrom
+  // Utility: directional scroll animation with earlier exit
   function fluidAnim(el, enterFrom, exitTo, opts = {}) {
     const durIn = opts.duration || 0.8;
-    const durOut = durIn * 0.65;
+    const durOut = durIn * 0.6;
     const startPos = opts.start || 'top 88%';
-    const endPos = opts.end || 'top -8%';
+    const endPos = opts.end || 'top 18%';
     const easeIn = opts.easeIn || 'power3.out';
     const easeOut = opts.easeOut || 'power2.in';
     const visible = { opacity: 1, x: 0, y: 0, scale: 1 };
@@ -1955,7 +1955,7 @@
   gsap.utils.toArray('.anim').forEach(el => {
     fluidAnim(el,
       { opacity: 0, y: 50 },
-      { opacity: 0, y: -30 }
+      { opacity: 0, y: -25 }
     );
   });
 
@@ -1963,7 +1963,7 @@
   gsap.utils.toArray('.anim-l').forEach(el => {
     fluidAnim(el,
       { opacity: 0, x: -60 },
-      { opacity: 0, x: -40 },
+      { opacity: 0, x: -35 },
       { duration: 0.9 }
     );
   });
@@ -1972,7 +1972,7 @@
   gsap.utils.toArray('.anim-r').forEach(el => {
     fluidAnim(el,
       { opacity: 0, x: 60 },
-      { opacity: 0, x: 40 },
+      { opacity: 0, x: 35 },
       { duration: 0.9 }
     );
   });
@@ -1991,7 +1991,7 @@
     fluidAnim(el,
       { opacity: 0 },
       { opacity: 0 },
-      { start: 'top 90%', duration: 0.9 }
+      { start: 'top 90%', end: 'top 15%', duration: 0.9 }
     );
   });
 
@@ -1999,28 +1999,45 @@
   gsap.utils.toArray('.anim-stagger').forEach(container => {
     const children = [...container.children].filter(c => !c.classList.contains('grid-gutter-lines'));
     const durIn = 0.65;
-    const durOut = 0.45;
+    const durOut = 0.4;
 
     children.forEach(child => gsap.set(child, { opacity: 0, y: 40 }));
 
     ScrollTrigger.create({
       trigger: container,
       start: 'top 85%',
-      end: 'bottom -5%',
+      end: 'bottom 20%',
       onEnter: () => gsap.to(children, {
         opacity: 1, y: 0, duration: durIn, stagger: 0.1,
         ease: 'power3.out', overwrite: 'auto'
       }),
       onLeave: () => gsap.to(children, {
-        opacity: 0, y: -20, duration: durOut, stagger: 0.05,
+        opacity: 0, y: -18, duration: durOut, stagger: 0.04,
         ease: 'power2.in', overwrite: 'auto'
       }),
       onEnterBack: () => gsap.to(children, {
-        opacity: 1, y: 0, duration: durOut, stagger: 0.07,
+        opacity: 1, y: 0, duration: durOut, stagger: 0.06,
         ease: 'power2.out', overwrite: 'auto'
       }),
       onLeaveBack: () => gsap.to(children, {
-        opacity: 0, y: 40, duration: durOut, stagger: 0.05,
+        opacity: 0, y: 40, duration: durOut, stagger: 0.04,
+        ease: 'power2.in', overwrite: 'auto'
+      }),
+    });
+  });
+
+  // ── Footer: animate in once, never exit (page endpoint) ──
+  gsap.utils.toArray('.anim-footer').forEach((el, i) => {
+    gsap.set(el, { opacity: 0, y: 34 });
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 92%',
+      onEnter: () => gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.8, delay: i * 0.12,
+        ease: 'power3.out', overwrite: 'auto'
+      }),
+      onLeaveBack: () => gsap.to(el, {
+        opacity: 0, y: 34, duration: 0.5,
         ease: 'power2.in', overwrite: 'auto'
       }),
     });
@@ -2050,12 +2067,12 @@
     if (!ctx) { console.warn('Canvas 2D not supported'); return; }
 
     // VAREN gold palette — 5 shades, heavily weighted dark
-    // Black BG with sparse gold line-art feel
+    // "Negative reversed" — almost all black, sparse gold edge-highlights
     const palette = [
       [10, 10, 10],        // #0A0A0A — VAREN Black (dominant)
-      [18, 16, 12],        // near-black warm
-      [50, 42, 28],        // very dark gold
-      [120, 100, 65],      // medium dark gold
+      [14, 13, 10],        // near-black warm
+      [35, 30, 20],        // very dark gold
+      [90, 76, 50],        // medium dark gold
       [200, 169, 110]      // #C8A96E — Command Gold (highlights only)
     ];
 
@@ -2205,8 +2222,9 @@
           const by = y % 8;
           const threshold = bayer8x8[by * 8 + bx];
 
-          // Darken luminance curve
-          let darkLum = Math.pow(lum, 1.6); // slightly less crushing for legibility
+          // Darken luminance — heavy crush for "negative reversed" look
+          // Most of the image goes black, only brightest edges get gold
+          let darkLum = Math.pow(lum, 2.4);
 
           // ── VIGNETTE: radial + strong horizontal edge fade ──
           // Radial vignette
@@ -2246,13 +2264,13 @@
 
           darkLum *= vignette;
 
-          // ── DITHER QUANTIZE ──
-          const adjusted = darkLum + (threshold - 0.5) * 0.28;
+          // ── DITHER QUANTIZE — shifted dark for negative-reversed treatment ──
+          const adjusted = darkLum + (threshold - 0.5) * 0.24;
           let ci;
-          if (adjusted < 0.28)      ci = 0;
-          else if (adjusted < 0.48) ci = 1;
-          else if (adjusted < 0.65) ci = 2;
-          else if (adjusted < 0.82) ci = 3;
+          if (adjusted < 0.35)      ci = 0;
+          else if (adjusted < 0.55) ci = 1;
+          else if (adjusted < 0.72) ci = 2;
+          else if (adjusted < 0.88) ci = 3;
           else                      ci = 4;
 
           let fr = palette[ci][0], fg = palette[ci][1], fb = palette[ci][2];
