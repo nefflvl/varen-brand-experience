@@ -1,5 +1,5 @@
-<!-- VAREN® Brand Experience — v2.2 (Söhne + Kelman Grid + GSAP + Buzzworthy) -->
-<!-- Previous versions: v1.0, v2.0, v2.1 backed up in /versions/ and tagged in git -->
+<!-- VAREN® Brand Experience — v2.7 (Buzzworthy OCI Layout Redesign) -->
+<!-- Previous versions: v1.0-v2.6 backed up in /versions/ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,104 +12,64 @@
 <meta property="og:title" content="VAREN — Prepare. Perform. Prevail.">
 <meta property="og:description" content="Elite performance golf equipment. Forged in Pinehurst. Tested at tempo.">
 <meta property="og:image" content="assets/VAREN_OG_1600x900.png">
-
-<!-- GSAP + ScrollTrigger + SplitText (100% free as of 2024) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
 <style>
   /* ═══════════════════════════════════════════════════════════════════
-     VAREN® BRAND EXPERIENCE v2.2
-     Söhne (Klim) + Kelman 4-Column Modular Grid + GSAP ScrollTrigger
-     ─────────────────────────────────────────────────────────────────
-     Fonts: Söhne (sans), Söhne Schmal (narrow display), Söhne Mono, Signifier (serif)
-     Grid: True Kelman 4-column modular, 20.45pt gutters, 15px baseline
-     Type: Golden ratio × 1.176 Kelman leading
-     Animations: GSAP ScrollTrigger, nav letter scramble, parallax
-     Inspired by: OCI / Buzzworthy, Awwwards
+     VAREN® BRAND EXPERIENCE v2.7
+     VAREN Harmonic Grid · Buzzworthy OCI Layout · 16:9
      ═══════════════════════════════════════════════════════════════════ */
 
-  /* ── SÖHNE (Klim Type Foundry) — Licensed ── */
-  /* Regular: extraleicht(200) → extrafett(900) */
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-extraleicht.woff2') format('woff2'); font-weight: 200; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-extraleicht-kursiv.woff2') format('woff2'); font-weight: 200; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-leicht.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-leicht-kursiv.woff2') format('woff2'); font-weight: 300; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-buch.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-buch-kursiv.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-kraftig.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-kraftig-kursiv.woff2') format('woff2'); font-weight: 500; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-halbfett.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-halbfett-kursiv.woff2') format('woff2'); font-weight: 600; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-dreiviertelfett.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-dreiviertelfett-kursiv.woff2') format('woff2'); font-weight: 700; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-fett.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-fett-kursiv.woff2') format('woff2'); font-weight: 800; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-extrafett.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne'; src: url('assets/Fonts/Soehne/soehne-extrafett-kursiv.woff2') format('woff2'); font-weight: 900; font-style: italic; font-display: swap; }
+  /* ── SÖHNE ── */
+  @font-face{font-family:'Soehne';src:url('assets/Fonts/Soehne/soehne-extraleicht.woff2') format('woff2');font-weight:200;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne';src:url('assets/Fonts/Soehne/soehne-leicht.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne';src:url('assets/Fonts/Soehne/soehne-buch.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne';src:url('assets/Fonts/Soehne/soehne-kraftig.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne';src:url('assets/Fonts/Soehne/soehne-halbfett.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne';src:url('assets/Fonts/Soehne/soehne-dreiviertelfett.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne';src:url('assets/Fonts/Soehne/soehne-fett.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne';src:url('assets/Fonts/Soehne/soehne-extrafett.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne';src:url('assets/Fonts/Soehne/soehne-buch-kursiv.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+  @font-face{font-family:'Soehne';src:url('assets/Fonts/Soehne/soehne-leicht-kursiv.woff2') format('woff2');font-weight:300;font-style:italic;font-display:swap}
 
-  /* Söhne Schmal (Narrow) — Display headlines, section numbers */
-  @font-face { font-family: 'Soehne Schmal'; src: url('assets/Fonts/Soehne/soehne-schmal-extraleicht.woff2') format('woff2'); font-weight: 200; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne Schmal'; src: url('assets/Fonts/Soehne/soehne-schmal-leicht.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne Schmal'; src: url('assets/Fonts/Soehne/soehne-schmal-buch.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne Schmal'; src: url('assets/Fonts/Soehne/soehne-schmal-kraftig.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne Schmal'; src: url('assets/Fonts/Soehne/soehne-schmal-halbfett.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne Schmal'; src: url('assets/Fonts/Soehne/soehne-schmal-dreiviertelfett.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne Schmal'; src: url('assets/Fonts/Soehne/soehne-schmal-fett.woff2') format('woff2'); font-weight: 800; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne Schmal'; src: url('assets/Fonts/Soehne/soehne-schmal-extrafett.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
+  /* ── SÖHNE SCHMAL ── */
+  @font-face{font-family:'Soehne Schmal';src:url('assets/Fonts/Soehne/soehne-schmal-leicht.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne Schmal';src:url('assets/Fonts/Soehne/soehne-schmal-buch.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne Schmal';src:url('assets/Fonts/Soehne/soehne-schmal-kraftig.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne Schmal';src:url('assets/Fonts/Soehne/soehne-schmal-halbfett.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne Schmal';src:url('assets/Fonts/Soehne/soehne-schmal-dreiviertelfett.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne Schmal';src:url('assets/Fonts/Soehne/soehne-schmal-fett.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
 
-  /* Söhne Mono — Code, labels, data */
-  @font-face { font-family: 'Soehne Mono'; src: url('assets/Fonts/Soehne/soehne-mono-extraleicht.woff2') format('woff2'); font-weight: 200; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne Mono'; src: url('assets/Fonts/Soehne/soehne-mono-leicht.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne Mono'; src: url('assets/Fonts/Soehne/soehne-mono-buch.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne Mono'; src: url('assets/Fonts/Soehne/soehne-mono-buch-kursiv.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Soehne Mono'; src: url('assets/Fonts/Soehne/soehne-mono-kraftig.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne Mono'; src: url('assets/Fonts/Soehne/soehne-mono-halbfett.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Soehne Mono'; src: url('assets/Fonts/Soehne/soehne-mono-dreiviertelfett.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+  /* ── SÖHNE MONO ── */
+  @font-face{font-family:'Soehne Mono';src:url('assets/Fonts/Soehne/soehne-mono-leicht.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne Mono';src:url('assets/Fonts/Soehne/soehne-mono-buch.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne Mono';src:url('assets/Fonts/Soehne/soehne-mono-kraftig.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:'Soehne Mono';src:url('assets/Fonts/Soehne/soehne-mono-halbfett.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
 
-  /* Signifier (Klim) — Editorial serif */
-  @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-thin.woff2') format('woff2'); font-weight: 100; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-thin-italic.woff2') format('woff2'); font-weight: 100; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-extralight.woff2') format('woff2'); font-weight: 200; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-light.woff2') format('woff2'); font-weight: 300; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-light-italic.woff2') format('woff2'); font-weight: 300; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-regular-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-medium.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-medium-italic.woff2') format('woff2'); font-weight: 500; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
-  @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-bold-italic.woff2') format('woff2'); font-weight: 700; font-style: italic; font-display: swap; }
-  @font-face { font-family: 'Signifier'; src: url('assets/Fonts/WOFF2/signifier-black.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: swap; }
+  /* ── SIGNIFIER ── */
+  @font-face{font-family:'Signifier';src:url('assets/Fonts/WOFF2/signifier-thin.woff2') format('woff2');font-weight:100;font-style:normal;font-display:swap}
+  @font-face{font-family:'Signifier';src:url('assets/Fonts/WOFF2/signifier-extralight.woff2') format('woff2');font-weight:200;font-style:normal;font-display:swap}
+  @font-face{font-family:'Signifier';src:url('assets/Fonts/WOFF2/signifier-light.woff2') format('woff2');font-weight:300;font-style:normal;font-display:swap}
+  @font-face{font-family:'Signifier';src:url('assets/Fonts/WOFF2/signifier-light-italic.woff2') format('woff2');font-weight:300;font-style:italic;font-display:swap}
+  @font-face{font-family:'Signifier';src:url('assets/Fonts/WOFF2/signifier-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+  @font-face{font-family:'Signifier';src:url('assets/Fonts/WOFF2/signifier-regular-italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+  @font-face{font-family:'Signifier';src:url('assets/Fonts/WOFF2/signifier-medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+  @font-face{font-family:'Signifier';src:url('assets/Fonts/WOFF2/signifier-bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+  @font-face{font-family:'Signifier';src:url('assets/Fonts/WOFF2/signifier-bold-italic.woff2') format('woff2');font-weight:700;font-style:italic;font-display:swap}
+  @font-face{font-family:'Signifier';src:url('assets/Fonts/WOFF2/signifier-black.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap}
 
-  /* ── KELMAN-DERIVED TYPE SCALE + GOLDEN RATIO ──
-     Base: 12.75pt (Kelman body) / 20px (VAREN body)
-     Leading ratio: 1.176 (constant, from Kelman IDML)
-     Scale: alternating ×1.333 / ×1.5 (perfect 4th / 5th)
-     Baseline: 15px (from Kelman 15pt grid)
-     ──────────────────────────────────────────────── */
   :root {
     --phi: 1.618;
+    --black: #0A0A0A; --dark: #111111; --carbon: #1A1A1A; --surface: #222222;
+    --gold: #C8A96E; --gold-dim: rgba(200,169,110,0.12); --gold-subtle: rgba(200,169,110,0.06);
+    --gray: #8A8A8A; --gray-light: #B0B0B0; --light: #F2F0ED; --white: #FFFFFF;
 
-    /* Colors */
-    --black: #0A0A0A;
-    --dark: #141414;
-    --carbon: #1E1E1E;
-    --surface: #242424;
-    --gold: #C8A96E;
-    --gold-dim: rgba(200,169,110,0.12);
-    --gold-subtle: rgba(200,169,110,0.06);
-    --gray: #8A8A8A;
-    --gray-light: #B0B0B0;
-    --light: #F2F0ED;
-    --white: #FFFFFF;
-
-    /* Type stacks — Söhne replaces DM Sans */
-    --serif: 'Signifier', 'Georgia', 'Times New Roman', serif;
-    --sans: 'Soehne', -apple-system, BlinkMacSystemFont, sans-serif;
+    --serif: 'Signifier', Georgia, serif;
+    --sans: 'Soehne', -apple-system, sans-serif;
     --sans-narrow: 'Soehne Schmal', 'Soehne', sans-serif;
-    --mono: 'Soehne Mono', 'SF Mono', 'Fira Code', monospace;
+    --mono: 'Soehne Mono', 'SF Mono', monospace;
 
-    /* Golden Ratio Type Scale (rem) — Kelman-aligned */
+    --type-xs: 0.6rem;
     --type-caption: 0.75rem;
     --type-label: 0.875rem;
     --type-body: 1.25rem;
@@ -118,296 +78,339 @@
     --type-h3: 2.5rem;
     --type-h2: 3.25rem;
     --type-h1: 5.25rem;
-    --type-hero: 8.5rem;
+    --type-display: 8.5rem;
 
-    /* Leading — Kelman 1.176 constant + golden ratio body */
-    --leading-tight: 1.05;
-    --leading-kelman: 1.176;
-    --leading-heading: 1.15;
-    --leading-body: 1.618;
-    --leading-loose: 2.058;
+    --leading-tight: 1.05; --leading-heading: 1.176; --leading-body: 1.618; --leading-loose: 2.058;
 
-    /* Fibonacci Spacing Scale */
-    --sp-1: 0.5rem;
-    --sp-2: 0.8125rem;
-    --sp-3: 1.3125rem;
-    --sp-4: 2.125rem;
-    --sp-5: 3.4375rem;
-    --sp-6: 5.5625rem;
-    --sp-7: 9rem;
-    --sp-8: 14.5625rem;
+    --sp-1: 0.5rem; --sp-2: 0.8125rem; --sp-3: 1.3125rem; --sp-4: 2.125rem;
+    --sp-5: 3.4375rem; --sp-6: 5.5625rem; --sp-7: 9rem; --sp-8: 14.5625rem;
 
-    /* Kelman 4-Column Modular Grid (from IDML) */
-    --grid-columns: 4;
     --grid-gutter: 1.28rem;
-    --grid-margin: clamp(2.2rem, 5vw, 5.5rem);
-    --grid-margin-bottom: clamp(3.5rem, 8vw, 9rem);
+    --grid-margin-x: clamp(2rem, 2.77vw, 3.5rem);
+    --grid-margin-top: 4.924vh;
+    --grid-margin-bottom: 12.5vh;
     --content-max: 1440px;
-    --baseline: 0.9375rem;
+    --baseline: 15px;
 
-    /* Transitions */
     --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
     --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
     --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-  }
-
+  html { scroll-behavior: smooth; font-size: 16px; }
   body {
-    font-family: var(--sans);
-    background: var(--black);
-    color: var(--light);
-    line-height: var(--leading-body);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--sans); background: var(--black); color: var(--light);
+    line-height: var(--leading-body); overflow-x: hidden;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   }
-
   ::selection { background: var(--gold); color: var(--black); }
 
   /* ══════════════════════════════════════════
-     KELMAN 4-COLUMN MODULAR GRID
-     True implementation from IDML:
-     4 columns @ 286.94pt each, 20.45pt gutters
-     15px baseline grid, asymmetric margins
+     LAYOUT SYSTEM
      ══════════════════════════════════════════ */
-  .grid-container {
+
+  .frame {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    border-top: 1px solid rgba(200,169,110,0.10);
+  }
+  .frame:first-of-type { border-top: none; }
+
+  .frame-inner {
     max-width: var(--content-max);
+    width: 100%;
     margin: 0 auto;
-    padding-left: var(--grid-margin);
-    padding-right: var(--grid-margin);
+    padding: var(--grid-margin-top) var(--grid-margin-x) var(--grid-margin-bottom);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
-  .grid-4 {
+  .g12 {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     gap: var(--grid-gutter);
   }
+  .col-2  { grid-column: span 2; }
+  .col-3  { grid-column: span 3; }
+  .col-4  { grid-column: span 4; }
+  .col-5  { grid-column: span 5; }
+  .col-6  { grid-column: span 6; }
+  .col-7  { grid-column: span 7; }
+  .col-8  { grid-column: span 8; }
+  .col-9  { grid-column: span 9; }
+  .col-12 { grid-column: span 12; }
 
-  .grid-wide     { max-width: 100%; }
-  .grid-content  { max-width: 900px; }
-  .grid-narrow   { max-width: 680px; }
-  .grid-caption  { max-width: 520px; }
-  .span-2 { grid-column: span 2; }
-  .span-3 { grid-column: span 3; }
-  .span-4 { grid-column: span 4; }
+  .split-1-3 { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gutter); align-items: start; }
+  .split-1-3 > :first-child { grid-column: span 3; }
+  .split-1-3 > :last-child  { grid-column: span 9; }
 
-  /* ── GRID OVERLAY (Toggleable Kelman Grid Visualization) ── */
+  .split-3-1 { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gutter); align-items: start; }
+  .split-3-1 > :first-child { grid-column: span 9; }
+  .split-3-1 > :last-child  { grid-column: span 3; }
+
+  .split-2-2 { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gutter); align-items: start; }
+  .split-2-2 > * { grid-column: span 6; }
+
+  /* Blueprint lines */
+  .h-sep {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,169,110,0.15) 15%, rgba(200,169,110,0.15) 85%, transparent);
+  }
+
+  .v-sep {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(200,169,110,0.10) 20%, rgba(200,169,110,0.10) 80%, transparent);
+    z-index: 0;
+  }
+
+  .v-sep-c4  { left: calc(var(--grid-margin-x) + (100% - 2 * var(--grid-margin-x)) * 4 / 12); }
+  .v-sep-c8  { left: calc(var(--grid-margin-x) + (100% - 2 * var(--grid-margin-x)) * 8 / 12); }
+
+  /* Grid overlay */
   .grid-overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    z-index: 9999;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s var(--ease);
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 9999; pointer-events: none;
+    opacity: 0; transition: opacity 0.4s var(--ease);
   }
   .grid-overlay.active { opacity: 1; }
-
-  .grid-overlay-inner {
-    max-width: var(--content-max);
-    margin: 0 auto;
-    height: 100%;
-    padding-left: var(--grid-margin);
-    padding-right: var(--grid-margin);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--grid-gutter);
+  .grid-overlay-cols {
+    max-width: var(--content-max); margin: 0 auto; height: 100%;
+    padding-left: var(--grid-margin-x); padding-right: var(--grid-margin-x);
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--grid-gutter);
+    box-sizing: border-box;
   }
   .grid-overlay-col {
-    background: rgba(200, 169, 110, 0.06);
-    border-left: 1px solid rgba(200, 169, 110, 0.15);
-    border-right: 1px solid rgba(200, 169, 110, 0.15);
+    background: rgba(200,169,110,0.025);
+    border-left: 1px solid rgba(200,169,110,0.06);
+    border-right: 1px solid rgba(200,169,110,0.06);
   }
-
-  /* Baseline grid lines */
+  .grid-overlay-col:nth-child(3n) { border-right: 1px solid rgba(200,169,110,0.18); }
+  .grid-overlay-col:nth-child(3n+1) { border-left: 1px solid rgba(200,169,110,0.18); }
   .grid-overlay::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
     background-image: repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent 14px,
-      rgba(200, 169, 110, 0.07) 14px,
-      rgba(200, 169, 110, 0.07) 15px
+      to bottom, transparent, transparent 14px,
+      rgba(200,169,110,0.06) 14px, rgba(200,169,110,0.06) 15px
     );
   }
-
-  /* Grid toggle button */
   .grid-toggle {
-    position: fixed;
-    bottom: 2rem; right: 2rem;
-    z-index: 10000;
-    background: var(--carbon);
-    border: 1px solid rgba(200,169,110,0.2);
-    color: var(--gold);
-    font-family: var(--mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.625rem 1rem;
-    cursor: pointer;
-    transition: all 0.3s var(--ease);
-    backdrop-filter: blur(12px);
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 10000;
+    background: var(--carbon); border: 1px solid rgba(200,169,110,0.2);
+    color: var(--gold); font-family: var(--mono); font-size: 0.6875rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.625rem 1rem; cursor: pointer;
+    transition: all 0.3s var(--ease); backdrop-filter: blur(12px);
   }
-  .grid-toggle:hover {
-    background: rgba(200,169,110,0.1);
-    border-color: var(--gold);
+  .grid-toggle:hover { background: rgba(200,169,110,0.1); border-color: var(--gold); }
+  .grid-toggle.active { background: var(--gold); color: var(--black); }
+
+  .scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 200; pointer-events: none; }
+  .scroll-progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), rgba(200,169,110,0.4)); }
+
+  /* ══════════════════════════════════════════
+     LOADER ANIMATION
+     ══════════════════════════════════════════ */
+
+  .loader {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--black); z-index: 9998;
+    display: flex; align-items: center; justify-content: center;
   }
-  .grid-toggle.active {
-    background: var(--gold);
-    color: var(--black);
+  .loader-content {
+    display: flex; flex-direction: column; align-items: center; gap: var(--sp-3);
+  }
+  .loader-insignia { width: 100px; height: auto; opacity: 0; }
+  .loader-wordmark { width: clamp(300px, 40vw, 500px); height: auto; opacity: 0; }
+  .loader-wordmark path { fill: var(--light); }
+  .loader-tagline {
+    font-family: var(--sans-narrow); font-size: clamp(0.75rem, 1.2vw, 1rem);
+    letter-spacing: 0.5em; color: var(--gold); font-weight: 500; opacity: 0;
   }
 
-  /* Scroll progress bar */
-  .scroll-progress {
-    position: fixed; top: 0; left: 0; right: 0; height: 2px;
-    background: transparent; z-index: 200;
-    pointer-events: none;
-  }
-  .scroll-progress-bar {
-    height: 100%; width: 0%;
-    background: linear-gradient(90deg, var(--gold), rgba(200,169,110,0.4));
-  }
+  /* ══════════════════════════════════════════
+     NAVIGATION (Fixed, Scrollable)
+     ══════════════════════════════════════════ */
 
-  /* ── NAV — Buzzworthy-inspired ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: var(--sp-3) var(--grid-margin);
+    padding: var(--sp-2) var(--grid-margin-x);
     display: flex; justify-content: space-between; align-items: center;
-    background: rgba(10,10,10,0.92);
-    backdrop-filter: blur(30px);
+    background: rgba(10,10,10,0.92); backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    border-bottom: 1px solid rgba(200,169,110,0.04);
-    transition: padding 0.5s var(--ease), background 0.5s var(--ease);
+    border-bottom: 1px solid rgba(200,169,110,0.06);
+    transition: padding 0.5s var(--ease);
   }
-  nav.scrolled {
-    padding: var(--sp-2) var(--grid-margin);
-    background: rgba(10,10,10,0.97);
-  }
+  nav.scrolled { padding: var(--sp-1) var(--grid-margin-x); border-bottom-color: rgba(200,169,110,0.1); }
 
-  .nav-lockup {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-  }
-  .nav-insignia {
-    height: 32px; width: auto; opacity: 0.92;
-    transition: height 0.5s var(--ease);
-  }
-  nav.scrolled .nav-insignia { height: 26px; }
-  .nav-wordmark {
-    height: 16px; width: auto; opacity: 0.95;
-    transition: height 0.5s var(--ease);
-  }
+  .nav-lockup { display: flex; align-items: center; gap: var(--sp-2); align-self: flex-start; }
+  .nav-insignia { height: 28px; width: auto; opacity: 0.92; transition: height 0.5s var(--ease); }
+  nav.scrolled .nav-insignia { height: 22px; }
+  .nav-wordmark { height: 14px; width: auto; opacity: 0.95; transition: height 0.5s var(--ease); }
   .nav-wordmark path { fill: var(--light); }
-  nav.scrolled .nav-wordmark { height: 13px; }
+  nav.scrolled .nav-wordmark { height: 11px; }
 
-  .nav-links { display: flex; gap: var(--sp-4); align-items: center; }
-  .nav-links a {
-    color: var(--gray);
-    font-family: var(--mono);
-    font-size: var(--type-caption);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: color 0.4s var(--ease);
-    font-weight: 400;
-    position: relative;
-    overflow: hidden;
+  .nav-links-wrapper {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    border-left: 1px solid rgba(200,169,110,0.15);
+    border-right: 1px solid rgba(200,169,110,0.15);
+    padding-left: var(--sp-3);
+    padding-right: var(--sp-3);
+    transition: flex-direction 0.5s var(--ease);
   }
-  .nav-links a:hover { color: var(--gold); }
 
-  /* Nav active link underline */
+  nav.scrolled .nav-links-wrapper {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .nav-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    transition: flex-direction 0.5s var(--ease);
+  }
+
+  nav.scrolled .nav-col {
+    flex-direction: row;
+    gap: var(--sp-3);
+  }
+
+  nav.scrolled .nav-col + .nav-col {
+    margin-left: var(--sp-3);
+    padding-left: var(--sp-3);
+    border-left: 1px solid rgba(200,169,110,0.15);
+  }
+
+  .nav-links a {
+    color: var(--gray); font-family: var(--mono); font-size: var(--type-caption);
+    letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none;
+    transition: color 0.4s var(--ease); font-weight: 400; position: relative;
+  }
   .nav-links a::after {
-    content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1px;
+    content: ''; position: absolute; bottom: -2px; left: 0; width: 100%; height: 1px;
     background: var(--gold); transform: scaleX(0); transform-origin: right;
     transition: transform 0.4s var(--ease);
   }
-  .nav-links a.active { color: var(--gold); }
-  .nav-links a.active::after,
+  .nav-links a:hover { color: var(--gold); }
   .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+  .nav-links a.active { color: var(--gold); }
+  .nav-links a.active::after { transform: scaleX(1); transform-origin: left; }
 
-  /* Nav scramble — letter container */
-  .nav-links a .scramble-text {
-    display: inline-block;
-    position: relative;
+  .menu-button {
+    background: none; border: none; color: var(--gray);
+    font-family: var(--mono); font-size: var(--type-caption);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: color 0.3s var(--ease);
+    display: none;
   }
+  .menu-button:hover { color: var(--gold); }
 
-  /* ── HERO — Large type Buzzworthy style ── */
+  /* ══════════════════════════════════════════
+     HERO SECTION (Full-screen, Buzzworthy style)
+     ══════════════════════════════════════════ */
+
   .hero {
     min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center;
-    padding: var(--sp-7) var(--grid-margin);
     position: relative;
-    background: radial-gradient(ellipse at 50% 38%, rgba(200,169,110,0.03) 0%, transparent 65%);
-  }
-  .hero::after {
-    content: ''; position: absolute; bottom: 0; left: 10%; right: 10%; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(200,169,110,0.2), transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0;
+    border-top: none;
+    background: var(--black);
+    overflow: hidden;
   }
 
-  .hero-insignia {
-    width: clamp(72px, 10vw, 110px); height: auto;
-    margin-bottom: var(--sp-5);
-    opacity: 0;
-    filter: brightness(0.95);
+  /* ── DITHER CANVAS (Canvas 2D background for hero) ── */
+  #ditherCanvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none; /* mouse events handled by .hero */
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
   }
-  .hero-wordmark {
-    width: clamp(340px, 58vw, 720px); height: auto;
-    margin-bottom: var(--sp-4);
-    opacity: 0;
+
+  .hero-inner {
+    padding: var(--sp-7) var(--grid-margin-x) var(--grid-margin-bottom);
+    width: 100%;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--grid-gutter);
+    align-items: flex-end;
+    padding-top: 20vh;
   }
-  .hero-wordmark path { fill: var(--light); }
-  .hero-tagline {
+
+  .hero-headline {
+    grid-column: 1 / 8;
     font-family: var(--sans-narrow);
-    font-size: clamp(var(--type-label), 1.8vw, var(--type-lead));
-    letter-spacing: 0.5em;
-    color: var(--gold);
-    font-weight: 500;
+    font-size: clamp(var(--type-h1), 12vw, 18rem);
+    font-weight: 600;
+    color: var(--light);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
     margin-bottom: var(--sp-5);
     opacity: 0;
   }
-  .hero-sub {
+
+  .hero-callout {
+    grid-column: 8 / 13;
+    grid-row: 1 / 3;
+    padding: var(--sp-4);
+    text-align: right;
+  }
+
+  .hero-callout-text {
     font-family: var(--serif);
-    font-size: var(--type-body);
+    font-size: clamp(var(--type-body), 1.8vw, var(--type-h3));
+    font-style: italic;
     color: var(--gray);
-    letter-spacing: 0.05em;
-    font-weight: 300;
     line-height: var(--leading-body);
-    max-width: 540px;
     opacity: 0;
   }
-  .scroll-cue {
-    position: absolute; bottom: var(--sp-5); left: 50%; transform: translateX(-50%);
+
+  .hero-scroll {
+    position: absolute;
+    bottom: var(--sp-5);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     opacity: 0;
-    display: flex; flex-direction: column; align-items: center;
+    z-index: 2;
   }
-  .scroll-cue .scroll-label {
-    display: flex; align-items: center; justify-content: center;
-    gap: 0.5em;
+
+  .hero-scroll small {
+    font-family: var(--mono);
+    font-size: var(--type-caption);
+    letter-spacing: 0.12em;
+    color: var(--gray);
+    text-transform: uppercase;
     margin-bottom: var(--sp-2);
   }
-  .scroll-cue .scroll-label small {
-    font-family: var(--mono);
-    font-size: var(--type-caption); letter-spacing: 0.12em;
-    color: var(--gray); text-transform: uppercase; line-height: 1;
-  }
-  .scroll-cue .scroll-arrow {
-    display: inline-block; width: 0; height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 6px solid var(--gold);
-    position: relative; top: 1px;
-  }
-  .scroll-cue .scroll-line {
-    display: block; width: 1px; height: 48px;
+
+  .hero-scroll-line {
+    width: 1px;
+    height: 48px;
     background: var(--gold);
     animation: pulse 2.4s ease infinite;
   }
@@ -415,29 +418,8 @@
   @keyframes pulse { 0%,100% { opacity: 0.25; } 50% { opacity: 1; } }
 
   /* ══════════════════════════════════════════
-     SECTIONS — Kelman Grid Layout
+     SECTION HEADERS (Chapter labels + lines)
      ══════════════════════════════════════════ */
-  .section {
-    padding: var(--sp-7) 0 var(--sp-8);
-    position: relative;
-  }
-  .section + .section {
-    border-top: 1px solid rgba(200,169,110,0.05);
-  }
-
-  /* Section numbering — Söhne Schmal for dramatic narrow display */
-  .section-num {
-    font-family: var(--sans-narrow);
-    font-size: clamp(7rem, 16vw, 14rem);
-    font-weight: 300;
-    color: rgba(200,169,110,0.07);
-    letter-spacing: 0.04em;
-    line-height: 0.85;
-    margin-bottom: calc(var(--sp-5) * -1);
-    pointer-events: none;
-    user-select: none;
-    will-change: transform;
-  }
 
   .section-label {
     font-family: var(--mono);
@@ -446,34 +428,85 @@
     color: var(--gold);
     text-transform: uppercase;
     font-weight: 500;
-    margin-bottom: var(--sp-2);
+    margin-bottom: var(--sp-3);
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
   }
 
-  .section-title {
-    font-family: var(--serif);
-    font-size: clamp(var(--type-h3), 5vw, var(--type-h2));
-    font-weight: 300;
+  .section-label::before {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(200,169,110,0.25);
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(200,169,110,0.25);
+  }
+
+  .section-label-right {
+    margin-left: auto;
+    margin-bottom: var(--sp-3);
+  }
+
+  .section-label-right::before { display: none; }
+  .section-label-right::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(200,169,110,0.25);
+    order: -1;
+    margin-right: var(--sp-3);
+  }
+
+  /* ══════════════════════════════════════════
+     DISPLAY TITLES & CONTENT
+     ══════════════════════════════════════════ */
+
+  .display-title {
+    font-family: var(--sans-narrow);
+    font-size: clamp(var(--type-h1), 10vw, 15rem);
+    font-weight: 600;
     color: var(--light);
-    line-height: var(--leading-heading);
-    letter-spacing: 0.01em;
-    margin-bottom: var(--sp-5);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
   }
 
-  /* Vertical separator line (Buzzworthy-inspired) */
-  .v-line {
-    width: 1px;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-    margin: var(--sp-5) auto;
+  .frame-num {
+    font-family: var(--serif);
+    font-weight: 200;
+    font-size: clamp(14rem, 30vw, 28rem);
+    color: rgba(200,169,110,0.06);
+    line-height: 0.8;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 0;
+    pointer-events: none; user-select: none;
+    white-space: nowrap;
   }
 
-  /* ── MANIFESTO ── */
+  .prose p {
+    font-family: var(--sans);
+    font-size: var(--type-body);
+    line-height: var(--leading-body);
+    color: rgba(242,240,237,0.82);
+    margin-bottom: var(--sp-3);
+    font-weight: 400;
+  }
+  .prose strong { color: var(--light); font-weight: 600; }
+
+  /* ── MANIFESTO BOX ── */
   .manifesto {
-    background: linear-gradient(135deg, rgba(200,169,110,0.035) 0%, transparent 100%);
+    background: linear-gradient(135deg, rgba(200,169,110,0.03) 0%, transparent 100%);
     border-left: 2px solid var(--gold);
-    padding: var(--sp-5) var(--sp-5) var(--sp-5) var(--sp-4);
+    padding: var(--sp-5) var(--sp-4);
     margin: var(--sp-4) 0;
-    border-radius: 0 4px 4px 0;
   }
   .manifesto p {
     font-family: var(--sans);
@@ -485,45 +518,364 @@
   }
   .manifesto p:last-child { margin-bottom: 0; }
   .manifesto strong { color: var(--light); font-weight: 500; }
-  .manifesto .gold { color: var(--gold); font-weight: 400; }
+  .manifesto .gold { color: var(--gold); }
   .manifesto-closer {
     font-family: var(--serif);
-    font-size: clamp(var(--type-h3), 6vw, var(--type-h1));
+    font-size: clamp(var(--type-h3), 5.5vw, var(--type-h1));
     font-style: italic;
     font-weight: 300;
     line-height: var(--leading-heading);
     margin-top: var(--sp-5);
     letter-spacing: 0.01em;
   }
-  .manifesto-closer .gold { font-weight: 300; }
 
-  /* ── PROSE ── */
-  .prose p {
+  /* ── PILLAR CARDS (3-column) ── */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--grid-gutter);
+    margin-top: var(--sp-5);
+  }
+  .pillar-card { grid-column: span 4; }
+  .pillar-card {
+    background: var(--carbon);
+    border: 1px solid rgba(200,169,110,0.06);
+    padding: var(--sp-5) var(--sp-4);
+    position: relative;
+    transition: border-color 0.5s var(--ease), transform 0.5s var(--ease);
+    display: flex;
+    flex-direction: column;
+    transform: rotate(0deg);
+  }
+  .pillar-card:nth-child(1) { transform: rotate(-1deg); }
+  .pillar-card:nth-child(2) { transform: rotate(0deg); }
+  .pillar-card:nth-child(3) { transform: rotate(1deg); }
+  .pillar-card:hover {
+    border-color: rgba(200,169,110,0.2);
+    transform: translateY(-4px) rotate(0deg);
+  }
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease);
+  }
+  .pillar-card:hover::before { transform: scaleX(1); }
+  .pillar-card-num {
+    font-family: var(--serif);
+    font-weight: 200;
+    font-size: var(--type-h1);
+    color: rgba(200,169,110,0.08);
+    line-height: 1;
+    margin-bottom: var(--sp-3);
+  }
+  .pillar-card h4 {
+    font-family: var(--mono);
+    font-size: var(--type-caption);
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: var(--sp-1);
+  }
+  .pillar-card h3 {
+    font-family: var(--serif);
+    font-size: var(--type-h3);
+    font-weight: 300;
+    color: var(--light);
+    margin-bottom: var(--sp-3);
+    line-height: var(--leading-heading);
+  }
+  .pillar-card p {
+    font-family: var(--sans);
+    font-size: var(--type-label);
+    color: rgba(242,240,237,0.68);
+    line-height: var(--leading-body);
+    font-weight: 400;
+    margin-bottom: var(--sp-3);
+  }
+  .foundation {
+    font-family: var(--serif);
+    font-size: var(--type-label);
+    color: var(--gold);
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.04em;
+    padding-top: var(--sp-3);
+    border-top: 1px solid rgba(200,169,110,0.12);
+    margin-top: auto;
+  }
+  .pillar-title {
+    font-family: var(--sans);
+    font-size: var(--type-h3);
+    font-weight: 600;
+    color: var(--light);
+    margin-bottom: var(--sp-2);
+  }
+  .pillar-desc {
     font-family: var(--sans);
     font-size: var(--type-body);
+    color: rgba(242,240,237,0.72);
     line-height: var(--leading-body);
-    color: rgba(242,240,237,0.82);
-    margin-bottom: var(--sp-3);
+    flex: 1;
+  }
+
+  /* ── SYSTEM CARDS (4-column) ── */
+  .sys-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--grid-gutter);
+    margin-top: var(--sp-5);
+    position: relative;
+  }
+  .sys-card { grid-column: span 3; }
+  .sys-card {
+    background: var(--carbon);
+    border: 1px solid rgba(200,169,110,0.06);
+    padding: var(--sp-4) var(--sp-3);
+    position: relative;
+    transition: all 0.4s var(--ease);
+  }
+  .sys-card:hover { border-color: rgba(200,169,110,0.15); transform: translateY(-2px); }
+  .sys-card--wide { grid-column: span 6; }
+  .sys-card h4 {
+    font-family: var(--mono);
+    font-size: var(--type-caption);
+    font-weight: 500;
+    color: var(--gold);
+    margin-bottom: var(--sp-2);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .sys-card p {
+    font-family: var(--sans);
+    font-size: var(--type-label);
+    color: rgba(242,240,237,0.62);
+    line-height: var(--leading-body);
     font-weight: 400;
   }
-  .prose strong { color: var(--light); font-weight: 600; }
+  .grid-gutter-lines {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .grid-gutter-lines .gutter-line {
+    position: absolute;
+    top: var(--sp-3); bottom: var(--sp-3);
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(200,169,110,0.08) 15%, rgba(200,169,110,0.08) 85%, transparent);
+  }
+  .sys-card-title {
+    font-family: var(--sans-narrow);
+    font-size: var(--type-h4);
+    font-weight: 600;
+    color: var(--light);
+    margin-bottom: var(--sp-2);
+  }
+  .sys-card-text {
+    font-family: var(--sans);
+    font-size: var(--type-body);
+    color: rgba(242,240,237,0.72);
+    line-height: var(--leading-body);
+  }
 
-  /* ── CODE (Prevail As One) ── */
+  /* ── VOICE TABLE ── */
+  .voice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--sp-4) 0;
+  }
+  .voice-table th {
+    text-align: left;
+    padding: var(--sp-2) var(--sp-3);
+    background: var(--dark);
+    color: var(--gold);
+    font-family: var(--mono);
+    font-size: var(--type-caption);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(200,169,110,0.12);
+  }
+  .voice-table td {
+    padding: var(--sp-2) var(--sp-3);
+    font-family: var(--sans);
+    font-size: var(--type-label);
+    color: rgba(242,240,237,0.68);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    line-height: var(--leading-body);
+  }
+  .voice-table tr:hover td { background: rgba(200,169,110,0.02); }
+  .phrases-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--sp-2);
+    margin: var(--sp-4) 0;
+  }
+  .phrase {
+    grid-column: span 6;
+    padding: var(--sp-2) var(--sp-3);
+    border-left: 2px solid var(--gold);
+    background: var(--gold-subtle);
+    font-family: var(--serif);
+    font-size: var(--type-label);
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(242,240,237,0.78);
+    line-height: var(--leading-body);
+    transition: background 0.4s var(--ease);
+  }
+  .phrase:hover { background: var(--gold-dim); }
+
+  /* ── DELIVERY CARDS (2-column, staggered) ── */
+  .delivery-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--grid-gutter);
+    margin-top: var(--sp-5);
+    position: relative;
+  }
+  .delivery-card { grid-column: span 6; }
+  .delivery-card {
+    padding: var(--sp-4);
+    background: var(--carbon);
+    border: 1px solid rgba(200,169,110,0.06);
+    transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+  .delivery-card:hover { border-color: rgba(200,169,110,0.15); transform: translateY(-4px); }
+  .delivery-card .tier {
+    font-family: var(--mono);
+    font-size: var(--type-caption);
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: var(--sp-1);
+  }
+  .delivery-card h3 {
+    font-family: var(--serif);
+    font-size: var(--type-body);
+    font-weight: 300;
+    color: var(--light);
+    margin-bottom: var(--sp-2);
+    line-height: var(--leading-heading);
+  }
+  .delivery-card p {
+    font-family: var(--sans);
+    font-size: var(--type-label);
+    color: rgba(242,240,237,0.55);
+    line-height: var(--leading-body);
+    margin-bottom: var(--sp-2);
+  }
+  .sidebar-panel {
+    background: var(--carbon);
+    border-left: 2px solid var(--gold);
+    padding: var(--sp-4);
+  }
+  .sidebar-panel h4 {
+    font-family: var(--mono);
+    font-size: var(--type-caption);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: var(--sp-3);
+    font-weight: 500;
+  }
+  .sidebar-panel p {
+    font-family: var(--sans);
+    font-size: var(--type-label);
+    color: rgba(242,240,237,0.72);
+    margin-bottom: var(--sp-1);
+    line-height: var(--leading-body);
+  }
+  .delivery-card-number {
+    font-family: var(--mono);
+    font-size: var(--type-caption);
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: var(--sp-2);
+  }
+  .delivery-card-title {
+    font-family: var(--sans-narrow);
+    font-size: var(--type-h3);
+    font-weight: 600;
+    color: var(--light);
+    margin-bottom: var(--sp-3);
+  }
+  .delivery-card-text {
+    font-family: var(--sans);
+    font-size: var(--type-body);
+    color: rgba(242,240,237,0.72);
+    line-height: var(--leading-body);
+  }
+
+  /* ── IDENTITY SECTION ── */
+  .identity-showcase {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--grid-gutter);
+    margin-top: var(--sp-5);
+  }
+  .identity-item { grid-column: span 6; }
+  .identity-label {
+    font-family: var(--mono);
+    font-size: var(--type-caption);
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: var(--sp-2);
+  }
+  .identity-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--grid-gutter);
+  }
+  .color-swatch {
+    aspect-ratio: 1;
+    border: 1px solid rgba(200,169,110,0.1);
+    border-radius: 2px;
+    position: relative;
+  }
+  .color-swatch span {
+    position: absolute;
+    bottom: var(--sp-2);
+    left: var(--sp-2);
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ══════════════════════════════════════════
+     CODE HERO (Centered, Full-screen)
+     ══════════════════════════════════════════ */
+
   .code-hero {
     text-align: center;
-    padding: var(--sp-7) var(--grid-margin) var(--sp-8);
+    padding: var(--sp-7) var(--grid-margin-x) var(--sp-8);
     background: radial-gradient(ellipse at 50% 50%, rgba(200,169,110,0.04) 0%, transparent 65%);
     border-top: 1px solid rgba(200,169,110,0.06);
     border-bottom: 1px solid rgba(200,169,110,0.06);
     position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
   }
-  .code-insignia {
-    width: 56px; height: auto; margin-bottom: var(--sp-4); opacity: 0.12;
-  }
+  .code-insignia { width: 56px; height: auto; margin-bottom: var(--sp-4); opacity: 0.12; }
   .code-hero h2 {
     font-family: var(--sans-narrow);
-    font-size: clamp(var(--type-h2), 7vw, var(--type-hero));
-    letter-spacing: 0.3em;
+    font-size: clamp(var(--type-h2), 10vw, var(--type-display));
+    letter-spacing: 0.2em;
     color: var(--light);
     margin-bottom: var(--sp-4);
     font-weight: 600;
@@ -555,232 +907,30 @@
     color: rgba(242,240,237,0.72);
     line-height: var(--leading-body);
     margin-bottom: var(--sp-2);
-    font-weight: 400;
-  }
-  .code-prose .emphasis { font-size: var(--type-lead); color: var(--light); font-weight: 400; }
-  .code-prose .gold-ital { color: var(--gold); font-style: italic; font-weight: 300; }
-
-  /* ── PILLARS (3-col cards with hover lift) ── */
-  .pillars-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--sp-3);
-    margin: var(--sp-5) 0;
-  }
-  .pillar-card {
-    background: var(--carbon);
-    border: 1px solid rgba(200,169,110,0.08);
-    padding: var(--sp-5) var(--sp-4);
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.5s var(--ease), background 0.5s var(--ease), transform 0.5s var(--ease);
-  }
-  .pillar-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--gold);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.6s var(--ease);
-  }
-  .pillar-card:hover::before { transform: scaleX(1); }
-  .pillar-card:hover {
-    border-color: rgba(200,169,110,0.2);
-    background: rgba(200,169,110,0.025);
-    transform: translateY(-4px);
-  }
-
-  .pillar-label {
-    font-family: var(--mono);
-    font-size: var(--type-caption);
-    letter-spacing: 0.15em;
-    color: var(--gold);
-    text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: var(--sp-1);
-  }
-  .pillar-card h3 {
-    font-family: var(--serif);
-    font-size: var(--type-h4);
-    font-weight: 300;
-    color: var(--light);
-    margin-bottom: var(--sp-1);
-    line-height: var(--leading-heading);
-  }
-  .pillar-card .sub {
-    font-family: var(--serif);
-    font-size: var(--type-label);
-    color: var(--gray);
-    font-style: italic;
-    margin-bottom: var(--sp-3);
-    font-weight: 300;
-  }
-  .pillar-card p {
-    font-family: var(--sans);
-    font-size: var(--type-label);
-    line-height: var(--leading-body);
-    color: rgba(242,240,237,0.68);
-    margin-bottom: var(--sp-2);
-    font-weight: 400;
-  }
-  .pillar-card .foundation {
-    font-family: var(--serif);
-    font-size: var(--type-label);
-    color: var(--gold);
-    font-weight: 300;
-    font-style: italic;
-    margin-top: var(--sp-3);
-    letter-spacing: 0.04em;
-    padding-top: var(--sp-2);
-    border-top: 1px solid rgba(200,169,110,0.12);
-  }
-
-  /* ── ORIGIN (asymmetric golden ratio) ── */
-  .origin-grid {
-    display: grid;
-    grid-template-columns: 1.618fr 1fr;
-    gap: var(--sp-5);
-    align-items: start;
-    margin: var(--sp-4) 0;
-  }
-  .origin-sidebar {
-    padding: var(--sp-4);
-    background: var(--carbon);
-    border: 1px solid rgba(200,169,110,0.08);
-  }
-  .origin-sidebar h4 {
-    font-family: var(--mono);
-    font-size: var(--type-caption);
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: var(--sp-3);
-    font-weight: 500;
-  }
-  .origin-sidebar p {
-    font-family: var(--sans);
-    font-size: var(--type-label);
-    color: rgba(242,240,237,0.68);
-    line-height: var(--leading-body);
-    margin-bottom: var(--sp-2);
-    font-weight: 400;
-  }
-
-  /* ── SYSTEM (5-col with hover) ── */
-  .system-row {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--sp-3);
-    margin: var(--sp-5) 0;
-  }
-  .sys-card {
-    background: var(--carbon);
-    border: 1px solid rgba(200,169,110,0.06);
-    padding: var(--sp-4) var(--sp-3);
     text-align: center;
-    transition: border-color 0.4s var(--ease), background 0.4s var(--ease), transform 0.4s var(--ease);
   }
-  .sys-card:hover {
-    border-color: var(--gold);
-    background: rgba(200,169,110,0.025);
-    transform: translateY(-4px);
+  .code-prose .emphasis {
+    font-size: var(--type-lead);
+    color: var(--light);
   }
-  .sys-card h4 {
-    font-family: var(--mono);
-    font-size: var(--type-caption);
-    font-weight: 500;
+  .code-prose .gold-ital {
     color: var(--gold);
-    margin-bottom: var(--sp-1);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .sys-card p {
-    font-family: var(--mono);
-    font-size: var(--type-caption);
-    color: rgba(242,240,237,0.55);
-    line-height: var(--leading-body);
-    font-weight: 300;
-  }
-
-  /* ── VOICE TABLE ── */
-  .voice-table { width: 100%; border-collapse: collapse; margin: var(--sp-4) 0; }
-  .voice-table th {
-    text-align: left;
-    padding: var(--sp-2) var(--sp-3);
-    background: var(--dark);
-    color: var(--gold);
-    font-family: var(--mono);
-    font-size: var(--type-caption);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-weight: 500;
-    border-bottom: 1px solid rgba(200,169,110,0.12);
-  }
-  .voice-table td {
-    padding: var(--sp-2) var(--sp-3);
-    font-family: var(--sans);
-    font-size: var(--type-label);
-    color: rgba(242,240,237,0.68);
-    border-bottom: 1px solid rgba(255,255,255,0.03);
-    line-height: var(--leading-body);
-    font-weight: 400;
-  }
-  .voice-table tr:hover td { background: rgba(200,169,110,0.02); }
-
-  /* ── SIGNATURE PHRASES ── */
-  .phrases-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--sp-2);
-    margin: var(--sp-4) 0;
-  }
-  .phrase {
-    padding: var(--sp-2) var(--sp-3);
-    border-left: 2px solid var(--gold);
-    background: var(--gold-subtle);
-    font-family: var(--serif);
-    font-size: var(--type-label);
     font-style: italic;
     font-weight: 300;
-    color: rgba(242,240,237,0.78);
-    line-height: var(--leading-body);
-    transition: background 0.4s var(--ease);
   }
-  .phrase:hover { background: var(--gold-dim); }
 
-  /* ── COLOR SWATCHES ── */
-  .swatches {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--sp-3);
-    margin: var(--sp-4) 0;
+  /* ── LOGO KIT ── */
+  .logo-kit {
+    margin: var(--sp-5) 0;
   }
-  .swatch {
-    border: 1px solid rgba(200,169,110,0.08);
-    overflow: hidden;
-    transition: transform 0.4s var(--ease);
-  }
-  .swatch:hover { transform: translateY(-4px); }
-  .swatch-color { height: 110px; }
-  .swatch-info { padding: var(--sp-2); background: var(--carbon); }
-  .swatch-info h5 {
-    font-family: var(--sans);
-    font-size: var(--type-label);
-    font-weight: 600;
-    color: var(--light);
-    margin-bottom: 0.25rem;
-  }
-  .swatch-info small { font-family: var(--mono); font-size: var(--type-caption); color: var(--gray); letter-spacing: 0.02em; }
-
-  /* ── LOGO KIT mk1 DISPLAY ── */
-  .logo-kit { margin: var(--sp-5) 0; }
   .logo-kit-row {
     display: grid;
-    gap: var(--sp-4);
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--grid-gutter);
     margin-bottom: var(--sp-4);
   }
-  .logo-kit-row.three { grid-template-columns: repeat(3, 1fr); }
-  .logo-kit-row.two   { grid-template-columns: 1fr 1fr; }
-
+  .logo-kit-row.three .logo-kit-item { grid-column: span 4; }
+  .logo-kit-row.two .logo-kit-item { grid-column: span 6; }
   .logo-kit-item {
     background: var(--carbon);
     border: 1px solid rgba(200,169,110,0.06);
@@ -793,15 +943,13 @@
     transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
   }
   .logo-kit-item:hover { border-color: rgba(200,169,110,0.15); transform: translateY(-4px); }
-  .logo-kit-item img,
-  .logo-kit-item svg { margin-bottom: var(--sp-3); }
+  .logo-kit-item img, .logo-kit-item svg { margin-bottom: var(--sp-3); }
   .logo-kit-label {
     font-family: var(--mono);
     font-size: var(--type-caption);
     letter-spacing: 0.08em;
     color: var(--gray);
     text-transform: uppercase;
-    font-weight: 400;
     margin-top: auto;
   }
   .logo-kit-sublabel {
@@ -809,16 +957,49 @@
     font-size: 0.6875rem;
     color: rgba(138,138,138,0.6);
     margin-top: 0.25rem;
-    letter-spacing: 0.04em;
   }
-
   .lockup-horizontal {
     display: flex;
     align-items: center;
     gap: var(--sp-2);
   }
 
-  /* ── TYPOGRAPHY DISPLAY ── */
+  /* ── SWATCHES ── */
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--sp-3);
+    margin: var(--sp-4) 0;
+  }
+  .swatch {
+    grid-column: span 2;
+    border: 1px solid rgba(200,169,110,0.08);
+    overflow: hidden;
+    transition: transform 0.4s var(--ease);
+  }
+  .swatch:nth-child(-n+2) { grid-column: span 3; }
+  .swatch:hover { transform: translateY(-4px); }
+  .swatch-color {
+    height: 110px;
+  }
+  .swatch-info {
+    padding: var(--sp-2);
+    background: var(--carbon);
+  }
+  .swatch-info h5 {
+    font-family: var(--sans);
+    font-size: var(--type-label);
+    font-weight: 600;
+    color: var(--light);
+    margin-bottom: 0.25rem;
+  }
+  .swatch-info small {
+    font-family: var(--mono);
+    font-size: var(--type-caption);
+    color: var(--gray);
+  }
+
+  /* ── TYPE SHOWCASE ── */
   .type-showcase {
     margin: var(--sp-4) 0;
     background: var(--carbon);
@@ -827,10 +1008,11 @@
   }
   .type-row {
     display: grid;
-    grid-template-columns: 1.618fr 1fr;
-    gap: var(--sp-5);
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--grid-gutter);
     margin-bottom: var(--sp-4);
   }
+  .type-row > * { grid-column: span 6; }
   .type-row:last-child { margin-bottom: 0; }
   .type-sample-label {
     font-family: var(--mono);
@@ -861,12 +1043,13 @@
     font-family: var(--mono);
     font-size: var(--type-caption);
     color: var(--gray);
-    font-style: normal;
     line-height: var(--leading-body);
-    letter-spacing: 0.02em;
   }
 
-  .type-scale-specimen { margin: var(--sp-4) 0; }
+  /* ── TYPE SCALE ── */
+  .type-scale-specimen {
+    margin: var(--sp-4) 0;
+  }
   .scale-step {
     display: flex;
     align-items: baseline;
@@ -880,7 +1063,6 @@
     font-family: var(--mono);
     font-size: var(--type-caption);
     color: var(--gray);
-    letter-spacing: 0.02em;
     font-variant-numeric: tabular-nums;
   }
   .scale-sample {
@@ -889,39 +1071,39 @@
     line-height: 1.2;
   }
 
-  /* ── GOLDEN RATIO GRID SECTION ── */
+  /* ── GRID DEMO ── */
   .grid-demo {
     margin: var(--sp-5) 0;
-    padding: var(--sp-5);
-    background: var(--carbon);
-    border: 1px solid rgba(200,169,110,0.08);
-    position: relative;
+    padding: var(--sp-5) 0;
   }
   .grid-demo-visual {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     gap: var(--grid-gutter);
     margin-bottom: var(--sp-4);
   }
   .grid-demo-col {
-    background: rgba(200,169,110,0.06);
-    border: 1px solid rgba(200,169,110,0.12);
-    height: 200px;
+    background: rgba(200,169,110,0.04);
+    border: 1px solid rgba(200,169,110,0.08);
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--mono);
-    font-size: var(--type-caption);
+    font-size: 0.6rem;
     color: var(--gold);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
   }
+  .grid-demo-col:nth-child(3n) { border-right-color: rgba(200,169,110,0.2); }
+  .grid-demo-col:nth-child(3n+1) { border-left-color: rgba(200,169,110,0.2); }
   .grid-demo-specs {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(12, 1fr);
     gap: var(--grid-gutter);
   }
   .grid-spec {
+    grid-column: span 3;
     font-family: var(--mono);
     font-size: var(--type-caption);
     color: var(--gray);
@@ -934,124 +1116,139 @@
     margin-bottom: 0.25rem;
   }
 
-  /* ── DELIVERY ── */
-  .delivery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--sp-3);
-    margin: var(--sp-5) 0;
-  }
-  .delivery-card {
-    padding: var(--sp-4);
-    background: var(--carbon);
-    border: 1px solid rgba(200,169,110,0.06);
-    transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
-  }
-  .delivery-card:hover { border-color: rgba(200,169,110,0.15); transform: translateY(-4px); }
-  .delivery-card .tier {
-    font-family: var(--mono);
-    font-size: var(--type-caption);
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    text-transform: uppercase;
-    font-weight: 500;
-    margin-bottom: var(--sp-1);
-  }
-  .delivery-card h3 {
-    font-family: var(--serif);
-    font-size: var(--type-body);
-    font-weight: 300;
-    color: var(--light);
-    margin-bottom: var(--sp-2);
-    line-height: var(--leading-heading);
-  }
-  .delivery-card p {
-    font-family: var(--sans);
-    font-size: var(--type-label);
-    color: rgba(242,240,237,0.55);
-    line-height: var(--leading-body);
-    margin-bottom: var(--sp-2);
-    font-weight: 400;
-  }
+  /* ══════════════════════════════════════════
+     FOOTER
+     ══════════════════════════════════════════ */
 
-  /* ── FOOTER ── */
   footer {
-    text-align: center;
-    padding: var(--sp-7) var(--grid-margin) var(--sp-5);
-    border-top: 1px solid rgba(200,169,110,0.06);
+    background: var(--black);
+    border-top: 1px solid rgba(200,169,110,0.1);
+    padding: var(--sp-6) var(--grid-margin-x) var(--sp-5);
+    position: relative;
   }
-  .footer-lockup {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--sp-2);
-    margin-bottom: var(--sp-4);
-    opacity: 0.7;
+
+  .footer-inner {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--grid-gutter);
+    align-items: start;
   }
-  .footer-lockup .footer-insignia { width: 36px; height: auto; }
-  .footer-lockup .footer-wordmark { height: 14px; width: auto; }
-  .footer-lockup .footer-wordmark path { fill: var(--light); }
-  footer .tagline {
-    font-family: var(--sans-narrow);
-    font-size: var(--type-label);
-    letter-spacing: 0.35em;
-    color: var(--gold);
-    font-weight: 500;
-    margin-bottom: var(--sp-4);
-  }
-  footer .closing {
-    font-family: var(--serif);
-    font-size: var(--type-label);
-    color: var(--gray);
-    font-style: italic;
-    max-width: 560px;
-    margin: 0 auto var(--sp-4);
-    line-height: var(--leading-body);
-    font-weight: 300;
-  }
-  footer .legal {
+
+  .footer-left { grid-column: span 3; }
+  .footer-center { grid-column: span 6; }
+  .footer-right { grid-column: span 3; }
+
+  .footer-insignia { width: 56px; height: auto; margin-bottom: var(--sp-3); opacity: 0.8; }
+  .footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); margin-bottom: var(--sp-4); }
+  .footer-link {
     font-family: var(--mono);
     font-size: var(--type-caption);
-    color: rgba(138,138,138,0.45);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.1em;
+    color: var(--gray);
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.3s var(--ease);
+  }
+  .footer-link:hover { color: var(--gold); }
+
+  .footer-social {
+    display: flex;
+    gap: var(--sp-3);
+    margin-top: var(--sp-4);
+    padding-top: var(--sp-4);
+    border-top: 1px solid rgba(200,169,110,0.1);
   }
 
-  /* ── GSAP ANIMATION STATES ── */
-  .gs-hidden { opacity: 0; }
-  .gs-from-bottom { opacity: 0; transform: translateY(40px); }
-  .gs-from-left { opacity: 0; transform: translateX(-40px); }
-  .gs-from-right { opacity: 0; transform: translateX(40px); }
-  .gs-scale { opacity: 0; transform: scale(0.9); }
+  .footer-version {
+    font-family: var(--mono);
+    font-size: var(--type-caption);
+    color: var(--gray);
+    opacity: 0.6;
+    margin-top: var(--sp-4);
+  }
 
-  /* ── RESPONSIVE ── */
+  .footer-lockup {
+    display: flex; align-items: center; gap: var(--sp-2); margin-bottom: var(--sp-3);
+  }
+  .footer-wordmark { height: 14px; width: auto; opacity: 0.7; }
+  .footer-wordmark path { fill: var(--light); }
+  .footer-tagline {
+    font-family: var(--sans-narrow); font-size: var(--type-caption);
+    letter-spacing: 0.4em; color: var(--gold); font-weight: 500;
+    text-transform: uppercase; opacity: 0.6;
+  }
+  .footer-nav-cols {
+    display: flex; gap: 3rem;
+  }
+  .footer-nav-col {
+    display: flex; flex-direction: column; gap: var(--sp-2);
+  }
+
+  /* ══════════════════════════════════════════
+     ANIMATIONS
+     ══════════════════════════════════════════ */
+
+  .anim { opacity: 0; }
+  .anim-l { opacity: 0; }
+  .anim-r { opacity: 0; }
+  .anim-fade { opacity: 0; }
+
   @media (max-width: 1024px) {
-    .pillars-row { grid-template-columns: 1fr; gap: var(--sp-2); }
-    .system-row { grid-template-columns: repeat(2, 1fr); }
-    .origin-grid { grid-template-columns: 1fr; }
-    .phrases-grid { grid-template-columns: 1fr; }
-    .delivery-grid { grid-template-columns: 1fr; }
-    .swatches { grid-template-columns: repeat(3, 1fr); }
-    .logo-kit-row.three { grid-template-columns: 1fr; }
-    .logo-kit-row.two { grid-template-columns: 1fr; }
-    .type-row { grid-template-columns: 1fr; }
-    .grid-demo-specs { grid-template-columns: repeat(2, 1fr); }
-    nav { padding: var(--sp-2) var(--sp-3); }
-    .nav-links { display: none; }
-    .section { padding: var(--sp-6) 0; }
+    .nav-links-wrapper { gap: 2rem; }
+    .split-1-3 > :first-child { grid-column: span 4; }
+    .split-1-3 > :last-child  { grid-column: span 8; }
+    .split-3-1 > :first-child { grid-column: span 8; }
+    .split-3-1 > :last-child  { grid-column: span 4; }
   }
-  @media (max-width: 600px) {
-    :root { --grid-margin: 1.5rem; }
-    .swatches { grid-template-columns: repeat(2, 1fr); }
-    .system-row { grid-template-columns: 1fr; }
-    .hero { padding: var(--sp-6) var(--grid-margin); }
-    .grid-demo-visual { grid-template-columns: repeat(2, 1fr); }
-    .grid-demo-specs { grid-template-columns: 1fr; }
+
+  @media (max-width: 768px) {
+    nav { padding: var(--sp-1) var(--sp-3); }
+    .nav-links-wrapper { display: none; }
+    .menu-button { display: block; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-headline { grid-column: 1; margin-bottom: var(--sp-4); }
+    .hero-callout { grid-column: 1; grid-row: 2; text-align: left; padding: 0; }
+    .pillar-card { grid-column: span 12; }
+    .sys-card { grid-column: span 6; }
+    .delivery-card { grid-column: span 12; }
+    .identity-item { grid-column: span 12; }
+    .split-1-3 > :first-child { grid-column: span 12; }
+    .split-1-3 > :last-child  { grid-column: span 12; }
+    .split-3-1 > :first-child { grid-column: span 12; }
+    .split-3-1 > :last-child  { grid-column: span 12; }
   }
 </style>
 </head>
 <body>
-<!-- Grid Overlay (toggleable) -->
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-content">
+    <img class="loader-insignia" src="assets/VAREN_INSIGNIA_WHITE.png" alt="VAREN">
+    <svg class="loader-wordmark" viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/>
+      <path d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/>
+      <path d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/>
+      <path d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/>
+      <path d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
+    </svg>
+    <div class="loader-tagline">PREPARE&ensp;&middot;&ensp;PERFORM&ensp;&middot;&ensp;PREVAIL</div>
+  </div>
+</div>
+
+<!-- Grid overlay -->
 <div class="grid-overlay" id="gridOverlay">
-  <div class="grid-overlay-inner">
+  <div class="grid-overlay-cols">
+    <div class="grid-overlay-col"></div>
+    <div class="grid-overlay-col"></div>
+    <div class="grid-overlay-col"></div>
+    <div class="grid-overlay-col"></div>
+    <div class="grid-overlay-col"></div>
+    <div class="grid-overlay-col"></div>
+    <div class="grid-overlay-col"></div>
+    <div class="grid-overlay-col"></div>
     <div class="grid-overlay-col"></div>
     <div class="grid-overlay-col"></div>
     <div class="grid-overlay-col"></div>
@@ -1059,16 +1256,13 @@
   </div>
 </div>
 
-<!-- Grid toggle button -->
 <button class="grid-toggle" id="gridToggle" aria-label="Toggle grid overlay">Grid</button>
-
-<!-- Scroll progress bar -->
 <div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
 
-<!-- ═══════════════ NAV — mk1 Horizontal Half-Y Lockup ═══════════════ -->
+<!-- NAVIGATION -->
 <nav id="navbar">
   <div class="nav-lockup">
-    <img class="nav-insignia" src="assets/VAREN_INSIGNIA_WHITE.png" alt="VAREN Insignia">
+    <img class="nav-insignia" src="assets/VAREN_INSIGNIA_WHITE.png" alt="VAREN">
     <svg class="nav-wordmark" viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg">
       <path d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/>
       <path d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/>
@@ -1077,234 +1271,262 @@
       <path d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
     </svg>
   </div>
-  <div class="nav-links">
-    <a href="#manifesto" data-text="Manifesto"><span class="scramble-text">Manifesto</span></a>
-    <a href="#origin" data-text="Origin"><span class="scramble-text">Origin</span></a>
-    <a href="#code" data-text="Code"><span class="scramble-text">Code</span></a>
-    <a href="#system" data-text="System"><span class="scramble-text">System</span></a>
-    <a href="#architecture" data-text="Architecture"><span class="scramble-text">Architecture</span></a>
-    <a href="#voice" data-text="Voice"><span class="scramble-text">Voice</span></a>
-    <a href="#identity" data-text="Identity"><span class="scramble-text">Identity</span></a>
-    <a href="#delivery" data-text="Delivery"><span class="scramble-text">Delivery</span></a>
+  <div class="nav-links-wrapper">
+    <div class="nav-col nav-links">
+      <a href="#manifesto" data-text="Manifesto">Manifesto</a>
+      <a href="#origin" data-text="Origin">Origin</a>
+      <a href="#code" data-text="Code">Code</a>
+      <a href="#system" data-text="System">System</a>
+    </div>
+    <div class="nav-col nav-links">
+      <a href="#architecture" data-text="Architecture">Architecture</a>
+      <a href="#voice" data-text="Voice">Voice</a>
+      <a href="#identity" data-text="Identity">Identity</a>
+      <a href="#delivery" data-text="Delivery">Delivery</a>
+    </div>
   </div>
+  <button class="menu-button" id="menuButton" aria-label="Open menu">Menu</button>
 </nav>
 
-<!-- ═══════════════ HERO ═══════════════ -->
-<div class="hero">
-  <img class="hero-insignia" src="assets/VAREN_INSIGNIA_WHITE.png" alt="VAREN Insignia">
-  <svg class="hero-wordmark" viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg">
-    <path d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/>
-    <path d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/>
-    <path d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/>
-    <path d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/>
-    <path d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
-  </svg>
-  <div class="hero-tagline">PREPARE &ensp;&middot;&ensp; PERFORM &ensp;&middot;&ensp; PREVAIL</div>
-  <div class="hero-sub">Brand Experience &mdash; Narrative &middot; Architecture &middot; Standards</div>
-  <div class="scroll-cue">
-    <div class="scroll-label">
-      <small>Explore</small>
-      <span class="scroll-arrow"></span>
+<!-- HERO SECTION -->
+<div class="hero" id="heroSection">
+  <canvas id="ditherCanvas"></canvas>
+  <div class="hero-inner">
+    <div class="hero-headline">PREPARE&ensp;&middot;&ensp;PERFORM&ensp;&middot;&ensp;PREVAIL</div>
+    <div class="hero-callout">
+      <div class="hero-callout-text">Brand Experience &mdash; Narrative &middot; Architecture &middot; Standards</div>
     </div>
-    <span class="scroll-line"></span>
+  </div>
+  <div class="hero-scroll">
+    <small>Scroll</small>
+    <div class="hero-scroll-line"></div>
   </div>
 </div>
 
-<!-- ═══════════════ I. MANIFESTO ═══════════════ -->
-<div class="section" id="manifesto">
-  <div class="grid-container">
-    <div class="section-num gs-hidden">I</div>
-    <div class="section-label gs-from-bottom">Chapter I</div>
-    <div class="section-title gs-from-bottom">Brand Manifesto</div>
-    <div class="manifesto grid-content gs-from-bottom">
-      <p><strong>Golf has never been about perfect.</strong></p>
-      <p>It has always been about challenge: wind, pressure, doubt, and the potential failure waiting on every tee. The course doesn&rsquo;t move. The weather doesn&rsquo;t care. The moment doesn&rsquo;t slow down.</p>
-      <p class="gold">And that is exactly the point.</p>
-      <p>Every obstacle is part of the round. Every difficult lie, every missed fairway, every demanding walk between shots&mdash;these are not interruptions to the game. <strong>They are the game.</strong></p>
-      <p>Progress in golf, and in life, is built in resistance. Hard conditions create better decisions. Pressure builds discipline. Adversity shapes consistency.</p>
-      <p>We design for the round as it truly exists&mdash;unpredictable, demanding, and worth every step.</p>
-      <p class="manifesto-closer">Because the challenge isn&rsquo;t in the way.<br><span class="gold">The challenge is the way.</span></p>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════ II. ORIGIN ═══════════════ -->
-<div class="section" id="origin">
-  <div class="grid-container">
-    <div class="section-num gs-hidden">II</div>
-    <div class="section-label gs-from-bottom">Chapter II</div>
-    <div class="section-title gs-from-bottom">Forged in Pinehurst</div>
-    <div class="origin-grid">
-      <div class="prose gs-from-left">
-        <p>Shaped by <strong>Andrew Leander Garner</strong>, a former U.S. Army Special Forces engineer (Staff Sergeant) and industrial designer, who learned early that when systems fail, the cost is never abstract.</p>
-        <p>VAREN translates that empathetic rigor to golf: fewer parts, stronger hardware, cleaner lines, less friction&mdash;eliminating the distractions that pull us out of rhythm&mdash;when the day turns, when travel wears us down, when the moment is bigger than the swing.</p>
-        <p>VAREN researches, prototypes, and refines at Pinehurst&rsquo;s historic Harvard Annex: where tradition is lived daily and where the future has to prove itself on real ground, in real weather, with real people.</p>
-        <p><strong>Golf is a game of control, not comfort. We create equipment that stays dependable.</strong></p>
+<!-- FRAME I: MANIFESTO -->
+<div class="frame" id="manifesto">
+  <div class="frame-num">I</div>
+  <div class="frame-inner">
+    <div class="split-1-3">
+      <div>
+        <div class="section-label anim">Chapter I <span class="label-line"></span></div>
       </div>
-      <div class="origin-sidebar gs-from-right">
-        <h4>Heritage</h4>
-        <p><strong>Location:</strong> Pinehurst, NC &mdash; Harvard Annex</p>
-        <p><strong>Founder:</strong> Andrew Leander Garner</p>
-        <p><strong>Background:</strong> U.S. Army Special Forces Engineer, Staff Sergeant</p>
-        <p><strong>Discipline:</strong> Industrial Design</p>
-        <p><strong>Experience:</strong> Three decades of manufacturing</p>
-        <p style="color:var(--gold); font-family:var(--serif); font-style:italic; margin-top:var(--sp-3); font-weight:300;">Forged in Pinehurst. Tested at tempo. Refined through three decades of manufacturing discipline.</p>
+      <div>
+        <div class="section-label section-label-right anim-r">Brand Manifesto</div>
+        <div class="manifesto anim" style="max-width: 800px;">
+          <p><strong>Golf has never been about perfect.</strong></p>
+          <p>It has always been about challenge: wind, pressure, doubt, and the potential failure waiting on every tee. The course doesn&rsquo;t move. The weather doesn&rsquo;t care. The moment doesn&rsquo;t slow down.</p>
+          <p class="gold">And that is exactly the point.</p>
+          <p>Every obstacle is part of the round. Every difficult lie, every missed fairway, every demanding walk between shots&mdash;these are not interruptions to the game. <strong>They are the game.</strong></p>
+          <p>Progress in golf, and in life, is built in resistance. Hard conditions create better decisions. Pressure builds discipline. Adversity shapes consistency.</p>
+          <p>We design for the round as it truly exists&mdash;unpredictable, demanding, and worth every step.</p>
+          <p class="manifesto-closer">Because the challenge isn&rsquo;t in the way.<br><span class="gold">The challenge is the way.</span></p>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ III. THE CODE ═══════════════ -->
+<!-- FRAME II: ORIGIN -->
+<div class="frame" id="origin">
+  <div class="frame-num">II</div>
+  <div class="frame-inner">
+    <div class="split-3-1">
+      <div>
+        <div class="prose anim-l">
+          <p>Shaped by <strong>Andrew Leander Garner</strong>, a former U.S. Army Special Forces engineer (Staff Sergeant) and industrial designer, who learned early that when systems fail, the cost is never abstract.</p>
+          <p>VAREN translates that empathetic rigor to golf: fewer parts, stronger hardware, cleaner lines, less friction&mdash;eliminating the distractions that pull us out of rhythm&mdash;when the day turns, when travel wears us down, when the moment is bigger than the swing.</p>
+          <p>VAREN researches, prototypes, and refines at Pinehurst&rsquo;s historic Harvard Annex: where tradition is lived daily and where the future has to prove itself on real ground, in real weather, with real people.</p>
+          <p><strong>Golf is a game of control, not comfort. We create equipment that stays dependable.</strong></p>
+        </div>
+      </div>
+      <div>
+        <div class="section-label section-label-right anim-r">Chapter II</div>
+        <h2 class="display-title anim-r">Forged in Pinehurst</h2>
+        <p class="anim-r" style="font-family: var(--serif); font-style: italic; color: var(--gray); margin-top: var(--sp-3); font-size: var(--type-body);">Founded 2023. Tested at tempo. Designed for performance.</p>
+        <div class="sidebar-panel anim-r" style="margin-top: var(--sp-4);">
+          <h4>Heritage</h4>
+          <p><strong>Location:</strong> Pinehurst, NC &mdash; Harvard Annex</p>
+          <p><strong>Founder:</strong> Andrew Leander Garner</p>
+          <p><strong>Background:</strong> U.S. Army Special Forces Engineer, Staff Sergeant</p>
+          <p><strong>Discipline:</strong> Industrial Design</p>
+          <p><strong>Experience:</strong> Three decades of manufacturing</p>
+          <p style="color:var(--gold); font-family:var(--serif); font-style:italic; margin-top:var(--sp-3); font-weight:300;">Forged in Pinehurst. Tested at tempo. Refined through three decades of manufacturing discipline.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FRAME III: CODE (Full-screen centered) -->
 <div class="code-hero" id="code">
-  <img class="code-insignia gs-scale" src="assets/VAREN_INSIGNIA_WHITE.png" alt="">
-  <div class="section-label gs-from-bottom" style="margin-bottom:var(--sp-4);">Chapter III &mdash; The Code</div>
-  <h2 class="gs-from-bottom">PREVAIL AS ONE</h2>
-  <div class="code-sub gs-from-bottom">We don&rsquo;t chase the loudest win.<br>We build the silent standard that earns it.</div>
-  <div class="gs-from-bottom" style="margin-bottom:var(--sp-5);">
-    <span class="breathe-reset">
+  <div class="frame-num">III</div>
+  <img class="code-insignia anim-s" src="assets/VAREN_INSIGNIA_WHITE.png" alt="">
+  <div class="section-label anim" style="margin-bottom:var(--sp-4);">Chapter III &mdash; The Code</div>
+  <h2 class="anim-fade">PREVAIL AS ONE</h2>
+  <p class="code-sub anim-fade">We don&rsquo;t chase the loudest win.<br>We build the silent standard that earns it.</p>
+  <div class="anim-fade" style="margin-bottom:var(--sp-5);">
+    <span class="breathe-reset" style="font-size: var(--type-h3);">
       <span class="b">Breathe.</span>&ensp;
       <span class="r">Reset.</span>&ensp;
       <span class="m">Move.</span>
     </span>
   </div>
-  <div class="code-prose">
-    <p class="gs-from-bottom">Our gear is forged to endure, to serve, and to live long enough to become legacy.</p>
-    <p class="emphasis gs-from-bottom">We don&rsquo;t just carry equipment. We carry a code.</p>
-    <p class="gold-ital gs-from-bottom">A code of commitment&mdash;designed for performance under pressure.</p>
+  <div class="code-prose anim-fade">
+    <p>Our gear is forged to endure, to serve, and to live long enough to become legacy.</p>
+    <p class="emphasis">We don&rsquo;t just carry equipment. We carry a code.</p>
+    <p class="gold-ital">A code of commitment&mdash;designed for performance under pressure.</p>
   </div>
 </div>
 
-<!-- ═══════════════ IV. THE SYSTEM ═══════════════ -->
-<div class="section" id="system">
-  <div class="grid-container">
-    <div class="section-num gs-hidden">IV</div>
-    <div class="section-label gs-from-bottom">Chapter IV</div>
-    <div class="section-title gs-from-bottom">Tournament-Tempo Design</div>
-    <div class="prose grid-content gs-from-bottom" style="margin-bottom:var(--sp-5);">
-      <p><strong>We set out to build the first golf equipment system designed around tournament-tempo behavior:</strong> access, balance, weather response, travel resilience, and long-term service&mdash;so performance stays uninterrupted.</p>
+<!-- FRAME IV: SYSTEM -->
+<div class="frame" id="system">
+  <div class="frame-num">IV</div>
+  <div class="frame-inner">
+    <div>
+      <div class="section-label anim">Chapter IV <span class="label-line"></span></div>
+      <h2 class="display-title anim" style="margin-bottom: var(--sp-3);">Tournament-Tempo Design</h2>
+      <div class="prose anim" style="max-width: 600px; margin-bottom: var(--sp-5);">
+        <p><strong>The first golf equipment system designed around tournament-tempo behavior.</strong></p>
+      </div>
     </div>
-    <div class="system-row">
-      <div class="sys-card gs-from-bottom">
+    <div class="sys-grid">
+      <div class="grid-gutter-lines">
+        <div class="gutter-line" style="left: 25%"></div>
+        <div class="gutter-line" style="left: 50%"></div>
+        <div class="gutter-line" style="left: 75%"></div>
+      </div>
+      <div class="sys-card anim">
         <h4>Access</h4>
-        <p>Single-motion retrieval. No zippers that catch. No flaps that fold wrong. No searching.</p>
+        <p>Single-motion retrieval. No zippers that catch. No searching.</p>
       </div>
-      <div class="sys-card gs-from-bottom">
+      <div class="sys-card anim">
         <h4>Balance</h4>
-        <p>Ergonomic load distribution that maintains posture and energy from the 1st hole through the 18th.</p>
+        <p>Ergonomic load distribution from hole 1 through 18.</p>
       </div>
-      <div class="sys-card gs-from-bottom">
+      <div class="sys-card anim">
         <h4>Weather</h4>
-        <p>Seam-sealed construction. Corrosion-resistant hardware. Quick-dry fabrics. The course doesn&rsquo;t wait.</p>
+        <p>Seam-sealed. Corrosion-resistant. Quick-dry. The course doesn&rsquo;t wait.</p>
       </div>
-      <div class="sys-card gs-from-bottom">
+      <div class="sys-card anim">
         <h4>Travel</h4>
-        <p>Stress-tested against drops, compression, temperature swings, and rough handling. Real-world transit abuse.</p>
+        <p>Stress-tested against drops, compression, temperature swings.</p>
       </div>
-      <div class="sys-card gs-from-bottom">
+      <div class="sys-card sys-card--wide anim">
         <h4>Service</h4>
-        <p>Measured in decades, not seasons. Replaceable components. Serviceable hardware. Repair as a feature.</p>
+        <p>Measured in decades. Replaceable components. Repair as feature. Built to last beyond the warranty.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ V. BRAND ARCHITECTURE ═══════════════ -->
-<div class="section" id="architecture">
-  <div class="grid-container">
-    <div class="section-num gs-hidden">V</div>
-    <div class="section-label gs-from-bottom">Chapter V</div>
-    <div class="section-title gs-from-bottom">Brand Architecture</div>
-    <p class="gs-from-bottom" style="font-family:var(--sans); font-size:var(--type-body); color:rgba(242,240,237,0.72); max-width:760px; margin-bottom:var(--sp-5); line-height:var(--leading-body); font-weight:400;">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every touchpoint into a coherent journey.</p>
-    <div class="pillars-row">
-      <div class="pillar-card gs-from-bottom">
-        <div class="pillar-label">Pillar I</div>
-        <h3>Prepare</h3>
-        <div class="sub">Master preparation through perfect organization</div>
-        <p>Travel bags, hard-shell cases, luggage organizers, TSA-ready accessories, club covers, headcovers, modular systems, travel duffles.</p>
-        <p>For the golfer who leaves nothing to chance. Structural, architectural, modular design language.</p>
-        <div class="foundation">Structure &middot; Architecture &middot; Readiness</div>
+<!-- FRAME V: ARCHITECTURE -->
+<div class="frame" id="architecture">
+  <div class="frame-num">V</div>
+  <div class="frame-inner">
+    <div class="split-3-1">
+      <div>
+        <div class="pillar-grid">
+          <div class="grid-gutter-lines">
+            <div class="gutter-line" style="left: 33.33%"></div>
+            <div class="gutter-line" style="left: 66.67%"></div>
+          </div>
+          <div class="pillar-card anim">
+            <div class="pillar-card-num">I</div>
+            <h4>Pillar I</h4>
+            <h3>Prepare</h3>
+            <p>Travel bags, hard-shell cases, luggage organizers, TSA-ready accessories, club covers, modular systems. For the golfer who leaves nothing to chance.</p>
+            <div class="foundation">Structure &middot; Architecture &middot; Readiness</div>
+          </div>
+          <div class="pillar-card anim">
+            <div class="pillar-card-num">II</div>
+            <h4>Pillar II</h4>
+            <h3>Perform</h3>
+            <p>Carry/stand bags, cart bags, rangefinder holders, performance apparel. The heart of VAREN. Equipment disappears into performance.</p>
+            <div class="foundation">Precision &middot; Endurance &middot; Flow</div>
+          </div>
+          <div class="pillar-card anim">
+            <div class="pillar-card-num">III</div>
+            <h4>Pillar III</h4>
+            <h3>Prevail</h3>
+            <p>Premium casual apparel, clubhouse-to-casual wear, lifestyle accessories, limited editions. Gear that lives long enough to become legacy.</p>
+            <div class="foundation">Legacy &middot; Identity &middot; Code</div>
+          </div>
+        </div>
       </div>
-      <div class="pillar-card gs-from-bottom">
-        <div class="pillar-label">Pillar II</div>
-        <h3>Perform</h3>
-        <div class="sub">Execute with precision and confidence</div>
-        <p>Carry/stand bags, cart bags, rangefinder holders, valuables cases, performance apparel, course accessories.</p>
-        <p>The heart of VAREN. On-course gear engineered for tournament-tempo behavior. Equipment disappears into performance.</p>
-        <div class="foundation">Precision &middot; Endurance &middot; Flow</div>
-      </div>
-      <div class="pillar-card gs-from-bottom">
-        <div class="pillar-label">Pillar III</div>
-        <h3>Prevail</h3>
-        <div class="sub">Victory earned, excellence embodied</div>
-        <p>Premium casual apparel, clubhouse-to-casual wear, lifestyle accessories, monogrammed items, 19th-hole gear, limited editions.</p>
-        <p>Gear that lives long enough to become legacy. The identity of someone who carries a code.</p>
-        <div class="foundation">Legacy &middot; Identity &middot; Code</div>
+      <div>
+        <div class="section-label section-label-right anim-r">Chapter V</div>
+        <h2 class="display-title anim-r">Brand Architecture</h2>
+        <p class="anim-r" style="font-family: var(--serif); font-style: italic; color: var(--gray); margin-top: var(--sp-3);">The tagline is not a slogan. It is a structural system&mdash;a three-pillar architecture that organizes every product, every message, and every touchpoint.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ VI. VOICE & TONE ═══════════════ -->
-<div class="section" id="voice">
-  <div class="grid-container">
-    <div class="section-num gs-hidden">VI</div>
-    <div class="section-label gs-from-bottom">Chapter VI</div>
-    <div class="section-title gs-from-bottom">Voice &amp; Tone</div>
-    <div class="prose grid-content gs-from-bottom" style="margin-bottom:var(--sp-5);">
-      <p>VAREN speaks with the quiet authority of someone who has been tested and held. The voice is never loud. It does not oversell. It does not use exclamation points. It states facts, offers perspective, and lets quality create its own volume.</p>
-    </div>
-    <table class="voice-table gs-from-bottom">
-      <thead>
-        <tr><th>VAREN IS</th><th>VAREN IS NOT</th><th>EXAMPLE</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Measured</td><td>Hype-driven</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;Designed for the round as it truly exists.&rdquo;</td></tr>
-        <tr><td>Authoritative</td><td>Arrogant</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;Three decades of manufacturing discipline.&rdquo;</td></tr>
-        <tr><td>Empathetic</td><td>Soft</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;When the day turns, when travel wears us down.&rdquo;</td></tr>
-        <tr><td>Precise</td><td>Technical / jargony</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;Fewer parts. Stronger hardware. Cleaner lines.&rdquo;</td></tr>
-        <tr><td>Aspirational</td><td>Exclusive / elitist</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;We carry a code.&rdquo;</td></tr>
-      </tbody>
-    </table>
-
-    <div class="section-label gs-from-bottom" style="margin-top:var(--sp-6);">Signature Phrases</div>
-    <div class="phrases-grid gs-from-bottom">
-      <div class="phrase">&ldquo;Prepare. Perform. Prevail.&rdquo;</div>
-      <div class="phrase">&ldquo;The challenge is the way.&rdquo;</div>
-      <div class="phrase">&ldquo;Prevail as one.&rdquo;</div>
-      <div class="phrase">&ldquo;Breathe. Reset. Move.&rdquo;</div>
-      <div class="phrase">&ldquo;We carry a code.&rdquo;</div>
-      <div class="phrase">&ldquo;Forged in Pinehurst. Tested at tempo.&rdquo;</div>
-      <div class="phrase">&ldquo;Golf is a game of control, not comfort.&rdquo;</div>
-      <div class="phrase">&ldquo;Fewer parts. Stronger hardware. Cleaner lines. Less friction.&rdquo;</div>
-      <div class="phrase">&ldquo;Our gear is forged to endure, to serve, and to live long enough to become legacy.&rdquo;</div>
-      <div class="phrase">&ldquo;When systems fail, the cost is never abstract.&rdquo;</div>
+<!-- FRAME VI: VOICE -->
+<div class="frame" id="voice">
+  <div class="frame-num">VI</div>
+  <div class="frame-inner">
+    <div class="split-1-3">
+      <div>
+        <div class="section-label anim">Chapter VI <span class="label-line"></span></div>
+        <h2 class="display-title anim">Voice &amp; Tone</h2>
+      </div>
+      <div>
+        <div class="prose anim" style="margin-bottom:var(--sp-5);">
+          <p>VAREN speaks with the quiet authority of someone who has been tested and held. The voice is never loud. It does not oversell. It states facts, offers perspective, and lets quality create its own volume.</p>
+        </div>
+        <table class="voice-table anim">
+          <thead><tr><th>VAREN IS</th><th>VAREN IS NOT</th><th>EXAMPLE</th></tr></thead>
+          <tbody>
+            <tr><td>Measured</td><td>Hype-driven</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;Designed for the round as it truly exists.&rdquo;</td></tr>
+            <tr><td>Authoritative</td><td>Arrogant</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;Three decades of manufacturing discipline.&rdquo;</td></tr>
+            <tr><td>Empathetic</td><td>Soft</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;When the day turns, when travel wears us down.&rdquo;</td></tr>
+            <tr><td>Precise</td><td>Technical / jargony</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;Fewer parts. Stronger hardware. Cleaner lines.&rdquo;</td></tr>
+            <tr><td>Aspirational</td><td>Exclusive / elitist</td><td style="font-family:var(--serif); font-style:italic; color:var(--gold); font-weight:300;">&ldquo;We carry a code.&rdquo;</td></tr>
+            <tr>
+              <td>Competition</td>
+              <td>"Tested at tempo."</td>
+            </tr>
+            <tr>
+              <td>Heritage</td>
+              <td>"Forged in Pinehurst."</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="section-label anim" style="margin-top:var(--sp-6);">Signature Phrases</div>
+        <div class="phrases-grid anim">
+          <div class="phrase">&ldquo;Prepare. Perform. Prevail.&rdquo;</div>
+          <div class="phrase">&ldquo;The challenge is the way.&rdquo;</div>
+          <div class="phrase">&ldquo;Prevail as one.&rdquo;</div>
+          <div class="phrase">&ldquo;Breathe. Reset. Move.&rdquo;</div>
+          <div class="phrase">&ldquo;We carry a code.&rdquo;</div>
+          <div class="phrase">&ldquo;Forged in Pinehurst. Tested at tempo.&rdquo;</div>
+          <div class="phrase">&ldquo;Golf is a game of control, not comfort.&rdquo;</div>
+          <div class="phrase">&ldquo;Fewer parts. Stronger hardware. Cleaner lines. Less friction.&rdquo;</div>
+          <div class="phrase">&ldquo;Our gear is forged to endure, to serve, and to live long enough to become legacy.&rdquo;</div>
+          <div class="phrase">&ldquo;When systems fail, the cost is never abstract.&rdquo;</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ VII. VISUAL IDENTITY ═══════════════ -->
-<div class="section" id="identity">
-  <div class="grid-container">
-    <div class="section-num gs-hidden">VII</div>
-    <div class="section-label gs-from-bottom">Chapter VII</div>
-    <div class="section-title gs-from-bottom">Visual Identity System</div>
+<!-- FRAME VII: IDENTITY (Full-width) -->
+<div class="frame" id="identity">
+  <div class="frame-num">VII</div>
+  <div class="frame-inner">
+    <div class="frame-label anim">Chapter VII <span class="label-line"></span></div>
+    <div class="display-title anim" style="margin-bottom: var(--sp-5);">Visual Identity<br>System</div>
 
-    <!-- ── Logo Kit mk1 ── -->
-    <div class="section-label gs-from-bottom" style="margin-top:var(--sp-4);">VAREN&reg; Logo Kit mk1</div>
+    <!-- Logo Kit mk1 -->
+    <div class="frame-label anim" style="margin-top:var(--sp-4);">VAREN&reg; Logo Kit mk1</div>
     <div class="logo-kit">
-
-      <!-- Row 1: Horizontal lockups -->
-      <div class="logo-kit-row two gs-from-bottom">
+      <div class="logo-kit-row two anim">
         <div class="logo-kit-item">
           <div class="lockup-horizontal">
             <img src="assets/VAREN_INSIGNIA_WHITE.png" alt="Insignia" style="width:64px; height:auto;">
-            <svg viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg" style="height:32px; width:auto;">
-              <path fill="#F2F0ED" d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/>
-              <path fill="#F2F0ED" d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/>
-              <path fill="#F2F0ED" d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/>
-              <path fill="#F2F0ED" d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/>
-              <path fill="#F2F0ED" d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
-            </svg>
+            <svg viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg" style="height:32px; width:auto;"><path fill="#F2F0ED" d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/><path fill="#F2F0ED" d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/><path fill="#F2F0ED" d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/><path fill="#F2F0ED" d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/><path fill="#F2F0ED" d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/></svg>
           </div>
           <div class="logo-kit-label">Horizontal &mdash; Half Y</div>
           <div class="logo-kit-sublabel">Primary Lockup</div>
@@ -1312,31 +1534,17 @@
         <div class="logo-kit-item">
           <div class="lockup-horizontal" style="gap:var(--sp-3);">
             <img src="assets/VAREN_INSIGNIA_WHITE.png" alt="Insignia" style="width:48px; height:auto;">
-            <svg viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg" style="height:24px; width:auto;">
-              <path fill="#F2F0ED" d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/>
-              <path fill="#F2F0ED" d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/>
-              <path fill="#F2F0ED" d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/>
-              <path fill="#F2F0ED" d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/>
-              <path fill="#F2F0ED" d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
-            </svg>
+            <svg viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg" style="height:24px; width:auto;"><path fill="#F2F0ED" d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/><path fill="#F2F0ED" d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/><path fill="#F2F0ED" d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/><path fill="#F2F0ED" d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/><path fill="#F2F0ED" d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/></svg>
           </div>
           <div class="logo-kit-label">Horizontal &mdash; Thirds</div>
           <div class="logo-kit-sublabel">Secondary Lockup</div>
         </div>
       </div>
-
-      <!-- Row 2: Vertical + Insignia + Wordmark -->
-      <div class="logo-kit-row three gs-from-bottom">
+      <div class="logo-kit-row three anim">
         <div class="logo-kit-item">
           <div style="display:flex; flex-direction:column; align-items:center; gap:var(--sp-2);">
             <img src="assets/VAREN_INSIGNIA_WHITE.png" alt="Insignia" style="width:72px; height:auto;">
-            <svg viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg" style="width:130px; height:auto;">
-              <path fill="#F2F0ED" d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/>
-              <path fill="#F2F0ED" d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/>
-              <path fill="#F2F0ED" d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/>
-              <path fill="#F2F0ED" d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/>
-              <path fill="#F2F0ED" d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
-            </svg>
+            <svg viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg" style="width:130px; height:auto;"><path fill="#F2F0ED" d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/><path fill="#F2F0ED" d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/><path fill="#F2F0ED" d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/><path fill="#F2F0ED" d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/><path fill="#F2F0ED" d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/></svg>
           </div>
           <div class="logo-kit-label">Vertical &mdash; Golden Ratio</div>
           <div class="logo-kit-sublabel">Primary Stacked</div>
@@ -1347,20 +1555,12 @@
           <div class="logo-kit-sublabel">Standalone Mark</div>
         </div>
         <div class="logo-kit-item">
-          <svg viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg" style="width:220px; height:auto;">
-            <path fill="#F2F0ED" d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/>
-            <path fill="#F2F0ED" d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/>
-            <path fill="#F2F0ED" d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/>
-            <path fill="#F2F0ED" d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/>
-            <path fill="#F2F0ED" d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
-          </svg>
+          <svg viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg" style="width:220px; height:auto;"><path fill="#F2F0ED" d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/><path fill="#F2F0ED" d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/><path fill="#F2F0ED" d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/><path fill="#F2F0ED" d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/><path fill="#F2F0ED" d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/></svg>
           <div class="logo-kit-label">Primary Wordmark</div>
           <div class="logo-kit-sublabel">Standalone Type</div>
         </div>
       </div>
-
-      <!-- Row 3: Master Symbol + Reversed -->
-      <div class="logo-kit-row two gs-from-bottom">
+      <div class="logo-kit-row two anim">
         <div class="logo-kit-item">
           <img src="assets/VAREN_MASTER_SYMBOL.png" alt="VAREN Master Symbol" style="width:100px; height:auto;">
           <div class="logo-kit-label">Master Symbol</div>
@@ -1369,13 +1569,7 @@
         <div class="logo-kit-item" style="background:var(--light);">
           <div class="lockup-horizontal">
             <img src="assets/VAREN_INSIGNIA_WHITE.png" alt="Insignia" style="width:56px; height:auto; filter:invert(1);">
-            <svg viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg" style="height:28px; width:auto;">
-              <path fill="#0A0A0A" d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/>
-              <path fill="#0A0A0A" d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/>
-              <path fill="#0A0A0A" d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/>
-              <path fill="#0A0A0A" d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/>
-              <path fill="#0A0A0A" d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
-            </svg>
+            <svg viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg" style="height:28px; width:auto;"><path fill="#0A0A0A" d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/><path fill="#0A0A0A" d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/><path fill="#0A0A0A" d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/><path fill="#0A0A0A" d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/><path fill="#0A0A0A" d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/></svg>
           </div>
           <div class="logo-kit-label" style="color:var(--carbon);">Reversed &mdash; Light BG</div>
           <div class="logo-kit-sublabel" style="color:var(--gray);">Contrast Variant</div>
@@ -1383,429 +1577,460 @@
       </div>
     </div>
 
-    <!-- ── Color System ── -->
-    <div class="section-label gs-from-bottom" style="margin-top:var(--sp-6);">Color System</div>
-    <div class="swatches gs-from-bottom">
-      <div class="swatch">
-        <div class="swatch-color" style="background:#0A0A0A;"></div>
-        <div class="swatch-info"><h5>VAREN Black</h5><small>#0A0A0A &middot; Pantone Black 6 C</small></div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#C8A96E;"></div>
-        <div class="swatch-info"><h5>Command Gold</h5><small>#C8A96E &middot; Pantone 4515 C</small></div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#8A8A8A;"></div>
-        <div class="swatch-info"><h5>Steel Gray</h5><small>#8A8A8A &middot; Cool Gray 7 C</small></div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#F2F0ED;"></div>
-        <div class="swatch-info"><h5>Linen White</h5><small>#F2F0ED &middot; Warm Gray 1 C</small></div>
-      </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#1E1E1E;"></div>
-        <div class="swatch-info"><h5>Carbon</h5><small>#1E1E1E &middot; Pantone Black 7 C</small></div>
-      </div>
+    <div class="h-sep"></div>
+
+    <!-- Color System -->
+    <div class="frame-label anim">Color System</div>
+    <div class="swatches anim">
+      <div class="swatch"><div class="swatch-color" style="background:#0A0A0A;"></div><div class="swatch-info"><h5>VAREN Black</h5><small>#0A0A0A</small></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#C8A96E;"></div><div class="swatch-info"><h5>Command Gold</h5><small>#C8A96E</small></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#8A8A8A;"></div><div class="swatch-info"><h5>Steel Gray</h5><small>#8A8A8A</small></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#F2F0ED;"></div><div class="swatch-info"><h5>Linen White</h5><small>#F2F0ED</small></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#1E1E1E;"></div><div class="swatch-info"><h5>Carbon</h5><small>#1E1E1E</small></div></div>
     </div>
 
-    <!-- ── Typography System ── -->
-    <div class="section-label gs-from-bottom" style="margin-top:var(--sp-6);">Typography System</div>
-    <div class="type-showcase gs-from-bottom">
+    <div class="h-sep"></div>
+
+    <!-- Typography System -->
+    <div class="frame-label anim">Typography System</div>
+    <div class="type-showcase anim">
       <div class="type-row">
         <div>
-          <div class="type-sample-label">Editorial Serif &mdash; Signifier (Klim)</div>
+          <div class="type-sample-label">Editorial Serif &mdash; Signifier</div>
           <div class="type-sample-serif">The challenge is the way.</div>
-          <div class="type-sample-note">Headlines, manifesto, narrative prose, signature phrases. Light (300) and Regular (400).</div>
+          <div class="type-sample-note">Headlines, manifesto, narrative. Light (300) through Bold (700).</div>
         </div>
         <div>
-          <div class="type-sample-label">Functional Sans &mdash; S&ouml;hne (Klim)</div>
+          <div class="type-sample-label">Functional Sans &mdash; S&ouml;hne</div>
           <div class="type-sample-sans">Prepare. Perform. Prevail.</div>
-          <div class="type-sample-note">UI, navigation, labels, body text. Buch (400) through Dreiviertelfett (700).</div>
+          <div class="type-sample-note">UI, body text. Buch (400) through Dreiviertelfett (700).</div>
         </div>
       </div>
       <div class="type-row">
         <div>
-          <div class="type-sample-label">Display Narrow &mdash; S&ouml;hne Schmal (Klim)</div>
+          <div class="type-sample-label">Display Narrow &mdash; S&ouml;hne Schmal</div>
           <div style="font-family:var(--sans-narrow); font-size:var(--type-h3); font-weight:300; color:var(--light); line-height:var(--leading-heading); margin-bottom:var(--sp-1); letter-spacing:0.08em;">PREVAIL AS ONE</div>
-          <div class="type-sample-note">Section numbers, display headings, condensed titles. Leicht (300) through Halbfett (600).</div>
+          <div class="type-sample-note">Section numbers, display headings. Leicht (300) through Halbfett (600).</div>
         </div>
         <div>
-          <div class="type-sample-label">Technical Mono &mdash; S&ouml;hne Mono (Klim)</div>
+          <div class="type-sample-label">Technical Mono &mdash; S&ouml;hne Mono</div>
           <div style="font-family:var(--mono); font-size:var(--type-label); font-weight:400; color:var(--light); line-height:var(--leading-heading); margin-bottom:var(--sp-1); letter-spacing:0.04em;">VAREN &middot; PINEHURST, NC</div>
-          <div class="type-sample-note">Labels, captions, data, navigation. Buch (400) through Halbfett (600).</div>
+          <div class="type-sample-note">Labels, captions, data. Buch (400) through Halbfett (600).</div>
         </div>
       </div>
     </div>
 
-    <!-- ── Golden Ratio Type Scale ── -->
-    <div class="section-label gs-from-bottom" style="margin-top:var(--sp-5);">Golden Ratio Type Scale &mdash; &phi; = 1.618</div>
-    <div class="type-scale-specimen gs-from-bottom">
-      <div class="scale-step">
-        <div class="scale-meta">136px &middot; &phi;&sup5;</div>
-        <div class="scale-sample" style="font-size:clamp(3rem, 8.5vw, 8.5rem); font-weight:100;">Varen</div>
-      </div>
-      <div class="scale-step">
-        <div class="scale-meta">84px &middot; &phi;&sup4;</div>
-        <div class="scale-sample" style="font-size:clamp(2.5rem, 5.25vw, 5.25rem); font-weight:200;">Prevail</div>
-      </div>
-      <div class="scale-step">
-        <div class="scale-meta">52px &middot; &phi;&sup3;</div>
-        <div class="scale-sample" style="font-size:var(--type-h2); font-weight:300;">The Challenge</div>
-      </div>
-      <div class="scale-step">
-        <div class="scale-meta">32px &middot; &phi;&sup2;</div>
-        <div class="scale-sample" style="font-size:var(--type-h4); font-weight:300;">Tournament-Tempo Design</div>
-      </div>
-      <div class="scale-step">
-        <div class="scale-meta">20px &middot; &phi;&sup1;</div>
-        <div class="scale-sample" style="font-size:var(--type-body); font-weight:400;">Designed for the round as it truly exists.</div>
-      </div>
-      <div class="scale-step">
-        <div class="scale-meta">14px &middot; base</div>
-        <div class="scale-sample" style="font-size:var(--type-label); font-weight:400; font-family:var(--sans);">PREPARE &middot; PERFORM &middot; PREVAIL</div>
-      </div>
-      <div class="scale-step">
-        <div class="scale-meta">12px &middot; caption</div>
-        <div class="scale-sample" style="font-size:var(--type-caption); font-weight:400; font-family:var(--sans); letter-spacing:0.15em;">VAREN &middot; PINEHURST, NC</div>
-      </div>
+    <div class="h-sep"></div>
+
+    <!-- Type Scale -->
+    <div class="frame-label anim">Type Scale &mdash; Alternating &times;1.333 / &times;1.5</div>
+    <div class="type-scale-specimen anim">
+      <div class="scale-step"><div class="scale-meta">136px &middot; Display</div><div class="scale-sample" style="font-size:clamp(3rem, 8.5vw, 8.5rem); font-weight:100;">Varen</div></div>
+      <div class="scale-step"><div class="scale-meta">84px &middot; H1</div><div class="scale-sample" style="font-size:clamp(2.5rem, 5.25vw, 5.25rem); font-weight:200;">Prevail</div></div>
+      <div class="scale-step"><div class="scale-meta">52px &middot; H2</div><div class="scale-sample" style="font-size:var(--type-h2); font-weight:300;">The Challenge</div></div>
+      <div class="scale-step"><div class="scale-meta">32px &middot; H4</div><div class="scale-sample" style="font-size:var(--type-h4); font-weight:300;">Tournament-Tempo Design</div></div>
+      <div class="scale-step"><div class="scale-meta">20px &middot; Body</div><div class="scale-sample" style="font-size:var(--type-body); font-weight:400;">Designed for the round as it truly exists.</div></div>
+      <div class="scale-step"><div class="scale-meta">14px &middot; Label</div><div class="scale-sample" style="font-size:var(--type-label); font-weight:400; font-family:var(--sans);">PREPARE &middot; PERFORM &middot; PREVAIL</div></div>
+      <div class="scale-step"><div class="scale-meta">12px &middot; Caption</div><div class="scale-sample" style="font-size:var(--type-caption); font-weight:400; font-family:var(--sans); letter-spacing:0.15em;">VAREN &middot; PINEHURST, NC</div></div>
     </div>
 
-    <!-- ── Golden Ratio Grid (NEW in v2.2) ── -->
-    <div class="section-label gs-from-bottom" style="margin-top:var(--sp-6);">Kelman 4-Column Modular Grid</div>
-    <div class="grid-demo gs-from-bottom">
+    <div class="h-sep"></div>
+
+    <!-- VAREN Harmonic Grid Demo -->
+    <div class="frame-label anim">VAREN Harmonic 12-Column Grid</div>
+    <div class="grid-demo anim">
       <div class="grid-demo-visual">
-        <div class="grid-demo-col">Col 1</div>
-        <div class="grid-demo-col">Col 2</div>
-        <div class="grid-demo-col">Col 3</div>
-        <div class="grid-demo-col">Col 4</div>
+        <div class="grid-demo-col">1</div><div class="grid-demo-col">2</div><div class="grid-demo-col">3</div>
+        <div class="grid-demo-col">4</div><div class="grid-demo-col">5</div><div class="grid-demo-col">6</div>
+        <div class="grid-demo-col">7</div><div class="grid-demo-col">8</div><div class="grid-demo-col">9</div>
+        <div class="grid-demo-col">10</div><div class="grid-demo-col">11</div><div class="grid-demo-col">12</div>
       </div>
       <div class="grid-demo-specs">
-        <div class="grid-spec">
-          <strong>Columns</strong>
-          4 equal columns<br>286.94pt each (Kelman)
-        </div>
-        <div class="grid-spec">
-          <strong>Gutters</strong>
-          20.45pt / 1.28rem<br>Derived from IDML template
-        </div>
-        <div class="grid-spec">
-          <strong>Baseline</strong>
-          15px / 0.9375rem<br>39 rows in content area
-        </div>
-        <div class="grid-spec">
-          <strong>Type Ratio</strong>
-          &times;1.176 leading constant<br>&times;1.333 / &times;1.5 alternating scale
-        </div>
-      </div>
-      <div style="margin-top:var(--sp-4); text-align:center;">
-        <button class="grid-toggle" id="gridToggleInline" style="position:static; display:inline-block;">Show Grid Overlay</button>
+        <div class="grid-spec"><strong>Columns</strong>12 micro (4 &phi;-macro &times; 3 Swiss)</div>
+        <div class="grid-spec"><strong>Gutters</strong>baseline &times; &phi;&sup2; &asymp; 20.45pt</div>
+        <div class="grid-spec"><strong>Baseline</strong>15px &middot; &phi; &times; 9.27 &asymp; 15</div>
+        <div class="grid-spec"><strong>Type Ratio</strong>&times;1.176 leading &middot; P4/P5 harmonic scale</div>
       </div>
     </div>
 
-    <div class="prose grid-content gs-from-bottom" style="margin-top:var(--sp-5);">
-      <p><strong>Design Principles:</strong> Restraint signals premium. Function dictates form. Dark palette dominance. Precision in execution. Every element must justify its existence through function, not aesthetics alone.</p>
-      <p><strong>Photography:</strong> Natural light. Desaturated warmth. Human scale. Texture and detail. Environmental storytelling. No staged perfection.</p>
-      <p><strong>Typography Philosophy:</strong> Signifier carries the brand voice&mdash;editorial, considered, with the quiet authority of a well-set page. S&ouml;hne handles the functional layer&mdash;clean, geometric, precise. S&ouml;hne Schmal provides dramatic display type. S&ouml;hne Mono anchors the technical layer. Together: four faces, one system, zero excess.</p>
+    <div class="prose anim" style="max-width:800px; margin-top:var(--sp-5);">
+      <p><strong>Design Principles:</strong> Restraint signals premium. Function dictates form. Dark palette dominance. Precision in execution. Every element must justify its existence through function.</p>
+      <p><strong>Typography Philosophy:</strong> Signifier carries the editorial voice. S&ouml;hne handles function. S&ouml;hne Schmal provides drama. S&ouml;hne Mono anchors data. Four faces, one system, zero excess.</p>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ VIII. DELIVERY ═══════════════ -->
-<div class="section" id="delivery">
-  <div class="grid-container">
-    <div class="section-num gs-hidden">VIII</div>
-    <div class="section-label gs-from-bottom">Chapter VIII</div>
-    <div class="section-title gs-from-bottom">Brand Delivery Ecosystem</div>
-    <div class="prose grid-content gs-from-bottom" style="margin-bottom:var(--sp-5);">
-      <p>The brand document and the brand experience are one and the same. VAREN&rsquo;s brand system is a living ecosystem that communicates precision, elegance, and legacy through every format it inhabits.</p>
-    </div>
-    <div class="delivery-grid">
-      <div class="delivery-card gs-from-bottom">
-        <div class="tier">Tier 1 &mdash; Primary</div>
-        <h3>Interactive Brand Experience</h3>
-        <p>Public-facing website built in Webflow or Framer. Parallax storytelling, micro-interactions, and the brand narrative as lived experience.</p>
-        <p>The website itself demonstrates the design philosophy: restraint, precision, dark palette, gold accents.</p>
+<!-- FRAME VIII: DELIVERY -->
+<div class="frame" id="delivery">
+  <div class="frame-num">VIII</div>
+  <div class="frame-inner">
+    <div class="split-3-1">
+      <div>
+        <div class="delivery-grid">
+          <div class="grid-gutter-lines">
+            <div class="gutter-line" style="left: 50%"></div>
+          </div>
+          <div class="delivery-card anim"><div class="tier">Tier 1 &mdash; Primary</div><h3>Interactive Brand Experience</h3><p>Public-facing website. Parallax storytelling, micro-interactions, and the brand narrative as lived experience.</p></div>
+          <div class="delivery-card anim"><div class="tier">Tier 2 &mdash; Archival</div><h3>Master Brand Document</h3><p>Word document / PDF for controlled distribution. Version-dated, confidential, comprehensive.</p></div>
+          <div class="delivery-card anim"><div class="tier">Tier 3 &mdash; Execution</div><h3>Design System</h3><p>Shared Figma component library with locked brand components: logo lockups, color tokens, type scales.</p></div>
+          <div class="delivery-card anim"><div class="tier">Tier 4 &mdash; Distribution</div><h3>Digital Asset Management</h3><p>Centralized library. All approved assets, permission-based access, searchable and auto-updated.</p></div>
+        </div>
       </div>
-      <div class="delivery-card gs-from-bottom">
-        <div class="tier">Tier 2 &mdash; Archival</div>
-        <h3>Master Brand Document</h3>
-        <p>Word document / PDF for controlled distribution. Version-dated, confidential, comprehensive. The canonical source of truth.</p>
-        <p>Updated semi-annually with formal version control.</p>
-      </div>
-      <div class="delivery-card gs-from-bottom">
-        <div class="tier">Tier 3 &mdash; Execution</div>
-        <h3>Design System</h3>
-        <p>Shared Figma component library with locked brand components: logo lockups, color tokens, type scales, spacing systems.</p>
-        <p>Compliance built into the tools&mdash;making on-brand output the path of least resistance.</p>
-      </div>
-      <div class="delivery-card gs-from-bottom">
-        <div class="tier">Tier 4 &mdash; Distribution</div>
-        <h3>Digital Asset Management</h3>
-        <p>Centralized library on Frontify or Brandfolder. All approved assets, permission-based access, searchable and auto-updated.</p>
-        <p>Logo files, photography, templates, fonts&mdash;everything organized by the same precision that defines the product.</p>
+      <div>
+        <div class="section-label section-label-right anim-r">Chapter VIII</div>
+        <h2 class="display-title anim-r">Brand Delivery Ecosystem</h2>
+        <p class="anim-r" style="font-family: var(--serif); font-style: italic; color: var(--gray); margin-top: var(--sp-3);">The brand document and the brand experience are one and the same. VAREN&rsquo;s brand system is a living ecosystem that communicates precision, elegance, and legacy through every format it inhabits.</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
+<!-- FOOTER -->
 <footer>
-  <div class="footer-lockup">
-    <img class="footer-insignia" src="assets/VAREN_INSIGNIA_WHITE.png" alt="">
-    <svg class="footer-wordmark" viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg">
-      <path d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/>
-      <path d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/>
-      <path d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/>
-      <path d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/>
-      <path d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
-    </svg>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="footer-lockup">
+        <img class="footer-insignia" src="assets/VAREN_INSIGNIA_WHITE.png" alt="VAREN">
+        <svg class="footer-wordmark" viewBox="0 0 2043.78 463.22" xmlns="http://www.w3.org/2000/svg">
+          <path d="M164.2,421.87L26.39,40.12h104.38l82.68,247.59,82.68-247.59h104.38l-137.81,381.75h-98.52Z"/>
+          <path d="M415.63,422.38L554.61,40.63h99.69l138.98,381.75h-107.9l-26.39-81.26h-109.07l-26.39,81.26h-107.9ZM576.31,258.23h56.3l-28.15-92.71-28.15,92.71Z"/>
+          <path d="M874.18,421.87V40.12h162.44c27.36,0,50.82,4.64,70.37,13.91,19.55,9.27,34.5,22.09,44.86,38.45,10.35,16.36,15.54,35.09,15.54,56.17,0,22.18-5.86,42.63-17.59,61.35-11.73,18.73-28.54,32.82-50.43,42.27l113.18,169.61h-112l-104.97-157.06h-20.52v157.06h-100.86ZM975.04,184.09h49.84c13.68,0,24.82-2.54,33.43-7.64,8.59-5.09,12.9-14.36,12.9-27.81s-4.31-22.72-12.9-27.81c-8.6-5.09-19.75-7.64-33.43-7.64h-49.84v70.9Z"/>
+          <path d="M1288.03,421.87V40.12h279.13v82.89h-174.75v53.99h137.22v82.89h-137.22v79.08h180.61v82.89h-284.99Z"/>
+          <path d="M1685.93,421.87V40.12h101.45l135.46,227.96V40.12h93.83v381.75h-101.45l-135.46-227.96v227.96h-93.83Z"/>
+        </svg>
+      </div>
+      <div class="footer-tagline">PREPARE&ensp;&middot;&ensp;PERFORM&ensp;&middot;&ensp;PREVAIL</div>
+    </div>
+    <div class="footer-center">
+      <div class="footer-nav-cols">
+        <div class="footer-nav-col">
+          <a href="#manifesto" class="footer-link">Manifesto</a>
+          <a href="#origin" class="footer-link">Origin</a>
+          <a href="#code" class="footer-link">Code</a>
+          <a href="#system" class="footer-link">System</a>
+        </div>
+        <div class="footer-nav-col">
+          <a href="#architecture" class="footer-link">Architecture</a>
+          <a href="#voice" class="footer-link">Voice</a>
+          <a href="#identity" class="footer-link">Identity</a>
+          <a href="#delivery" class="footer-link">Delivery</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-right">
+      <p class="footer-closing" style="font-family: var(--serif); font-size: var(--type-label); color: var(--gray); font-style: italic; line-height: var(--leading-body); font-weight: 300;">Forged in Pinehurst. Tested at tempo. Refined through three decades of manufacturing discipline.</p>
+      <p class="footer-legal" style="font-family: var(--mono); font-size: var(--type-caption); color: rgba(138,138,138,0.45); letter-spacing: 0.04em; margin-top: var(--sp-3);">Confidential &middot; Version 2.7 &middot; March 2026 &middot; VAREN&reg;</p>
+    </div>
   </div>
-  <div class="tagline">PREPARE &ensp;&middot;&ensp; PERFORM &ensp;&middot;&ensp; PREVAIL</div>
-  <div class="closing">Forged in Pinehurst. Tested at tempo.<br>Refined through three decades of manufacturing discipline.</div>
-  <div class="legal">Confidential &middot; Version 2.2 &middot; March 2026 &middot; VAREN&reg; Logo Kit mk1</div>
 </footer>
-<script>
-  // ═══════════════════════════════════════════════
-  // VAREN v2.2 — GSAP ScrollTrigger Animation Engine
-  // Söhne + Kelman Grid + Buzzworthy-inspired
-  // ═══════════════════════════════════════════════
 
+<script>
   gsap.registerPlugin(ScrollTrigger);
 
-  // ── HERO TIMELINE ──
-  const heroTL = gsap.timeline({ defaults: { ease: 'power3.out' } });
-  heroTL
-    .to('.hero-insignia', { opacity: 1, y: 0, duration: 1, delay: 0.2 })
-    .from('.hero-insignia', { y: 40, duration: 1 }, '<')
-    .to('.hero-wordmark', { opacity: 1, y: 0, duration: 1.2 }, '-=0.6')
-    .from('.hero-wordmark', { y: 40, duration: 1.2 }, '<')
-    .to('.hero-tagline', { opacity: 1, y: 0, duration: 1 }, '-=0.7')
-    .from('.hero-tagline', { y: 30, duration: 1 }, '<')
-    .to('.hero-sub', { opacity: 1, y: 0, duration: 1 }, '-=0.6')
-    .from('.hero-sub', { y: 30, duration: 1 }, '<')
-    .to('.scroll-cue', { opacity: 1, y: 0, duration: 0.8 }, '-=0.4')
-    .from('.scroll-cue', { y: 20, duration: 0.8 }, '<');
-
-  // ── SCROLL-TRIGGERED REVEALS ──
-  // Fade from bottom
-  gsap.utils.toArray('.gs-from-bottom').forEach(el => {
-    gsap.to(el, {
-      opacity: 1, y: 0, duration: 0.9,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-  // Fade from left
-  gsap.utils.toArray('.gs-from-left').forEach(el => {
-    gsap.to(el, {
-      opacity: 1, x: 0, duration: 0.9,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-  // Fade from right
-  gsap.utils.toArray('.gs-from-right').forEach(el => {
-    gsap.to(el, {
-      opacity: 1, x: 0, duration: 0.9,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-  // Scale in
-  gsap.utils.toArray('.gs-scale').forEach(el => {
-    gsap.to(el, {
-      opacity: 1, scale: 1, duration: 1,
-      ease: 'back.out(1.4)',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-  // Section numbers — parallax float via GSAP scrub
-  gsap.utils.toArray('.section-num').forEach(num => {
-    gsap.to(num, {
-      opacity: 1,
-      scrollTrigger: {
-        trigger: num,
-        start: 'top 90%',
-        toggleActions: 'play none none none'
-      }
-    });
-    gsap.to(num, {
-      yPercent: -15,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: num,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 0.5
-      }
-    });
-  });
-
-  // Staggered system cards
-  gsap.utils.toArray('.system-row .sys-card').forEach((card, i) => {
-    gsap.to(card, {
-      opacity: 1, y: 0, duration: 0.7,
-      delay: i * 0.08,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: card.parentElement,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-  // Staggered pillar cards
-  gsap.utils.toArray('.pillars-row .pillar-card').forEach((card, i) => {
-    gsap.to(card, {
-      opacity: 1, y: 0, duration: 0.7,
-      delay: i * 0.1,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: card.parentElement,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-  // Staggered delivery cards
-  gsap.utils.toArray('.delivery-grid .delivery-card').forEach((card, i) => {
-    gsap.to(card, {
-      opacity: 1, y: 0, duration: 0.7,
-      delay: i * 0.08,
-      ease: 'power2.out',
-      scrollTrigger: {
-        trigger: card.parentElement,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      }
-    });
-  });
-
-  // ── SCROLL PROGRESS BAR ──
-  const progressBar = document.getElementById('scrollProgress');
-  gsap.to(progressBar, {
-    width: '100%',
-    ease: 'none',
-    scrollTrigger: {
-      trigger: document.body,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 0.1
+  // LOADER ANIMATION
+  gsap.set('#navbar', { opacity: 0 });
+  const loaderTL = gsap.timeline({
+    onComplete: () => {
+      document.getElementById('loader').style.display = 'none';
+      gsap.to('#navbar', { opacity: 1, duration: 0.5, ease: 'power2.out' });
+      // Hero entrance
+      gsap.fromTo('.hero-headline', { opacity: 0, y: 100 }, { opacity: 1, y: 0, duration: 1.2, delay: 0.2, ease: 'power2.out' });
+      gsap.fromTo('.hero-callout-text', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, delay: 0.6, ease: 'power2.out' });
+      gsap.fromTo('.hero-scroll', { opacity: 0 }, { opacity: 1, duration: 1, delay: 1, ease: 'power2.out' });
     }
   });
+  loaderTL
+    .to('.loader-insignia', { opacity: 1, duration: 0.8, ease: 'power2.out' }, 0.3)
+    .to('.loader-wordmark', { opacity: 1, duration: 0.8, ease: 'power2.out' }, 0.7)
+    .to('.loader-tagline', { opacity: 1, duration: 0.6, ease: 'power2.out' }, 1.2)
+    .to({}, { duration: 0.8 }) // pause
+    .to('.loader-content', { scale: 0.3, x: '-40vw', y: '-40vh', opacity: 0, duration: 1, ease: 'power3.inOut' })
+    .to('.loader', { opacity: 0, duration: 0.4, ease: 'power2.out' }, '-=0.3');
 
-  // ── NAV SCROLL STATE ──
+  const scrollBar = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', () => {
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrolled = (window.scrollY / scrollHeight) * 100;
+    scrollBar.style.width = scrolled + '%';
+  });
+
   const navbar = document.getElementById('navbar');
-  ScrollTrigger.create({
-    start: 60,
-    onUpdate: (self) => {
-      navbar.classList.toggle('scrolled', self.scroll() > 60);
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
     }
   });
 
-  // ── ACTIVE NAV LINK TRACKING ──
-  const sections = document.querySelectorAll('.section, .code-hero');
-  const navLinks = document.querySelectorAll('.nav-links a');
-
-  ScrollTrigger.create({
-    start: 0,
-    end: 'max',
-    onUpdate: () => {
-      let currentSection = '';
-      const scrollY = window.scrollY;
-      sections.forEach(section => {
-        if (scrollY >= section.offsetTop - 200) currentSection = section.id;
-      });
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + currentSection);
-      });
-    }
-  });
-
-  // ── NAV LETTER SCRAMBLE EFFECT (Buzzworthy-inspired) ──
-  const scrambleChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    const textEl = link.querySelector('.scramble-text');
-    if (!textEl) return;
-    const originalText = textEl.textContent;
-    let scrambleInterval = null;
-    let iteration = 0;
-
-    link.addEventListener('mouseenter', () => {
-      iteration = 0;
-      clearInterval(scrambleInterval);
-      scrambleInterval = setInterval(() => {
-        textEl.textContent = originalText
-          .split('')
-          .map((char, index) => {
-            if (index < iteration) return originalText[index];
-            return scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
-          })
-          .join('');
-        if (iteration >= originalText.length) {
-          clearInterval(scrambleInterval);
-        }
-        iteration += 1 / 2;
-      }, 30);
-    });
-
-    link.addEventListener('mouseleave', () => {
-      clearInterval(scrambleInterval);
-      textEl.textContent = originalText;
-    });
-  });
-
-  // ── GRID OVERLAY TOGGLE ──
-  const gridOverlay = document.getElementById('gridOverlay');
   const gridToggle = document.getElementById('gridToggle');
-  const gridToggleInline = document.getElementById('gridToggleInline');
-
-  function toggleGrid() {
+  const gridOverlay = document.getElementById('gridOverlay');
+  gridToggle.addEventListener('click', () => {
     gridOverlay.classList.toggle('active');
     gridToggle.classList.toggle('active');
-    if (gridToggleInline) {
-      gridToggleInline.classList.toggle('active');
-      gridToggleInline.textContent = gridOverlay.classList.contains('active') ? 'Hide Grid Overlay' : 'Show Grid Overlay';
-    }
+  });
+
+  // Letter scramble on nav hover
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    const original = link.textContent;
+    let interval;
+    link.addEventListener('mouseenter', () => {
+      let iterations = 0;
+      clearInterval(interval);
+      interval = setInterval(() => {
+        link.textContent = original.split('').map((char, i) => {
+          if (i < iterations) return original[i];
+          return chars[Math.floor(Math.random() * chars.length)];
+        }).join('');
+        iterations += 1/3;
+        if (iterations >= original.length) {
+          clearInterval(interval);
+          link.textContent = original;
+        }
+      }, 30);
+    });
+    link.addEventListener('mouseleave', () => {
+      clearInterval(interval);
+      link.textContent = original;
+    });
+  });
+
+  gsap.utils.toArray('.anim').forEach(el => {
+    gsap.fromTo(el, { opacity: 0, y: 40 }, {
+      opacity: 1, y: 0, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', end: 'top 60%', scrub: 1 }
+    });
+  });
+
+  gsap.utils.toArray('.anim-l').forEach(el => {
+    gsap.fromTo(el, { opacity: 0, x: -60 }, {
+      opacity: 1, x: 0, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', end: 'top 55%', scrub: 1 }
+    });
+  });
+
+  gsap.utils.toArray('.anim-r').forEach(el => {
+    gsap.fromTo(el, { opacity: 0, x: 60 }, {
+      opacity: 1, x: 0, ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', end: 'top 55%', scrub: 1 }
+    });
+  });
+
+  gsap.utils.toArray('.anim-fade').forEach(el => {
+    gsap.fromTo(el, { opacity: 0 }, {
+      opacity: 1, duration: 1,
+      scrollTrigger: { trigger: el, start: 'top 85%', end: 'top 65%', scrub: 1 }
+    });
+  });
+
+  const menuButton = document.getElementById('menuButton');
+  if (menuButton) {
+    menuButton.addEventListener('click', () => {
+      alert('Mobile menu: Manifesto, Origin, Code, System, Architecture, Voice, Identity, Delivery');
+    });
   }
 
-  gridToggle.addEventListener('click', toggleGrid);
-  if (gridToggleInline) gridToggleInline.addEventListener('click', toggleGrid);
+  ScrollTrigger.refresh();
 
-  // ── FOOTER FADE-IN ──
-  gsap.from('footer > *', {
-    opacity: 0, y: 30, duration: 0.8,
-    stagger: 0.1,
-    ease: 'power2.out',
-    scrollTrigger: {
-      trigger: 'footer',
-      start: 'top 90%',
-      toggleActions: 'play none none none'
+  // ═══════════════════════════════════════════════════════════════
+  // INTERACTIVE DITHER EFFECT — Canvas 2D Bayer Matrix + Mouse Reveal
+  // Inspired by OCI Buzzworthy · VAREN Gold Palette
+  // Uses Canvas 2D for maximum compatibility (no CORS/WebGL issues)
+  // ═══════════════════════════════════════════════════════════════
+
+  (function initDither() {
+    const canvas = document.getElementById('ditherCanvas');
+    const hero = document.getElementById('heroSection');
+    if (!canvas || !hero) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) { console.warn('Canvas 2D not supported'); return; }
+
+    // VAREN gold palette — 5 shades from black to bright gold
+    const palette = [
+      [10, 10, 10],        // #0A0A0A — VAREN Black
+      [26, 24, 18],        // dark warm carbon
+      [100, 84, 55],       // deep gold shadow
+      [200, 169, 110],     // #C8A96E — Command Gold
+      [242, 240, 237]      // #F2F0ED — Linen White
+    ];
+
+    // 8x8 Bayer matrix (normalized 0–1)
+    const bayer8x8 = [
+       0,32, 8,40, 2,34,10,42,
+      48,16,56,24,50,18,58,26,
+      12,44, 4,36,14,46, 6,38,
+      60,28,52,20,62,30,54,22,
+       3,35,11,43, 1,33, 9,41,
+      51,19,59,27,49,17,57,25,
+      15,47, 7,39,13,45, 5,37,
+      63,31,55,23,61,29,53,21
+    ].map(v => v / 64);
+
+    // Mouse state
+    const mouse = { x: -1, y: -1, tx: -1, ty: -1 };
+    hero.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.tx = e.clientX - rect.left;
+      mouse.ty = e.clientY - rect.top;
+    });
+    hero.addEventListener('mouseleave', () => { mouse.tx = -1; mouse.ty = -1; });
+
+    // Image loading
+    const img = new Image();
+    let imgData = null;
+    let imgW = 0, imgH = 0;
+    let running = false;
+
+    // Off-screen canvas to extract pixel data from the image
+    img.onload = function() {
+      console.log('Dither: image loaded', img.width, img.height);
+      const oc = document.createElement('canvas');
+      // Work at a manageable resolution for performance
+      const maxW = 960;
+      const scale = Math.min(1, maxW / img.width);
+      oc.width = imgW = Math.round(img.width * scale);
+      oc.height = imgH = Math.round(img.height * scale);
+      const octx = oc.getContext('2d');
+      octx.drawImage(img, 0, 0, imgW, imgH);
+      imgData = octx.getImageData(0, 0, imgW, imgH).data;
+      if (!running) { running = true; render(); }
+    };
+
+    img.onerror = function() {
+      console.error('Dither: failed to load image. Check path: assets/varen-lab-harvard-annex.jpg');
+    };
+
+    // Try loading — no crossOrigin needed for local files
+    img.src = 'assets/varen-lab-harvard-annex.jpg';
+
+    // Resize
+    function resize() {
+      const w = hero.clientWidth;
+      const h = hero.clientHeight;
+      // Use a reduced resolution for performance (pixel art look)
+      const pixelSize = 4;
+      canvas.width = Math.ceil(w / pixelSize);
+      canvas.height = Math.ceil(h / pixelSize);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      canvas.style.imageRendering = 'pixelated';
+      canvas.style.imageRendering = '-moz-crisp-edges';
     }
-  });
+    resize();
+    window.addEventListener('resize', resize);
+
+    function render() {
+      if (!imgData) { requestAnimationFrame(render); return; }
+
+      const cw = canvas.width;
+      const ch = canvas.height;
+
+      // Smooth mouse interpolation
+      const lerpRate = 0.1;
+      if (mouse.tx >= 0) {
+        mouse.x += (mouse.tx / (hero.clientWidth / cw) - mouse.x) * lerpRate;
+        mouse.y += (mouse.ty / (hero.clientHeight / ch) - mouse.y) * lerpRate;
+      } else {
+        mouse.x += (-cw - mouse.x) * lerpRate;
+        mouse.y += (-ch - mouse.y) * lerpRate;
+      }
+
+      const output = ctx.createImageData(cw, ch);
+      const out = output.data;
+
+      // Mouse reveal radius in canvas pixels
+      const revealR = cw * 0.15;
+      const revealR2 = revealR * revealR;
+      const softR = revealR * 0.7;
+      const softR2 = softR * softR;
+
+      // Aspect ratio correction for circular reveal
+      const aspectX = cw / ch;
+
+      for (let y = 0; y < ch; y++) {
+        for (let x = 0; x < cw; x++) {
+          // Map canvas pixel to image pixel (cover fit)
+          const imgAspect = imgW / imgH;
+          const canAspect = cw / ch;
+          let sx, sy;
+          if (canAspect > imgAspect) {
+            // Canvas wider — fit width, crop height
+            sx = x / cw;
+            const visH = imgW / canAspect;
+            const offY = (imgH - visH) / 2;
+            sy = (offY + (y / ch) * visH) / imgH;
+          } else {
+            // Canvas taller — fit height, crop width
+            sy = y / ch;
+            const visW = imgH * canAspect;
+            const offX = (imgW - visW) / 2;
+            sx = (offX + (x / cw) * visW) / imgW;
+          }
+
+          // Sample image
+          const ix = Math.min(imgW - 1, Math.max(0, Math.round(sx * (imgW - 1))));
+          const iy = Math.min(imgH - 1, Math.max(0, Math.round(sy * (imgH - 1))));
+          const si = (iy * imgW + ix) * 4;
+          const r = imgData[si], g = imgData[si+1], b = imgData[si+2];
+
+          // Luminance
+          const lum = (r * 0.299 + g * 0.587 + b * 0.114) / 255;
+
+          // Bayer threshold
+          const bx = x % 8;
+          const by = y % 8;
+          const threshold = bayer8x8[by * 8 + bx];
+
+          // Dithered color — quantize to 5-level gold palette
+          const adjusted = lum + (threshold - 0.5) * 0.35;
+          let ci;
+          if (adjusted < 0.18)      ci = 0;
+          else if (adjusted < 0.35) ci = 1;
+          else if (adjusted < 0.55) ci = 2;
+          else if (adjusted < 0.75) ci = 3;
+          else                      ci = 4;
+
+          let fr = palette[ci][0], fg = palette[ci][1], fb = palette[ci][2];
+
+          // Mouse reveal spotlight
+          if (mouse.x >= 0) {
+            const dx = x - mouse.x;
+            const dy = y - mouse.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < revealR2) {
+              // Gold-tinted original
+              const gr = Math.min(255, r * 1.05);
+              const gg = Math.min(255, g * 0.95);
+              const gb = Math.min(255, b * 0.75);
+              // Smooth blend
+              let t;
+              if (d2 < softR2) {
+                t = 0.92;
+              } else {
+                t = 0.92 * (1 - (Math.sqrt(d2) - Math.sqrt(softR2)) / (revealR - Math.sqrt(softR2)));
+              }
+              t = Math.max(0, Math.min(1, t));
+              fr = fr + (gr - fr) * t;
+              fg = fg + (gg - fg) * t;
+              fb = fb + (gb - fb) * t;
+            }
+          }
+
+          const oi = (y * cw + x) * 4;
+          out[oi]     = fr;
+          out[oi + 1] = fg;
+          out[oi + 2] = fb;
+          out[oi + 3] = 255;
+        }
+      }
+
+      ctx.putImageData(output, 0, 0);
+      requestAnimationFrame(render);
+    }
+  })();
 </script>
+
 </body>
 </html>
