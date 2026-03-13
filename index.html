@@ -1,5 +1,5 @@
-<!-- VAREN® Brand Experience — v2.7 (Buzzworthy OCI Layout Redesign) -->
-<!-- Previous versions: v1.0-v2.6 backed up in /versions/ -->
+<!-- VAREN® Brand Experience — v2.8 (Dark Dither + 4K Optimization) -->
+<!-- Previous versions: v1.0-v2.7 backed up in /versions/ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +16,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
   /* ═══════════════════════════════════════════════════════════════════
-     VAREN® BRAND EXPERIENCE v2.7
-     VAREN Harmonic Grid · Buzzworthy OCI Layout · 16:9
+     VAREN® BRAND EXPERIENCE v2.8
+     VAREN Harmonic Grid · Dark Dither · 4K Optimized
      ═══════════════════════════════════════════════════════════════════ */
 
   /* ── SÖHNE ── */
@@ -89,7 +89,7 @@
     --grid-margin-x: clamp(2rem, 2.77vw, 3.5rem);
     --grid-margin-top: 4.924vh;
     --grid-margin-bottom: 12.5vh;
-    --content-max: 1440px;
+    --content-max: 2200px;
     --baseline: 15px;
 
     --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -345,10 +345,21 @@
     image-rendering: crisp-edges;
   }
 
+  /* Gradient overlay for text legibility over dither */
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.4) 40%, transparent 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
   .hero-inner {
     padding: var(--sp-7) var(--grid-margin-x) var(--grid-margin-bottom);
     width: 100%;
-    max-width: var(--content-max);
+    max-width: none;
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -362,13 +373,16 @@
   .hero-headline {
     grid-column: 1 / 8;
     font-family: var(--sans-narrow);
-    font-size: clamp(var(--type-h1), 12vw, 18rem);
+    font-size: clamp(var(--type-h1), 10vw, 18rem);
     font-weight: 600;
     color: var(--light);
     line-height: 0.95;
     letter-spacing: -0.02em;
     margin-bottom: var(--sp-5);
     opacity: 0;
+    text-shadow: 0 2px 40px rgba(10,10,10,0.9), 0 0 120px rgba(10,10,10,0.7);
+    z-index: 2;
+    position: relative;
   }
 
   .hero-callout {
@@ -385,6 +399,9 @@
     color: var(--gray);
     line-height: var(--leading-body);
     opacity: 0;
+    text-shadow: 0 2px 30px rgba(10,10,10,0.9);
+    position: relative;
+    z-index: 2;
   }
 
   .hero-scroll {
@@ -1219,6 +1236,62 @@
     .split-3-1 > :first-child { grid-column: span 12; }
     .split-3-1 > :last-child  { grid-column: span 12; }
   }
+
+  /* ══════════════════════════════════════════
+     LARGE SCREEN / 4K OPTIMIZATION
+     ══════════════════════════════════════════ */
+
+  @media (min-width: 1600px) {
+    :root {
+      --grid-margin-x: clamp(3rem, 4vw, 6rem);
+      --grid-gutter: 1.5rem;
+    }
+    .hero-headline {
+      font-size: clamp(10rem, 9vw, 22rem);
+      grid-column: 1 / 9;
+    }
+    .hero-callout { grid-column: 9 / 13; }
+    .hero-inner { padding-left: 5vw; padding-right: 5vw; }
+    .frame-inner { padding-left: 5vw; padding-right: 5vw; }
+    .frame-num { font-size: clamp(18rem, 28vw, 36rem); }
+  }
+
+  @media (min-width: 2000px) {
+    :root {
+      --grid-margin-x: 5vw;
+      --content-max: 2400px;
+      --grid-gutter: 1.75rem;
+    }
+    html { font-size: 18px; }
+    .hero-headline {
+      font-size: clamp(12rem, 8.5vw, 28rem);
+      grid-column: 1 / 10;
+    }
+    .hero-callout { grid-column: 10 / 13; }
+    .hero-inner { padding-left: 6vw; padding-right: 6vw; }
+    .frame-inner { padding-left: 6vw; padding-right: 6vw; max-width: 2600px; }
+    nav { padding-left: 5vw; padding-right: 5vw; }
+    nav.scrolled { padding-left: 5vw; padding-right: 5vw; }
+    .frame-num { font-size: clamp(22rem, 25vw, 42rem); }
+  }
+
+  @media (min-width: 2560px) {
+    :root {
+      --content-max: 2800px;
+      --grid-margin-x: 6vw;
+    }
+    html { font-size: 20px; }
+    .hero-headline {
+      font-size: 8vw;
+      grid-column: 1 / 10;
+    }
+    .hero-inner { padding-left: 7vw; padding-right: 7vw; }
+    .frame-inner { padding-left: 7vw; padding-right: 7vw; max-width: 3200px; }
+    nav { padding-left: 6vw; padding-right: 6vw; }
+    nav.scrolled { padding-left: 6vw; padding-right: 6vw; }
+    .manifesto { max-width: 1000px !important; }
+    .section-label { font-size: 0.9rem; letter-spacing: 0.25em; }
+  }
 </style>
 </head>
 <body>
@@ -1847,13 +1920,14 @@
     const ctx = canvas.getContext('2d');
     if (!ctx) { console.warn('Canvas 2D not supported'); return; }
 
-    // VAREN gold palette — 5 shades from black to bright gold
+    // VAREN gold palette — 5 shades, heavily weighted dark
+    // Black BG with sparse gold line-art feel
     const palette = [
-      [10, 10, 10],        // #0A0A0A — VAREN Black
-      [26, 24, 18],        // dark warm carbon
-      [100, 84, 55],       // deep gold shadow
-      [200, 169, 110],     // #C8A96E — Command Gold
-      [242, 240, 237]      // #F2F0ED — Linen White
+      [10, 10, 10],        // #0A0A0A — VAREN Black (dominant)
+      [18, 16, 12],        // near-black warm
+      [50, 42, 28],        // very dark gold
+      [120, 100, 65],      // medium dark gold
+      [200, 169, 110]      // #C8A96E — Command Gold (highlights only)
     ];
 
     // 8x8 Bayer matrix (normalized 0–1)
@@ -1909,8 +1983,8 @@
     function resize() {
       const w = hero.clientWidth;
       const h = hero.clientHeight;
-      // Use a reduced resolution for performance (pixel art look)
-      const pixelSize = 4;
+      // Adaptive pixel size — finer on large/4K screens
+      const pixelSize = w > 2400 ? 3 : w > 1800 ? 3.5 : 4;
       canvas.width = Math.ceil(w / pixelSize);
       canvas.height = Math.ceil(h / pixelSize);
       canvas.style.width = w + 'px';
@@ -1984,13 +2058,15 @@
           const threshold = bayer8x8[by * 8 + bx];
 
           // Dithered color — quantize to 5-level gold palette
-          const adjusted = lum + (threshold - 0.5) * 0.35;
+          // Darken the luminance curve — crush shadows, preserve only bright edges
+          const darkLum = Math.pow(lum, 1.8); // gamma push toward black
+          const adjusted = darkLum + (threshold - 0.5) * 0.28;
           let ci;
-          if (adjusted < 0.18)      ci = 0;
-          else if (adjusted < 0.35) ci = 1;
-          else if (adjusted < 0.55) ci = 2;
-          else if (adjusted < 0.75) ci = 3;
-          else                      ci = 4;
+          if (adjusted < 0.28)      ci = 0;  // most pixels → black
+          else if (adjusted < 0.48) ci = 1;  // near-black
+          else if (adjusted < 0.65) ci = 2;  // dark gold
+          else if (adjusted < 0.82) ci = 3;  // medium gold
+          else                      ci = 4;  // command gold highlights only
 
           let fr = palette[ci][0], fg = palette[ci][1], fb = palette[ci][2];
 
